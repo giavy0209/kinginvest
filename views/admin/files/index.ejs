@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include ('../includes/head.ejs')%>
+<body>
+    <main>
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%-include ('../includes/sidebar.ejs')%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%-include ('../includes/title-admin.ejs')%>
+                        <form id="uploads" action="/admin/upload" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="image">
+                            <input placeholder="Tên file(dễ nhớ)" type="text" name="name"/>
+                            <button type="submit">send</button>
+                        </form>
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>url</th>
+                                <th>tên</th>
+                                <th>hình</th>
+                                <th>Sửa/xóa</th>
+                            </tr>
+                            <%data.forEach(_data=>{%>
+                            
+                                <tr>
+                                    <td><%=_data._id%></td>
+                                    <td><%=_data.path%></td>
+                                    <td><%=_data.name%></td>
+                                    <td style="min-width: 200px;" class="img img-1-1"><img src="<%=_data.path%>" alt=""></td>
+                                    <td>
+                                        <a href="/admin/<%=adminPage%>/edit/<%=_data._id%>"><i class="fas fa-pencil-alt"></i></a>
+                                        <form method="POST" action="/admin/<%=adminPage%>/delete">
+                                            <input type="text" name="id" value="<%=_data._id%>" style="display: none;">
+                                            <button type="submit"><i class="fas fa-trash-alt delete"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                
+                            <%})%>
+                        </table>
+                        <%-include ('../includes/pagination')%>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%-include ('../includes/js.ejs')%>
+<script>
+    document.querySelectorAll('form').forEach(el => {
+        el.onsubmit = e => {
+            e.preventDefault()
+            var r = confirm('xác nhận xóa?')
+
+            if(r) e.target.submit()
+        }
+    })
+
+    document.getElementById('uploads').onsubmit = () => {
+        var r = confirm('Upload file ????')
+        if(r) e.target.submit()
+    }
+
+</script>
+</html>

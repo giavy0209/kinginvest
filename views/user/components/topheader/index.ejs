@@ -1,0 +1,37 @@
+
+<%
+var listSocials = data.datas.find(o => o.key === 'socials').data
+var flag = {
+    vi : data.datas.find(o => o.key === 'vi_flag').data,
+    en : data.datas.find(o => o.key === 'en_flag').data
+}
+%>
+<header>
+    <div class="topheader">
+        <div class="kdg-container">
+            <ul class="list-socials">
+                <%listSocials.forEach(social =>{%>
+                    <li>
+                        <a target="_blank" href="<%=social.target_url%>">
+                            <img src="<%=social.img_url%>" alt="">
+                        </a>
+                    </li>
+                <%})%>
+            </ul>
+            <div class="choose-language">
+                <div class="current">
+                    <img src="<%=flag.vi%>" alt="">
+                </div>
+                <ul class="dropdown">
+                    <%Object.keys(flag).forEach(key => {%>
+                        
+                        <li>
+                            <a href=""><img src="<%=flag[key]%>" alt=""></a>
+                        </li>
+
+                    <%})%>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

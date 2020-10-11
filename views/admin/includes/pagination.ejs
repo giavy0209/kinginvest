@@ -1,0 +1,28 @@
+<div class="pagination">
+    <%if(page > 1){%>
+        <div class="page">
+            <a href="/admin/<%=adminPage%>/?page=1">1</a>
+        </div>    
+        <div class="page">
+            <a href="">...</a>
+        </div>
+    <%}%>
+    <%for(let i = page; i <= page + 5 && i <= totalPage + 1; i++){%>
+        <div class="page">
+            <a <%if(i === page){%>class="active"<%}%> href="/admin/<%=adminPage%>/?page=<%=i%>"><%=i%></a>
+        </div>   
+    <%
+        if(i === totalPage){
+            break
+        }
+    }%>
+
+    <%if(page < totalPage && totalPage > 7){%>
+        <div class="page">
+            <a href="">...</a>
+        </div>
+        <div class="page">
+            <a href="/admin/<%=adminPage%>//?page=<%=totalPage%>"><%=totalPage%></a>
+        </div>    
+    <%}%>
+</div>

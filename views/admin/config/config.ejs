@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%include ../includes/head.ejs%>
+<body>
+    <main>
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%include ../includes/sidebar.ejs%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%include ../includes/title-admin.ejs%>
+                        <div class="group-input">
+                            <%data.forEach(function(el){%>
+                            <%if(el.name.indexOf('footer') != -1){%>
+                                <div class="row" >
+                                    <div class="group" style="width: 80%">
+                                        <span><%=el.title%></span>
+                                    </div>
+                                    <div class="group" style="width: 20%">
+                                        <button><a href="/admin/<%=adminPage%>/edit/<%=el.id%>">Chỉnh sửa</a></button> 
+                                    </div>
+                                </div>
+                            <%}else{%>
+                                <div class="row" >
+                                    <div class="group" style="width: 80%">
+                                        <span><%=el.title%></span>
+                                        <input id="<%=el._id%>" type="text" placeholder="<%=el.title%>" value="<%=el.value%>">
+                                    </div>
+                                    <div class="group" style="width: 20%">
+                                        <button class="submit">Cập nhật</button> 
+                                    </div>
+                                </div>
+                            <%}%>
+                            
+                            <%})%>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%include ../includes/js.ejs%>
+<script>
+    var btn = document.querySelectorAll('.submit');
+    btn.forEach(function(el){
+        el.addEventListener('click',function(){
+            var id = el.parentElement.parentElement.firstElementChild.lastElementChild.getAttribute('id'),
+                value = el.parentElement.parentElement.firstElementChild.lastElementChild.value;
+            var obj = {
+                id,
+                value
+            }
+            socket.emit('client-edit-widget',obj)
+        })
+    })    
+    socket.on('edit-widget-success',function(){
+        alert('sửa thành công')
+    })
+</script>
+</html>

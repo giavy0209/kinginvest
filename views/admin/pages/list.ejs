@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include ('../includes/head.ejs')%>
+<body>
+    <main>
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%-include ('../includes/sidebar.ejs')%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%-include ('../includes/title-admin.ejs')%>
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Thứ tự</th>
+                                <th>tên</th>
+                                <th>Sửa/xóa</th>
+                            </tr>
+                            <%data.forEach(_data=>{%>
+                            
+                                <tr>
+                                    <td><%=_data._id%></td>
+                                    <td><%=_data.ordering%></td>
+                                    <td><%=_data.name%></td>
+                                    <td>
+                                        <a href="/admin/<%=adminPage%>/edit/<%=_data._id%>"><i class="fas fa-pencil-alt"></i></a>
+                                        <form method="POST" action="/admin/<%=adminPage%>/delete">
+                                            <input type="text" name="id" value="<%=_data._id%>" style="display: none;">
+                                            <button type="submit"><i class="fas fa-trash-alt delete"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                
+                            <%})%>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%-include ('../includes/js.ejs')%>
+<script>
+    document.querySelectorAll('form').forEach(el => {
+        el.onsubmit = e => {
+            e.preventDefault()
+            var r = confirm('xác nhận xóa?')
+
+            if(r) e.target.submit()
+        }
+    })
+</script>
+</html>

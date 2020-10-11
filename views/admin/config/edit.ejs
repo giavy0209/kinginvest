@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%include ../includes/head.ejs%>
+<body>
+    <main>
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%include ../includes/sidebar.ejs%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%include ../includes/title-admin.ejs%>
+                        <div id="id"><%=data._id%></div>
+                        <div class="group-input">
+                            <div class="row">
+                                <div class="group textarea">
+                                    <textarea id="content" cols="30" rows="10"><%=data.value%></textarea>
+                                    <script>
+                                        CKEDITOR.replace( 'content',{height: 500} );
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="group">
+                                    <button class="submit" id="submit">Cập nhật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%include ../includes/js.ejs%>
+<script>
+    var btn = document.getElementById('submit');
+    btn.addEventListener('click',function(){
+        var id = document.getElementById('id').innerHTML;
+        var value = CKEDITOR.instances.content.getData();
+        var obj = {
+                id,
+                value
+            }
+        socket.emit('client-edit-widget',obj)
+    })
+    socket.on('edit-widget-success',function(){
+        alert('sửa thành công')
+    })
+</script>
+</html>

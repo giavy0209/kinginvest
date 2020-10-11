@@ -1,0 +1,186 @@
+/*=========== 00. RESET CSS ================ */	
+@import './mixin';
+@import './fonts';
+@import './var';
+html{
+    scroll-behavior: smooth;
+    font-size: 10px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:before, :after  {
+    box-sizing: border-box;
+}
+a, span, :before, :after { 
+    display: inline-block; 
+}
+:focus {
+    outline: none;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+img {
+    max-width: 100%;
+}
+
+body {
+    font-size: rem(15px);
+    font-family: 'SanFranciscoText';
+    line-height: 1.285;
+
+    color: $maincolor;
+    background-color: $sub4;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+.kdg-container {
+    max-width: 1085px;
+    margin: 0 auto;
+    padding: 0 35px;
+}
+/*=========== 00. General ================ */	
+.kdg-row{
+    font-size: 0;
+    margin-left: -9px;
+    margin-right: -9px;
+}
+.kdg-row [class*="kdg-col-"],
+.kdg-row[class*="kdg-column-"] .item{
+    padding-left: 9px;
+    padding-right: 9px;
+    display: inline-block;
+    font-size: 14px;
+}
+.kdg-col-12{
+    width:100%;
+}
+.kdg-col-9{
+    width:75%;
+}
+.kdg-col-8{
+    width:66.6666%;
+}
+.kdg-col-7{
+    width:58.333333%;
+}
+.kdg-col-6{
+    width:50%;
+}
+.kdg-col-5{
+    width:41.6666%;
+}
+.kdg-col-4{
+    width:33.33333%;
+}
+.kdg-col-3{
+    width:25%;
+}
+
+
+.kdg-col-2{
+    width:16.666667%;
+}
+
+.kdg-column-2 .item{
+    width: 50%;
+}
+.kdg-column-3 .item{
+    width: 33.3333333%;
+}
+.kdg-column-3 .item:not(:nth-child(-n + 3)) {
+    margin-top: 30px;
+}
+.kdg-column-4 .item{
+    width: 25%;
+}
+
+.kdg-column-4 .item:not(:nth-child(-n + 4)) {
+    margin-top: 17px;
+}
+.kdg-column-5 .item{
+    width: 20%;
+}
+.kdg-column-5 .item:not(:nth-child(-n + 5)) {
+    margin-top: 30px;
+}
+
+.va-t{
+    vertical-align: top;
+}
+.va-m{
+    vertical-align: middle;
+}
+.va-b{
+    vertical-align: bottom;
+}
+.dp-inb{
+    display: inline-block !important;
+}
+.dp-b{
+    display:block !important;
+}
+.clear::after{
+    content: " ";
+    display:block;
+    clear: both;
+}
+.pl-0{
+    padding-left: 0 !important; 
+}
+.pr-0{
+    padding-right: 0 !important;
+}
+
+.text-c {
+    text-align: center;
+}
+
+.text-l {
+    text-align: left;
+}
+
+.text-r {
+    text-align: right;
+}
+
+.img {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+
+.img img, .img video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+        object-fit: cover;
+}
+
+.img-3-2::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+    background-color: transparent;
+}
+.img-1-1::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    background-color: transparent;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include ('../includes/head.ejs')%>
+<body>
+    <main>
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%-include ('../includes/sidebar.ejs')%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%-include ('../includes/title-admin.ejs')%>
+
+                        <form id="form" method="POST" action="/admin/<%=adminPage%>/edit/">
+                            <input type="text" name="id" value="<%=id%>" style="display: none;">
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Thứ tự VI</span>
+                                        <input type="number" value="<%=data.ordering_vi%>" name="ordering_vi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Thứ tự EN</span>
+                                        <input type="number" value="<%=data.ordering_en%>" name="ordering_en">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Trang VI</span>
+                                        <select name="pagevi" id="">
+                                            <option value="">----Chọn trang-----</option>
+                                            <%pages.forEach(el => {%>
+                                                <option <%if(el._id + '' == data.pagevi + ''){%>selected<%}%> value="<%=el._id%>"><%=el.name%></option>    
+                                            <%})%>
+                                        </select>
+                                    </div>
+                                    <div class="group">
+                                        <span>Trang EN</span>
+                                        <select name="pageen" id="">
+                                            <option value="">----Chọn trang-----</option>
+                                            <%pages.forEach(el => {%>
+                                                <option <%if(el._id + '' == data.pagevi + ''){%>selected<%}%> value="<%=el._id%>"><%=el.name%></option>    
+                                            <%})%>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Hiển thị VI</span>
+                                        <input type="checkbox" <%if(data.show_vi){%>checked<%}%> name="show_vi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Hiển thị EN</span>
+                                        <input type="checkbox" <%if(data.show_en){%>checked<%}%> name="show_en">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Mở trong tab mới VI</span>
+                                        <input type="checkbox" <%if(data.open_new_tab_vi){%>checked<%}%> name="open_new_tab_vi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Mở trong tab mới EN</span>
+                                        <input type="checkbox" <%if(data.open_new_tab_en){%>checked<%}%> name="open_new_tab_en">
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Tiêu đề VI (trên thanh trình duyệt)</span>
+                                        <input type="text" value="<%=data.titlevi%>" name="titlevi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tiêu đề EN (trên thanh trình duyệt)</span>
+                                        <input type="text" value="<%=data.titleen%>" name="titleen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Tiêu đề VI (trên các trang mxh)</span>
+                                        <input type="text" value="<%=data.meta_titlevi%>" name="meta_titlevi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tiêu đề EN (trên các trang mxh)</span>
+                                        <input type="text" value="<%=data.meta_titleen%>" name="meta_titleen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Icon VI (trên trình duyệt kế bên tiêu đề)</span>
+                                        <input type="text" value="<%=data.iconvi%>" name="iconvi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Icon EN (trên trình duyệt kế bên tiêu đề)</span>
+                                        <input type="text" value="<%=data.iconen%>" name="iconen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>URL VI</span>
+                                        <input type="text" value="<%=data.slugvi%>" name="slugvi">
+                                    </div>
+                                    <div class="group">
+                                        <span>URL EN</span>
+                                        <input type="text" value="<%=data.slugen%>" name="slugen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Mô tả ngắn (đặc biệt tốt cho SEO) VI</span>
+                                        <input type="text" value="<%=data.metadesvi%>" name="metadesvi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Mô tả ngắn (đặc biệt tốt cho SEO) EN</span>
+                                        <input type="text" value="<%=data.metadesen%>" name="metadesen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>URL hình ảnh khi đăng lên các MXH VI</span>
+                                        <input type="text" value="<%=data.meta_og_img_vi%>" name="meta_og_img_vi">
+                                    </div>
+                                    <div class="group">
+                                        <span>URL hình ảnh khi đăng lên các MXH EN</span>
+                                        <input type="text" value="<%=data.meta_og_img_en%>" name="meta_og_img_en">
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="group">
+                                        <button type="submit" id="submit">Sửa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%include ('../includes/js.ejs')%>
+
+<script>
+    const form = document.getElementById('form')
+
+    form.onsubmit = e => {
+        // e.preventDefault()
+        // const data = new FormData(e.target)
+        // const submitData = {}
+        // for(var pair of data.entries()) {
+        //     submitData[pair[0]] = pair[1]
+        // }
+
+        // console.log(submitData);
+    }
+</script>
+
+</html>

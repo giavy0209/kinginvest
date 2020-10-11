@@ -1,0 +1,28 @@
+<div class="widgets">
+    <div class="top-sidebar">
+        <h1><a href="/">Trang chủ</a></h1>
+    </div>
+    <div class="widget-menu">
+        <ul>
+            <li <%if(adminPage == 'categories'){%> class="active" <%}%> >
+                <a href="/admin/categories"><i class="fas fa-cogs"></i><span>Danh mục</span></a>
+            </li>
+            <li <%if(adminPage == 'pages'){%> class="active" <%}%> >
+                <a href="/admin/pages"><i class="fas fa-cogs"></i><span>Tạo trang</span></a>
+            </li>
+            <li <%if(adminPage == 'components'){%> class="active" <%}%> >
+                <a href="/admin/components"><i class="fas fa-cogs"></i><span>Tạo thành phần</span></a>
+            </li>
+            <li <%if(adminPage == 'uploads'){%> class="active" <%}%> >
+                <a href="/admin/uploads"><i class="fas fa-cogs"></i><span>Hình ảnh/Tệp tin</span></a>
+            </li>
+            <li id="logout" style="cursor: pointer"><a>Đăng xuất</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    document.getElementById('logout').addEventListener('click',function(){
+        document.cookie = "passport=123; expires=Thu, 18 Dec 2010 12:00:00 UTC; path=/"
+        location.reload (true)
+    })
+</script>

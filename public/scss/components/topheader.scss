@@ -1,0 +1,36 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+header{
+    .topheader{
+        background-color: $sub2;
+        text-align: right;
+        padding: 18px 0 ;
+        font-size: 0;
+        * {
+            vertical-align: middle;
+        }
+        .list-socials{
+            display: inline-block;
+            font-size: 0;
+            li {
+                display: inline-block;
+                width: 35px;
+                padding: 0 7px;
+            }
+        }
+        .choose-language{
+            display: inline-block;
+            width: 47px;
+            padding: 0 7px;
+            position: relative;
+            .dropdown{
+                position: absolute;
+                top: 110%;
+                left: 0;
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+    }
+}

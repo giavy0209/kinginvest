@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include ('../includes/head.ejs')%>
+<body>
+    <main>
+        
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%-include ('../includes/sidebar.ejs')%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%-include ('../includes/title-admin.ejs')%>
+                        <div id="id" style="display: none;"><%=id%></div>
+                        <form action="/admin/upload" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="image">
+                            <button type="submit">send</button>
+                        </form>
+                        <form id="form" method="POST" action="/admin/<%=adminPage%>/add/">
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="group">
+                                        <button type="button" id="save">save tạm</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Thứ tự</span>
+                                        <input id="ordering" value="<%=data.ordering%>" type="number" name="ordering">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tên</span>
+                                        <input id="name" value="<%=data.name%>" type="text" name="name">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row" id="multi">
+                                    <div class=""></div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="group">
+                                        <button type="submit" id="submit">Sửa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%include ('../includes/js.ejs')%>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const rawListComponents = <%-JSON.stringify(components)%>
+</script>
+<script>
+    var listComponents = [<%-JSON.stringify(data)%>]
+    console.log(listComponents);
+    const containerDataHTML = document.getElementById('multi')
+
+    const getData3 = (data_info,data,parentkey) => {
+        var html = ``
+        data.forEach(subdata => {
+            html += `<div parent-name="${parentkey}" class="group-sub-data">`
+            Object.keys(data_info).forEach(key => {
+            html += `
+                    
+                    <span>${key}</span>
+                    <input data-type="${data_info[key]}" type="${
+                    data_info[key] === 0 ? 'number' : 
+                    data_info[key] === 1 ? 'text' : 
+                    'checkbox'
+                    }" 
+                    placeholder="${data_info[key] === 0 ? 'Nhập số' : 'Nhập chữ'}"
+                    ${
+                        data_info[key] === 4 ? `${subdata[key] ? 'checked' : ''}` : `${subdata[key] ? `value="${subdata[key]}"` : 'value=""'}`
+                    }
+                    name="${key}">    
+                    
+            `
+            })
+            html += `</div>`
+        })
+        return html
+    }
+
+    const addSubInput = (id,key) =>{
+
+        var com = listComponents.findIndex(o => o.id === id)
+        var data = {...listComponents[com].datas.find(o => o.key === key)}
+        var dataindex = listComponents[com].datas.findIndex(o => o.key === key)
+        var objData = {}
+        Object.keys(data.data_info).forEach(data_info => {
+            objData[data_info] = undefined
+        })
+
+
+        var data = {
+            ...data,
+            data : [...data.data,objData]
+        }
+
+        listComponents[com].datas[dataindex] = data
+        addComponentDataHTML()
+    }   
+
+    addComponentDataHTML()
+    function addComponentDataHTML (){
+        var html = `<div class="list-choosed-component">`
+        listComponents.forEach((el,index) => {
+            html += `
+            <div data-key="${el.key}" data-id="${el.id}" class="choosed-component">
+                <p>${el.name}</p>
+            `
+            
+            el.datas.forEach(data => {
+                html += ` <div name="${data.key}" data-type="${data.type}" class="group"><span class="title-group">${data.key}</span>`
+
+                if(data.type === 3){
+                    html += getData3(data.data_info , data.data,data.key)
+                    html += `<button onclick="addSubInput('${el.id}','${data.key}','${data.key}')" type="button"> Thêm trường dữ liệu </button>`
+                }
+                if(data.type !== 3){
+                    html += `
+                    <input type="${
+                    data.type === 0 ? 'number' : 
+                    data.type === 1 ? 'text' : 
+                    'checkbox'
+                    }" 
+                    placeholder="${
+                        data.type === 0 ? 'Nhập số' : 
+                        'Nhập chữ'
+                        }
+                    "
+                    value="${data.data}"
+                    name="${data.key}">
+                    `
+                }
+
+                html += `</div>`
+            })
+
+            html +=`</div>`
+        })
+        html += '</div>'
+        containerDataHTML.firstElementChild.remove()
+        containerDataHTML.insertAdjacentHTML('afterbegin', html)
+    }
+</script>
+
+
+<script>
+    
+    document.getElementById('save').onclick = () => {
+        var arrKeyChoosedComponents = []
+        var listComponentChoosed = document.querySelectorAll('.list-choosed-component .choosed-component')
+        listComponentChoosed.forEach(com => {
+            var objectCom = {}
+            var key = com.getAttribute('data-key')
+            var id = com.getAttribute('data-id')
+            var ordering = Number(com.querySelector('input').value)
+            var rawData = rawListComponents.find(o => o.key === key)
+            objectCom.id = id
+            objectCom.ordering = ordering
+            objectCom.key = key
+            objectCom.name = rawData.name
+            var group = com.querySelectorAll('.group')
+            var valueInput = []
+            group.forEach(_group => {
+                var type = _group.getAttribute('data-type')
+                var key = _group.getAttribute('name')
+                var objInput = {type}
+                
+                objInput.key = key
+                if(type === '0'){
+                    objInput.data = Number(_group.querySelector('input').value)
+                }
+                if(type === '1' || type === '2'){
+                    objInput.data = _group.querySelector('input').value
+                }
+
+                if(type === '4') {
+                    objInput.data = _group.querySelector('input').checked
+                }
+
+                if(type === '3'){
+                    var listSubInfo = []
+                    var subData = _group.querySelectorAll('.group-sub-data')
+                    subData.forEach(subGroup => {
+                        var objInputSub = {}
+                        
+                        var subInput = subGroup.querySelectorAll('input')
+                        
+                        subInput.forEach(_subinput => {
+                            var typeSub = _subinput.getAttribute('data-type')
+                            if(typeSub === '0'){
+                                objInputSub[_subinput.getAttribute('name')] = Number(_subinput.value)
+                            }
+                            if(typeSub === '1' || typeSub === '2'){
+                                objInputSub[_subinput.getAttribute('name')] = _subinput.value
+                            }
+
+                            if(typeSub === '4') {
+                                objInputSub[_subinput.getAttribute('name')] = _subinput.checked
+                            }
+                        })
+
+                        listSubInfo.push(objInputSub)
+                    })
+                    objInput.data = listSubInfo
+                    objInput.data_info = rawData.datas.find(o => o.key === key).data_info
+                }
+
+                valueInput.push(objInput)
+            })
+            objectCom.datas = valueInput
+            arrKeyChoosedComponents.push(objectCom)
+
+        })
+
+        arrKeyChoosedComponents.forEach(el => {
+            var currComponents = listComponents.find(o => o.id === el.id)
+            console.log(listComponents,el);
+            currComponents.ordering = el.ordering
+            el.datas.forEach(data => {
+                var currData = currComponents.datas.find(o => o.key == data.key)
+
+                if(currData.type !== 3){
+                    currData.value = data.data
+                }
+
+                if(currData.type === 3){
+                    currData.data = data.data
+                    
+                }
+
+            })
+        })
+
+        listComponents.sort((a , b)=>{
+            return a.ordering - b.ordering
+        })
+        addComponentDataHTML()
+    }
+
+    document.getElementById('form').onsubmit = async (e) =>{
+        e.preventDefault()
+        var arrKeyChoosedComponents = []
+        var listComponentChoosed = document.querySelectorAll('.list-choosed-component .choosed-component')
+        listComponentChoosed.forEach(com => {
+            var objectCom = {}
+            var key = com.getAttribute('data-key')
+            var ordering = Number(com.querySelector('input').value)
+            var rawData = rawListComponents.find(o => o.key === key)
+            var id = com.getAttribute('data-id')
+            objectCom.id = id
+            objectCom.ordering = ordering
+            objectCom.key = key
+            objectCom.name = rawData.name
+            var group = com.querySelectorAll('.group')
+            var valueInput = []
+            group.forEach(_group => {
+                var type = _group.getAttribute('data-type')
+                var key = _group.getAttribute('name')
+                var objInput = {type : Number(type)}
+                
+                objInput.key = key
+                if(type === '0'){
+                    objInput.data = Number(_group.querySelector('input').value)
+                }
+                if(type === '1' || type === '2'){
+                    objInput.data = _group.querySelector('input').value
+                }
+
+                if(type === '4') {
+                    objInput.data = _group.querySelector('input').checked
+                }
+
+                if(type === '3'){
+                    var listSubInfo = []
+                    var subData = _group.querySelectorAll('.group-sub-data')
+                    subData.forEach(subGroup => {
+                        var objInputSub = {}
+                        
+                        var subInput = subGroup.querySelectorAll('input')
+                        
+                        subInput.forEach(_subinput => {
+                            var typeSub = _subinput.getAttribute('data-type')
+                            if(typeSub === '0'){
+                                objInputSub[_subinput.getAttribute('name')] = Number(_subinput.value)
+                            }
+                            if(typeSub === '1' || typeSub === '2'){
+                                objInputSub[_subinput.getAttribute('name')] = _subinput.value
+                            }
+
+                            if(typeSub === '4') {
+                                objInputSub[_subinput.getAttribute('name')] = _subinput.checked
+                            }
+                        })
+
+                        listSubInfo.push(objInputSub)
+                    })
+                    objInput.data = listSubInfo
+                    objInput.data_info = rawData.datas.find(o => o.key === key).data_info
+                }
+
+                valueInput.push(objInput)
+            })
+            objectCom.datas = valueInput
+            arrKeyChoosedComponents.push(objectCom)
+
+        })
+        var submitData = {
+            _id : document.getElementById('id').innerText,
+            humanName: document.getElementById('name').value,
+            ordering : Number(document.getElementById('ordering').value),
+            components : arrKeyChoosedComponents.sort((a , b) => a.ordering - b.ordering)
+        }
+
+        submitData.components = submitData.components[0]
+        submitData.id = submitData.components.id
+        submitData.key = submitData.components.key
+        submitData.name = submitData.components.name
+        submitData.datas = submitData.components.datas
+        await axios.post('/admin/components/edit',submitData)
+        alert('xong')
+    }
+</script>
+
+</html>

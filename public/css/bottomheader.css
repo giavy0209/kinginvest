@@ -1,0 +1,2 @@
+header .bottomheader{padding:50px 0;position:relative}header .bottomheader *{position:relative;z-index:9}header .bottomheader .left .logo{width:60px}header .bottomheader::before{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background-color:#fff;z-index:1}header .bottomheader::after{content:"";position:absolute;top:0;right:0;width:50%;height:100%;background-color:#006B63;z-index:1}
+/*# sourceMappingURL=bottomheader.css.map */

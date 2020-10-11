@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include ('../includes/head.ejs')%>
+<body>
+    <main>
+        
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%-include ('../includes/sidebar.ejs')%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%-include ('../includes/title-admin.ejs')%>
+                        
+                        <form id="form" method="POST" action="/admin/<%=adminPage%>/edit/">
+                            <input type="text" value="<%=data._id%>" name="id" style="display: none;">
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Thứ tự</span>
+                                        <input id="ordering" type="number" value="<%=data.ordering%>" name="_ordering">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tên</span>
+                                        <input id="name" type="text" value="<%=data.name%>" name="name">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <button id="addcomponents" type="button">Thêm thành phần</button>
+                                    </div>
+                                </div>
+
+                                <div id="listcom">
+                                    <%data.components.forEach(_com => {%>
+                                        <div class="row">
+                                            <div class="group">
+                                                <span>Thứ tự</span>
+                                                <input value="<%=_com.ordering%>" type="number" name="ordering">
+                                            </div>
+                                            <div class="group">
+                                                <span>thành phần</span>
+                                                <select name="components" id="">
+                                                    <option value="">-----Chọn thành phần -------</option>
+                                                    <%components.forEach(com => {%>
+                                                        <option <%if(_com.value+'' === com._id +''){%>selected<%}%> value="<%=com._id%>"><%=com.humanName%></option>    
+                                                    <%})%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                    <%})%>
+                                    
+                                </div>
+                                
+                                  
+                                <div class="row">
+                                    <div class="group">
+                                        <button type="submit" id="submit">Sửa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%include ('../includes/js.ejs')%>
+
+<script>
+    document.getElementById('addcomponents').onclick = e => {
+        var html = `
+        <div class="row">
+            <div class="group">
+                <span>Thứ tự</span>
+                <input value="1" type="number" name="ordering" id="">
+            </div>
+            <div class="group">
+                <span>thành phần</span>
+                <select name="components" id="">
+                    <%components.forEach(com => {%>
+                        <option value="<%=com._id%>"><%=com.humanName%></option>    
+                    <%})%>
+                </select>
+            </div>
+        </div>
+        `
+        console.log(html);
+        document.getElementById('listcom').insertAdjacentHTML('beforeend', html)
+    }
+</script>
+</html>

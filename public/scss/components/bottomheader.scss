@@ -1,0 +1,41 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+header{
+    .bottomheader{
+        padding: 50px 0;
+        position: relative;
+        * {
+            position: relative;
+            z-index: 9;
+        }
+
+        .left {
+            .logo{
+                width: 60px;
+            }
+        }
+
+        &::before {
+            content : "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background-color: $sub4;
+            z-index: 1;
+        }
+
+        &::after {
+            content : "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: $sub1;
+            z-index: 1;
+        }
+    }
+}
