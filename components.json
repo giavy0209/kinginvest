@@ -1,0 +1,43 @@
+[
+    {
+        "key" : "topheader",
+        "name": "Header Trên",
+        "datas" : [
+            {
+                "key": "socials",
+                "type": 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "target_url" : 1,
+                    "show" : 4
+                }
+            },
+            {
+                "key" : "vi_flag",
+                "type" : 1
+            },
+            {
+                "key" : "en_flag",
+                "type" : 1
+            }
+        ]
+    },
+    {
+        "key" : "bottomheader",
+        "name" : "header duới",
+        "datas" : [
+            {
+                "key" : "logo",
+                "type" : 1
+            },
+            {
+                "key" : "logo_text",
+                "type" : 1 
+            },
+            {
+                "key" : "header_text",
+                "type" : 1 
+            }
+        ]
+    }
+]
