@@ -1,6 +1,9 @@
 @import '../includes/mixin';
 @import '../includes/var';
 #block5{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     .maincontent{
         margin-top: 30px;
         .content{
