@@ -1,0 +1,96 @@
+<%
+    var title_form = getData('title_form')
+    var show_title_form = getData('show_title_form')
+
+    var description_form = getData('description_form')
+    var show_description_form = getData('show_description_form')
+
+    var placeholder_firstname = getData('placeholder_firstname')
+    var placeholder_lastname = getData('placeholder_lastname')
+    var placeholder_subject1 = getData('placeholder_subject1')
+    var placeholder_subject2 = getData('placeholder_subject2')
+    var placeholder_message = getData('placeholder_message')
+    var button_text = getData('button_text')
+
+    var title_faq = getData('title_faq')
+    var show_title_faq = getData('show_title_faq')
+
+    var description_faq = getData('description_faq')
+    var show_description_faq = getData('show_description_faq')
+    
+    var block = getData('block')
+%>
+<div id="block8" class="block" >
+    <div class="kdg-container">
+        
+        <div class="kdg-row maincontent">
+            <div class="kdg-col-6 va-t">
+                <%if(show_title_form){%>
+                    <h4 class="title"><%-title_form%></h4>
+                <%}%>
+                <%if(show_description_form){%>
+                    <div class="description"><%-description_form%></div>
+                <%}%>
+                <form action="/callback?url=/" method="post">
+                    <div class="input">
+                        <input name="firstname" type="text" placeholder="<%=placeholder_firstname%>">
+                    </div>
+                    <div class="input">
+                        <input name="lastname" type="text" placeholder="<%=placeholder_lastname%>">
+                    </div>
+                    <div class="input">
+                        <input name="subject1" type="text" placeholder="<%=placeholder_subject1%>">
+                    </div>
+                    <div class="input">
+                        <input name="subject2" type="text" placeholder="<%=placeholder_subject2%>">
+                    </div>
+                    <div class="textarea">
+                        <textarea name="message" cols="30" placeholder="<%=placeholder_message%>"></textarea>
+                    </div>
+                    <div class="button"><button><%=button_text%></button></div>
+                </form>
+            </div>
+            <div class="kdg-col-6 va-t">
+                <%if(show_title_faq){%>
+                    <h4 class="title"><%-title_faq%></h4>
+                <%}%>
+                <%if(show_description_faq){%>
+                    <div class="description"><%-description_faq%></div>
+                <%}%>
+                <div class="list-faq">
+                    <%block.forEach(el => {%>
+                        <div class="faq">
+                            <div class="left"></div>
+                            <div class="right">
+                                <div class="title"><%=el.title%></div>
+                                <div class="des"><%-el.description%></div>
+                            </div>
+                        </div>    
+                    <%})%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function () {
+        var desFAQ = Array.from(document.querySelectorAll('#block8 .faq'))
+        desFAQ.forEach(function(el) {
+            var des = el.querySelector('.des')
+            var height = des.offsetHeight
+            des.style.height = 0
+            
+            var showbtn = el.querySelector('.left')
+            showbtn.addEventListener('click', function (btn) {
+                if(Array.from(el.classList).indexOf('active') === -1 ) {
+                    el.classList.add('active')
+                    des.style.height = height + 'px'
+                }else{
+                    el.classList.remove('active')
+                    des.style.height = 0
+                }
+            })
+        })
+    })
+</script>

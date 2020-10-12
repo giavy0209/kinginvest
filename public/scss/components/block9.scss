@@ -1,0 +1,39 @@
+@import '../includes/mixin';
+@import '../includes/var';
+#block9{
+    .maincontent{
+        margin-top: 50px;
+        &.kdg-column-3{
+            .item{
+                &:not(:nth-child(-n + 3)){
+                    margin-top: 60px;
+                }
+            }
+        }
+        .image {
+            width : 100%;
+            height: 135px;
+            border-radius: 5px;
+            transition: all .3s ease;
+            position: relative;
+            border: 2px solid $sub9;
+            cursor: pointer;
+            &:hover{
+                box-shadow: 0 0 15px rgba(0, 0, 0, .7);
+            }
+            &::before {
+                content : "";
+                display: block;
+                padding-top: 39.4%;
+            }
+            img{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+                max-width: 76.3%;
+                max-height: 63.7%;
+            }
+        }
+    }
+}

@@ -326,5 +326,183 @@
                 }
             }
         ]
+    },
+    {
+        "key" : "block6",
+        "name" : "Khối nội dung 6",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "index" : 1,
+                    "title" : 1,
+                    "sub_title" : 1,
+                    "description" : 2,
+                    "button_text" : 1,
+                    "show_button_text" : 4,
+                    "target_url" : 1
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block7",
+        "name" : "Khối nội dung 7",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "description",
+                "type" : 2
+            },
+            {
+                "key" : "show_description",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "show_img" : 4,
+                    "title" : 1,
+                    "show_title" : 4,
+                    "content" : 2,
+                    "show_content" : 4
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block8",
+        "name" : "Form + FAQ",
+        "datas" : [
+            {
+                "key" : "title_form",
+                "type" : 1
+            },
+            {
+                "key" : "show_title_form",
+                "type" : 4
+            },
+            {
+                "key": "description_form",
+                "type" : 2
+            },
+            {
+                "key": "show_description_form",
+                "type" : 4
+            },
+            {
+                "key" : "placeholder_firstname",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_lastname",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_subject1",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_subject2",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_message",
+                "type" : 1
+            },
+            {
+                "key" : "button_text",
+                "type" : 1
+            },
+            {
+                "key" : "title_faq",
+                "type" : 1
+            },
+            {
+                "key" : "show_title_faq",
+                "type" : 4
+            },
+            {
+                "key" : "description_faq",
+                "type" : 2
+            },
+            {
+                "key" : "show_description_faq",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "title" : 1,
+                    "description" : 2
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block9",
+        "name" : "Khối nội dung 9",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "button_text" : 1,
+                    "target_url" : 1
+                }
+            }
+        ]
     }
 ]

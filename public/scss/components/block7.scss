@@ -1,0 +1,33 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#block7{
+    background-color: $sub6;
+    .maincontent{
+        .list{
+            margin-top: 50px;
+            .item{
+                font-size: 0;
+                .left,.right{
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                .left{
+                    width: 35px;
+                }
+                .right{
+                    padding-left: 15px;
+                    width: calc(100% - 35px);
+                    .title{
+                        color: $sub1;
+                        font-size: rem(20px);
+                    }
+                    .des{
+                        font-size: rem(15px);
+                        margin-top: 8px;
+                    }
+                }
+            }
+        }
+    }
+}

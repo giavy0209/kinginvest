@@ -1,0 +1,48 @@
+<%
+    var sub_title = getData('sub_title')
+    var show_sub_title = getData('show_sub_title')
+    var title = getData('title')
+    var show_title = getData('show_title')
+    var description = getData('description')
+    var show_description = getData('description')
+    
+    var block = getData('block')
+%>
+<div id="block7" >
+    <div class="kdg-container">
+        
+        <div class="kdg-row maincontent">
+            <div class="kdg-col-6 va-m">
+                <div class="description">
+                    <%if(show_description){%>
+                        <div><%-description%></div>
+                    <%}%>
+                </div>
+            </div>
+            <div class="kdg-col-6 va-m block">
+                <div class="block-title text-l">
+                    <%if(show_sub_title){%>
+                        <p><%=sub_title%></p>    
+                    <%}%>
+                    <%if(show_title){%>
+                        <h2><%=title%></h2>    
+                    <%}%>
+                </div>
+                <div class="kdg-row kdg-column-2 list">
+                    <%block.forEach(el => {%>
+                        <div class="item">
+                            <div class="left">
+                                <img src="<%=el.img_url%>" alt="">
+                            </div>
+                            <div class="right">
+                                <h3 class="title"><%=el.title%></h3>
+                                <div class="des"><%-el.content%></div>
+                            </div>
+                        </div>    
+                    <%})%>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -89,37 +89,38 @@
 </div>
 
 <script>
+    window.addEventListener('load', function() {
+        var content = Array.from(document.querySelectorAll('#block2 .roadmap'))
+        var heightest = 0
+        content.forEach(function(el) {
+            if(el.offsetHeight > heightest) heightest = el.offsetHeight
+        })
 
-    var content = document.querySelectorAll('#block2 .roadmap')
-    var heightest = 0
-    content.forEach(el => {
-        if(el.offsetHeight > heightest) heightest = el.offsetHeight
-    })
+        var topcontent = Array.from(document.querySelectorAll('#block2 .roadmap .top'))
+        var heightesttop = 0
+        topcontent.forEach(function(el) {
+            if(el.offsetHeight > heightesttop) heightesttop = el.offsetHeight
+        })
 
-    var topcontent = document.querySelectorAll('#block2 .roadmap .top')
-    var heightesttop = 0
-    topcontent.forEach(el => {
-        if(el.offsetHeight > heightesttop) heightesttop = el.offsetHeight
-    })
+        topcontent.forEach(function(el) {
+            el.style.height = heightesttop + 'px'
+        })
+        
+        var bottom = Array.from(document.querySelectorAll('#block2 .roadmap .bottom'))
+        var heightestbot = 0
 
-    topcontent.forEach(el => {
-        el.style.height = heightesttop + 'px'
-    })
-    
-    var bottom = document.querySelectorAll('#block2 .roadmap .bottom')
-    var heightestbot = 0
+        bottom.forEach(function(el) {
+            el.style.height = heightest - heightesttop + 'px'
+        })
 
-    bottom.forEach(el => {
-        el.style.height = heightest - heightesttop + 'px'
-    })
+        content.forEach(function(el) {
+            if(el.offsetHeight > heightest) heightest = el.offsetHeight
+        })
 
-    content.forEach(el => {
-        if(el.offsetHeight > heightest) heightest = el.offsetHeight
-    })
-
-    content.forEach(el => {
-        if(el.offsetHeight === heightest) {
-            el.querySelector('.bottom').style.height = 'unset'
-        }
+        content.forEach(function(el) {
+            if(el.offsetHeight === heightest) {
+                el.querySelector('.bottom').style.height = 'unset'
+            }
+        })
     })
 </script>

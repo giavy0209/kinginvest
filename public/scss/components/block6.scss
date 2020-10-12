@@ -1,0 +1,55 @@
+@import '../includes/mixin';
+@import '../includes/var';
+#block6{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .maincontent{
+        margin-top: 30px;
+        .content{
+            font-size: 0;
+            .left,.right {
+                display: inline-block;
+                vertical-align: top;
+            }
+            .left{
+                color: $sub3 ;
+                width: 59px;
+                padding: 0 5px;
+                font-size: rem(45px);
+                line-height: rem(54px);
+            }
+            .right{
+                width: calc(100% - 59px);
+                padding-left: 10px;
+                .sub-title{
+                    font-size: rem(18px);
+                }
+                .title{
+                    margin-top: 5px;
+                    font-size: rem(20px);
+                    color: $sub1;
+                    font-weight: 600;
+                }
+                .des{
+                    margin-top: 27px;
+                    font-size: rem(15px);
+                }
+                .button{
+                    margin-top: 19px;
+                    font-size: rem(14px);
+                    color: $sub1;
+                    border: 1px solid $sub2;
+                    padding: 13px 20px;
+                    border-radius: 5px;
+                    transition: all .3s ease;
+                    &:hover{
+                        color: $sub4 ;
+                        background-color: $sub1;
+                        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+                    }
+                }
+            }
+        }
+    }
+}

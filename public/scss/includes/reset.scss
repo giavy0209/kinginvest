@@ -196,7 +196,9 @@ body {
 .block{
     padding: 70px 0;
 }
-
+.margin-block{
+    margin: -70px 0;
+}
 .block-title{
     p{
         color: $sub1;

@@ -133,10 +133,11 @@
                 if(data_info[key] === 2){
                     html += `
                     <span>${key}</span>
-                    <textarea data-type="${data_info[key]}" id="${key + index}" name="${key}"></textarea>
+                    <textarea data-type="${data_info[key]}" id="${key + index}" name="${key}">${subdata[key] ? subdata[key] : ''}</textarea>
                     `
                 }
                 if(data_info[key] !==2 ){
+                    console.log(data);
                     html += `
                             
                             <span>${key}</span>
@@ -193,7 +194,7 @@
                 
                 if(data.type === 2){
                     html += `
-                    <textarea data-type="${data.type}" id="${data.key}" name="${data.key}"></textarea>
+                    <textarea data-type="${data.type}" id="${data.key}" name="${data.key}">${data.value}</textarea>
                     `
                 }
                 
@@ -213,6 +214,9 @@
                         'Nhập chữ'
                         }
                     "
+                    ${
+                        data.type === 4 ? `${data.value ? 'checked' : ''}` : `${data.value ? `value="${data.value}"` : 'value=""'}`
+                    }
                     name="${data.key}">
                     `
                 }
@@ -303,7 +307,7 @@
                             }
 
                             if(typeSub === '2'){
-                                objInput[_subinput.getAttribute('name')] = CKEDITOR.instances[_subinput.getAttribute('id')].getData();
+                                objInputSub[_subinput.getAttribute('name')] = CKEDITOR.instances[_subinput.getAttribute('id')].getData();
                             }
 
                             if(typeSub === '4') {

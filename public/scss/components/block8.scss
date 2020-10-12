@@ -1,0 +1,123 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#block8{
+    .maincontent{
+        .title{
+            font-size: rem(30px);
+            font-weight: 600;
+        }
+        .description{
+            font-size: rem(15px);
+            margin-top: 54px;
+        }
+        form{
+            margin: 0 -21px;
+            font-size: 0;
+            input,textarea{
+                margin-top: 25px;
+                padding: 12px;
+                border: 1px solid $sub8 ;
+                font-size: rem(15px);
+                width: 100%;
+                border-radius: 5px;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+            }
+            .input{
+                width: 50%;
+                padding: 0 21px;
+                display: inline-block;
+            }
+            .textarea{
+                textarea{
+                height: 150px;
+                    
+                }
+                width: 100%;
+                padding: 0 21px;
+            }
+            .button{
+                padding: 0 21px;
+                button{
+                    border: none;
+                    background-color: $sub1;
+                    width: 223px;
+                    padding: 16px 0;
+                    color: $sub4;
+                    font-size: rem(15px);
+                    margin-top: 25px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .list-faq{
+            margin-top: 19px;
+            .faq { 
+                font-size: 0;
+                &.active{
+                    .left{
+                        &::before{
+                            transform: translate(0 , -50%) rotate(180deg);
+                        }
+                        &::after{
+                        transform: translate(-50% , 0) rotate(270deg);
+                        }
+                    }
+                }
+                .left{
+                    width: 21px;
+                    height: 21px;
+                    display: inline-block;
+                    vertical-align: top;
+                    background-color: $sub9;
+                    position: relative;
+                    cursor: pointer;
+                    border-radius: 3px;
+                    &::before{
+                        content : "";
+                        background-color: $sub4;
+                        width: 15px;
+                        height: 4px;
+                        position: absolute;
+                        top: 50%;
+                        left: 3px;
+                        transform: translate(0 , -50%);
+                        transition: all .3s ease;
+                    }
+                    &::after{
+                        content : "";
+                        background-color: $sub4;
+                        width: 4px;
+                        height: 15px;
+                        position: absolute;
+                        top: 3px;
+                        left: 50%;
+                        transform: translate(-50% , 0);
+                        transition: all .3s ease;
+                    }
+                    
+                }
+                .right{
+                    width: calc(100% - 21px);
+                    display: inline-block;
+                    vertical-align: top;
+                    padding-left: 13px;
+                    .title{
+                        color: $sub1;
+                        font-size: rem(20px);
+                    }
+                    .des{
+                        font-size: rem(15px);
+                        margin-top: 14px;
+                        transition: all .3s ease;
+                        overflow: hidden;
+                    }
+                }
+                +.faq{
+                    margin-top: 21px;
+                }
+            }
+        }
+    }
+}

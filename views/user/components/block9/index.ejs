@@ -1,0 +1,46 @@
+<%
+    var sub_title = getData('sub_title')
+    var show_sub_title = getData('show_sub_title')
+    var title = getData('title')
+    var show_title = getData('show_title')
+    var block = getData('block')
+%>
+<div id="block9" class="block">
+    <div class="kdg-container">
+        <div class="block-title text-c">
+            <%if(show_sub_title){%>
+                <p><%=sub_title%></p>    
+            <%}%>
+            <%if(show_title){%>
+                <h2><%=title%></h2>    
+            <%}%>
+        </div>
+        <div class="kdg-row kdg-column-3 maincontent">
+            <%block.forEach(el=> {%>
+                <div class="item">
+                    <div class="image">
+                        <img src="<%=el.img_url%>" alt="">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam sed! Soluta quam ad sequi maiores, deserunt culpa reprehenderit officia vitae eius ducimus consequatur? Ipsam a fuga ad eius dolorem!</p>
+                        <!-- <a href="<%=el.target_url%>"><span class="text"><%=el.button_text%></span></a> -->
+                    </div>
+                </div>
+            <%})%>
+        </div>
+    </div>
+</div>
+
+<script>
+    function add3Dots(string, limit){
+    var dots = "...";
+    if(string.length > limit){
+        string = string.substring(0,limit) + dots;
+    }
+    return string;
+}
+
+Array.from(document.querySelectorAll('#block4 .des')).forEach(function(el){
+    console.log(el);
+    el.innerText = add3Dots(el.innerText , 100)
+})
+
+</script>
