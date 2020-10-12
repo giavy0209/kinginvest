@@ -1,0 +1,35 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#block3{
+    background-color: $sub6;
+    .maincontent{
+        margin-top: 40px;
+        .item{
+            font-size: 0;
+            .left,.right{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .left{
+                width: 90px;
+            }
+            .right{
+                padding-left: 15px;
+                width: calc(100% - 90px);
+                .title{
+                    color: $sub1;
+                    font-size: rem(20px);
+                }
+                .des{
+                    font-size: rem(15px);
+                    margin-top: 15px;
+                }
+            }
+
+            + .item{
+                margin-top: 35px;
+            }
+        }
+    }
+}

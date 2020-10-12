@@ -46,9 +46,10 @@ body {
 }
 
 .kdg-container {
-    max-width: 1085px;
+    width: 1115px;
+    max-width: 1115px;
     margin: 0 auto;
-    padding: 0 35px;
+    padding: 0 15px;
 }
 /*=========== 00. General ================ */	
 .kdg-row{
@@ -161,8 +162,7 @@ body {
     width: 100%;
 }
 
-
-.img img, .img video {
+.img > img, .img > video {
     position: absolute;
     top: 0;
     left: 0;
@@ -177,10 +177,48 @@ body {
     display: block;
     padding-top: 56.25%;
     background-color: transparent;
+    
 }
 .img-1-1::before {
     content: '';
     display: block;
     padding-top: 100%;
     background-color: transparent;
+}
+
+.img-banner::before {
+    content: '';
+    display: block;
+    padding-top: 51.6%;
+    background-color: transparent;
+}
+
+.block{
+    padding: 70px 0;
+}
+
+.block-title{
+    p{
+        color: $sub1;
+        font-size: rem(20px);
+        line-height: rem(24px);
+    }
+    h2{
+        color : $sub7;
+        font-size: rem(30px);
+        line-height: rem(46px);
+    }
+}
+
+.block-title2{
+    p{
+        color: $sub3;
+        font-size: rem(20px);
+        line-height: rem(24px);
+    }
+    h2{
+        color : $sub3;
+        font-size: rem(30px);
+        line-height: rem(46px);
+    }
 }

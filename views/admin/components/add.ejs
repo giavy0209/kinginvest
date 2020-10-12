@@ -126,24 +126,33 @@
 
     const getData3 = (data_info,data,parentkey) => {
         var html = ``
-        data.forEach(subdata => {
+        data.forEach((subdata,index) => {
             html += `<div parent-name="${parentkey}" class="group-sub-data">`
-            Object.keys(data_info).forEach(key => {
-            html += `
-                    
+            Object.keys(data_info).forEach((key) => {
+
+                if(data_info[key] === 2){
+                    html += `
                     <span>${key}</span>
-                    <input data-type="${data_info[key]}" type="${
-                    data_info[key] === 0 ? 'number' : 
-                    data_info[key] === 1 ? 'text' : 
-                    'checkbox'
-                    }" 
-                    placeholder="${data_info[key] === 0 ? 'Nhập số' : 'Nhập chữ'}"
-                    ${
-                        data_info[key] === 4 ? `${subdata[key] ? 'checked' : ''}` : `${subdata[key] ? `value="${subdata[key]}"` : 'value=""'}`
-                    }
-                    name="${key}">    
-                    
-            `
+                    <textarea data-type="${data_info[key]}" id="${key + index}" name="${key}"></textarea>
+                    `
+                }
+                if(data_info[key] !==2 ){
+                    html += `
+                            
+                            <span>${key}</span>
+                            <input data-type="${data_info[key]}" type="${
+                            data_info[key] === 0 ? 'number' : 
+                            data_info[key] === 1 ? 'text' : 
+                            'checkbox'
+                            }" 
+                            placeholder="${data_info[key] === 0 ? 'Nhập số' : 'Nhập chữ'}"
+                            ${
+                                data_info[key] === 4 ? `${subdata[key] ? 'checked' : ''}` : `${subdata[key] ? `value="${subdata[key]}"` : 'value=""'}`
+                            }
+                            name="${key}">    
+                            
+                    `
+                }
             })
             html += `</div>`
         })
@@ -181,12 +190,18 @@
             
             el.datas.forEach(data => {
                 html += ` <div name="${data.key}" data-type="${data.type}" class="group"><span class="title-group">${data.key}</span>`
-
+                
+                if(data.type === 2){
+                    html += `
+                    <textarea data-type="${data.type}" id="${data.key}" name="${data.key}"></textarea>
+                    `
+                }
+                
                 if(data.type === 3){
                     html += getData3(data.data_info , data.data,data.key)
                     html += `<button onclick="addSubInput('${el.id}','${data.key}','${data.key}')" type="button"> Thêm trường dữ liệu </button>`
                 }
-                if(data.type !== 3){
+                if(data.type !== 2 && data.type !== 3){
                     html += `
                     <input type="${
                     data.type === 0 ? 'number' : 
@@ -210,6 +225,22 @@
         html += '</div>'
         containerDataHTML.firstElementChild.remove()
         containerDataHTML.insertAdjacentHTML('afterbegin', html)
+        listComponents.forEach((el,index) => {
+            el.datas.forEach(data => {
+                if(data.type === 2){
+                    CKEDITOR.replace( data.key,{height: 500} );
+                }
+                if(data.type === 3){
+                    data.data.forEach((subdata,index) => {
+                        Object.keys(data.data_info).forEach((key)=>{
+                            if(data.data_info[key] === 2) {
+                                CKEDITOR.replace( key + index,{height: 300} );
+                            } 
+                        })
+                    })
+                }
+            })
+        })
     }
 </script>
 
@@ -240,8 +271,12 @@
                 if(type === '0'){
                     objInput.data = Number(_group.querySelector('input').value)
                 }
-                if(type === '1' || type === '2'){
+                if(type === '1' ){
                     objInput.data = _group.querySelector('input').value
+                }
+
+                if(type === '2'){
+                    objInput.data = CKEDITOR.instances[_group.querySelector('textarea').getAttribute('id')].getData();
                 }
 
                 if(type === '4') {
@@ -254,15 +289,21 @@
                     subData.forEach(subGroup => {
                         var objInputSub = {}
                         
-                        var subInput = subGroup.querySelectorAll('input')
-                        
+                        var subInput = Array.from(subGroup.querySelectorAll('input'))
+                        subGroup.querySelectorAll('textarea').forEach(el => {
+                            subInput.push(el)
+                        })
                         subInput.forEach(_subinput => {
                             var typeSub = _subinput.getAttribute('data-type')
                             if(typeSub === '0'){
                                 objInputSub[_subinput.getAttribute('name')] = Number(_subinput.value)
                             }
-                            if(typeSub === '1' || typeSub === '2'){
+                            if(typeSub === '1'){
                                 objInputSub[_subinput.getAttribute('name')] = _subinput.value
+                            }
+
+                            if(typeSub === '2'){
+                                objInput[_subinput.getAttribute('name')] = CKEDITOR.instances[_subinput.getAttribute('id')].getData();
                             }
 
                             if(typeSub === '4') {
@@ -285,7 +326,6 @@
 
         arrKeyChoosedComponents.forEach(el => {
             var currComponents = listComponents.find(o => o.id === el.id)
-            console.log(listComponents,el);
             currComponents.ordering = el.ordering
             el.datas.forEach(data => {
                 var currData = currComponents.datas.find(o => o.key == data.key)
@@ -315,7 +355,6 @@
         listComponentChoosed.forEach(com => {
             var objectCom = {}
             var key = com.getAttribute('data-key')
-            var ordering = Number(com.querySelector('input').value)
             var rawData = rawListComponents.find(o => o.key === key)
             var id = com.getAttribute('data-id')
             objectCom.id = id
@@ -333,8 +372,12 @@
                 if(type === '0'){
                     objInput.data = Number(_group.querySelector('input').value)
                 }
-                if(type === '1' || type === '2'){
+                if(type === '1' ){
                     objInput.data = _group.querySelector('input').value
+                }
+
+                if(type === '2'){
+                    objInput.data = CKEDITOR.instances[_group.querySelector('textarea').getAttribute('id')].getData();
                 }
 
                 if(type === '4') {
@@ -347,15 +390,21 @@
                     subData.forEach(subGroup => {
                         var objInputSub = {}
                         
-                        var subInput = subGroup.querySelectorAll('input')
-                        
+                        var subInput = Array.from(subGroup.querySelectorAll('input'))
+                        subGroup.querySelectorAll('textarea').forEach(el => {
+                            subInput.push(el)
+                        })
                         subInput.forEach(_subinput => {
                             var typeSub = _subinput.getAttribute('data-type')
                             if(typeSub === '0'){
                                 objInputSub[_subinput.getAttribute('name')] = Number(_subinput.value)
                             }
-                            if(typeSub === '1' || typeSub === '2'){
+                            if(typeSub === '1' ){
                                 objInputSub[_subinput.getAttribute('name')] = _subinput.value
+                            }
+
+                            if(typeSub === '2'){
+                                objInputSub[_subinput.getAttribute('name')] = CKEDITOR.instances[_subinput.getAttribute('id')].getData();
                             }
 
                             if(typeSub === '4') {
@@ -375,6 +424,7 @@
             arrKeyChoosedComponents.push(objectCom)
 
         })
+        console.log(arrKeyChoosedComponents);
         var submitData = {
             humanName: document.getElementById('name').value,
             ordering : Number(document.getElementById('ordering').value),

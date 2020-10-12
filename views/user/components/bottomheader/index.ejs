@@ -1,14 +1,24 @@
 <%
     var logo = getData('logo')
+    var logo_text = getData('logo_text')
+    var header_text = getData('header_text')
 %>
 <header>
     <div class="bottomheader">
+        <div class="before"></div>
         <div class="kdg-container">
             <div class="kdg-row">
-                <div class="kdg-col-6 left">
-                    <a class="logo" href="/"><img src="<%=logo%>" alt=""></a>
+                <div class="kdg-col-5 left">
+                    <a class="logo" href="/">
+                        <img src="<%=logo%>" alt="">
+                        <span class="text"><%=logo_text%></span>
+                    </a>
+                </div>
+                <div class="kdg-col-7 right">
+                    <p class="header-text"><%=header_text%></p>
                 </div>
             </div>
         </div>
+        <div class="after"></div>
     </div>
 </header>

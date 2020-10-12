@@ -1,0 +1,2 @@
+#block3{background-color:#F1F3F4}#block3 .maincontent{margin-top:40px}#block3 .maincontent .item{font-size:0}#block3 .maincontent .item .left,#block3 .maincontent .item .right{display:inline-block;vertical-align:middle}#block3 .maincontent .item .left{width:90px}#block3 .maincontent .item .right{padding-left:15px;width:calc(100% - 90px)}#block3 .maincontent .item .right .title{color:#006B63;font-size:2rem}#block3 .maincontent .item .right .des{font-size:1.5rem;margin-top:15px}#block3 .maincontent .item+.item{margin-top:35px}
+/*# sourceMappingURL=block3.css.map */

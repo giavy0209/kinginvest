@@ -1,0 +1,27 @@
+@import '../includes/mixin';
+@import '../includes/var';
+#block5{
+    .maincontent{
+        margin-top: 30px;
+        .content{
+            .image{
+                text-align: center;
+                img{
+                    width: 54px;
+                }
+            }
+            .title{
+                text-align: center;
+                margin-top: 18px;
+                font-size: rem(18px);
+                color: $sub4;
+                font-weight: 600;
+            }
+            .des{
+                margin-top: 10px;
+                font-size: rem(14px);
+                color: $sub4;
+            }
+        }
+    }
+}

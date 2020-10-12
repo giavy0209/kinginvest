@@ -1,0 +1,55 @@
+<%
+    var img_url = getData('img_url')
+    var title = getData('title')
+    var show_title = getData('show_title')
+    var description = getData('description')
+    var show_description = getData('show_description')
+    var button_url = getData('button_url')
+    var button_text = getData('button_text')
+    var show_button = getData('show_button')
+    var banner_count = getData('banner_count')
+    var show_banner_count = getData('show_banner_count')
+%>
+<div id="banner" class="img img-banner">
+    <img src="<%=img_url%>" alt="">
+    <div class="info kdg-container">
+        <div class="block">
+            <%if(show_title){%>
+                <p class="title"><%-title%></p>
+            <%} %>
+
+            <%if(show_description){%>
+                <p class="description"><%-description%></p>
+            <%}%>
+
+            <%if(show_button){%>
+                <a href="<%=button_url%>" class="button"><%=button_text%></a>
+            <%}%>
+        </div>
+    </div>
+    <%if(show_banner_count){%>
+        <div class="count">
+            <div class="kdg-container">
+                <div class="kdg-row kdg-column-5 text-c">
+                    <%banner_count.forEach(count => {%>
+                        <%if(count.show){%>
+                            <div class="item va-t">
+                                <div class="info">
+                                    <div class="top">
+                                        <img src="<%=count.img_url%>" alt="">
+                                        <span class="text">
+                                            <%=count.text_count%>
+                                        </span>
+                                    </div>
+                                    <div class="bottom">
+                                        <span><%=count.text_description%></span>
+                                    </div>
+                                </div>
+                            </div>
+                        <%}%>
+                    <%})%>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</div>

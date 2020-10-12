@@ -74,6 +74,10 @@
   padding-top: 20px;
 }
 
+.choosed-component .group .group-sub-data > span{
+  width: 200px;
+}
+
 .choosed-component .group input[type="checkbox"]{
   width: 20px !important;
   height: 20px;
@@ -537,7 +541,7 @@ section.content {
       padding: 10px 20px; }
       section.content .group-input .row .group .parent-id {
         opacity: 0; }
-      section.content .group-input .row .group  span {
+      section.content .group-input .row .group > span {
         width: 200px;
         font-size: 14px;
         vertical-align: middle; }

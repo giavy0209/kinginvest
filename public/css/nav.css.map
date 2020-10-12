@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../scss/components/nav.scss",
+        "../scss/includes/mixin.scss",
+        "../scss/includes/var.scss"
+    ],
+    "names": [],
+    "file": "nav.css"
+}

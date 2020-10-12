@@ -28,19 +28,21 @@ module.exports = app => {
 
     app.post('/admin/upload', upload.single('image'),async function (req, res, next) {
         var file = req.file
+        console.log(file);
         var name = req.body.name
         var ex = path.extname(file.originalname)
         var img = new Uploads({name})
         img.path = '/upload/' + img._id + ex
         await img.save()
-        fs.renameSync(path.join(__dirname, `../public/${file.filename}`),path.join(__dirname, `../public/upload/${img._id + ex}`))
+        fs.renameSync(path.join(__dirname, `../../public/${file.filename}`),path.join(__dirname, `../../public/upload/${img._id + ex}`))
         
         res.redirect('/admin/uploads')
     })
 
     app.post('/admin/uploads/delete',async function (req, res) {
         var {id} = req.body
-
+        var img = await Uploads.findById(id)
+        fs.unlinkSync(path.join(__dirname, `../../public/`,img.path))
         await Uploads.findByIdAndDelete(id)
         
         res.redirect('/admin/uploads')

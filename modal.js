@@ -11,8 +11,8 @@ const uploadsSchema = new Schema({
 const Uploads = model('uploads', uploadsSchema);
 
 const categoriesSchema = new Schema({
-    pagevi : {type : Types.ObjectId , ref : 'pages'},
-    pageen : {type : Types.ObjectId , ref : 'pages'},
+    pagevi : {type : Types.ObjectId , ref : 'pages' , default : undefined},
+    pageen : {type : Types.ObjectId , ref : 'pages' , default : undefined},
     titlevi : {type : String, default : ''},
     titleen: {type : String, default : ''},
     meta_titlevi : {type : String, default : ''},

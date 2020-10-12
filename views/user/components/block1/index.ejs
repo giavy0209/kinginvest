@@ -1,0 +1,69 @@
+<%
+    var sub_title = getData('sub_title')
+    var show_sub_title = getData('show_sub_title')
+    var title = getData('title')
+    var show_title = getData('show_title')
+    var description = getData('description')
+    var show_description = getData('description')
+    var block = getData('block')
+    var show_block = getData('block')
+%>
+<div id="block1" class="block">
+    <div class="kdg-container">
+        <div class="block-title text-c">
+            <%if(show_sub_title){%>
+                <p><%=sub_title%></p>    
+            <%}%>
+            <%if(show_title){%>
+                <h2><%=title%></h2>    
+            <%}%>
+        </div>
+        <div class="description">
+            <%if(show_description){%>
+                <div><%-description%></div>
+            <%}%>
+        </div>
+        <%=show_block%>
+        <%if(show_block){ var count = 0%>
+            <div class="kdg-row">
+            <%block.forEach((el,index)=>{
+            var col;
+            if(count === 0) col = 6
+            else col = 3
+            %>
+                    <div class="kdg-col-<%=col%> va-t">
+                        <div class="content">
+                            <%if(el.show_img){%>
+                                <div class="icon">
+                                    <img src="<%=el.img_url%>" alt="">
+                                </div>
+                            <%}%>
+                            <%if(el.show_title){%>
+                                <h3><%=el.title%></h3>
+                            <%}%>
+                            <%if(el.show_content){%>
+                                <div class="des"><%-el.content%></div>
+                            <%}%>
+                        </div>
+                    </div>
+                <%
+                count++
+                if(count > 2) count = 0
+                %>
+            <%})%>
+        </div>
+        <%}%>
+    </div>
+</div>
+
+<script>
+    var content = document.querySelectorAll('#block1 .content')
+    var heightest = 0
+    content.forEach(el => {
+        if(el.offsetHeight > heightest) heightest = el.offsetHeight
+    })
+
+    content.forEach(el => {
+        el.style.height = heightest + 'px'
+    })
+</script>

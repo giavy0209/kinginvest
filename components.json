@@ -39,5 +39,292 @@
                 "type" : 1 
             }
         ]
+    },
+    {
+        "key" : "menu",
+        "name" : "Thanh menu",
+        "datas" : []
+    },
+    {
+        "key" : "banner",
+        "name" : "Thông tin trên banner",
+        "datas" : [
+            {
+                "key" : "img_url",
+                "type" : 1
+            },
+            {
+                "key" : "title",
+                "type" : 1
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "description",
+                "type" : 1
+            },
+            {
+                "key" : "show_description",
+                "type" : 4
+            },
+            {
+                "key" : "button_text",
+                "type" : 1
+            },
+            {
+                "key" : "show_button",
+                "type" : 4
+            },
+            {
+                "key" : "button_url",
+                "type" : 1
+            },
+            {
+                "key" : "show_banner_count",
+                "type" : 4
+            },
+            {
+                "key": "banner_count",
+                "type": 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "text_count" : 1,
+                    "text_description" : 1,
+                    "show" : 4
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block1",
+        "name" : "Khối nội dung 1",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "description",
+                "type" : 2
+            },
+            {
+                "key" : "show_description",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "show_img" : 4,
+                    "title" : 1,
+                    "show_title" : 4,
+                    "content" : 2,
+                    "show_content" : 4
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block2",
+        "name" : "Khối nội dung 2",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "description",
+                "type" : 2
+            },
+            {
+                "key" : "show_description",
+                "type" : 4
+            },
+            {
+                "key" : "block1_title",
+                "type" : 2
+            },
+            {
+                "key" : "show_block1_title",
+                "type" : 4
+            },
+            {
+                "key" : "block1_content",
+                "type" : 2
+            },
+            {
+                "key" : "show_block1_content",
+                "type" : 4
+            },
+            {
+                "key" : "block2_title",
+                "type" : 2
+            },
+            {
+                "key" : "show_block2_title",
+                "type" : 4
+            },
+            {
+                "key" : "block2_content",
+                "type" : 2
+            },
+            {
+                "key" : "show_block2_content",
+                "type" : 4
+            },
+            {
+                "key" : "block3_title",
+                "type" : 2
+            },
+            {
+                "key" : "show_block3_title",
+                "type" : 4
+            },
+            {
+                "key" : "block3_content",
+                "type" : 2
+            },
+            {
+                "key" : "show_block3_content",
+                "type" : 4
+            }
+        ]
+    },
+    {
+        "key" : "block3",
+        "name" : "Khối nội dung 3",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "description",
+                "type" : 2
+            },
+            {
+                "key" : "show_description",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "show_img" : 4,
+                    "title" : 1,
+                    "show_title" : 4,
+                    "content" : 2,
+                    "show_content" : 4
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block4",
+        "name" : "Khối nội dung 4",
+        "datas" : [
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "button_text" : 1,
+                    "title" : 1,
+                    "short_description" : 1,
+                    "target_url" : 1
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block5",
+        "name" : "Khối nội dung 5",
+        "datas" : [
+            {
+                "key" : "background_image",
+                "type" : 1
+            },
+            {
+                "key" : "sub_title",
+                "type" : 1
+            },
+            {
+                "key" : "show_sub_title",
+                "type" : 4
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "title" : 1,
+                    "description" : 2
+                }
+            }
+        ]
     }
 ]

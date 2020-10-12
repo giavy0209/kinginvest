@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%=pageData.title%></title>
+    <meta name="title" content="<%=pageData.title%>">
+    <meta name="description" content="<%=pageData.metades%>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%=pageData.slug%>">
+    <meta property="og:image" content="<%=pageData.meta_og_img_%>">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<%=pageData.slug%>">
+    <meta property="twitter:title" content="<%=pageData.title%>">
+    <meta property="twitter:description" content="<%=pageData.metades%>">
+    <meta property="twitter:image" content="<%=pageData.meta_og_img_%>">
+
+    <link rel="shortcut icon" href="<%=pageData.icon%>" type="image/x-icon">
     <%-include ('includes/head')%>
 </head>
 <body>

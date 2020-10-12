@@ -6,6 +6,20 @@ var upload = multer({ dest: './public/' })
 
 const itemperpage = 50
 const path = require('path')
+
+function mapcat(categories, language) {
+    var returnKey = ['page', 'title', 'meta_title', 'icon', 'slug','metades','meta_og_img_','open_new_tab_','ordering_']
+    categories = categories.map(cat => {
+        var returncat = {}
+        returnKey.forEach(key => {
+            catkey = key + language
+            returncat[key] = cat[catkey]
+        })
+        return returncat
+    })
+    return categories.sort((a,b) => a.ordering_ - b.ordering_)
+}
+
 module.exports = async app => {
     var categories = await Categories.find({})
     .populate({
@@ -18,12 +32,21 @@ module.exports = async app => {
     })
 
     categories.forEach(cat => {
-        console.log(cat.pagevi.components[1].value.datas);
         app.get(cat.slugvi, async (req,res) => {
+            console.log(cat.pagevi.components[8].value.datas);
+            var categories = await Categories.find({show_vi : true, pagevi : {$ne : null}})
+            .populate({
+                path : 'pagevi',
+                populate : 'components.value'
+            })
 
+            var currCategories = mapcat(categories, 'vi')
 
+            var pageData = currCategories.find(o => o.slug === cat.slugvi)
             res.render('user/index',{
-                components : cat.pagevi.components
+                pageData,
+                components : cat.pagevi.components,
+                categories : currCategories
             })
 
         })

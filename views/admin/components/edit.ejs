@@ -70,21 +70,26 @@
         data.forEach(subdata => {
             html += `<div parent-name="${parentkey}" class="group-sub-data">`
             Object.keys(data_info).forEach(key => {
-            html += `
-                    
-                    <span>${key}</span>
-                    <input data-type="${data_info[key]}" type="${
-                    data_info[key] === 0 ? 'number' : 
-                    data_info[key] === 1 ? 'text' : 
-                    'checkbox'
-                    }" 
-                    placeholder="${data_info[key] === 0 ? 'Nhập số' : 'Nhập chữ'}"
-                    ${
-                        data_info[key] === 4 ? `${subdata[key] ? 'checked' : ''}` : `${subdata[key] ? `value="${subdata[key]}"` : 'value=""'}`
-                    }
-                    name="${key}">    
-                    
-            `
+                if(data_info[key] === 2){
+                    html += `<textarea data-type="${data_info[key]}" name="${key}"></textarea>`
+                }
+                if(data_info[key] !== 2){
+                    html += `
+                            
+                            <span>${key}</span>
+                            <input data-type="${data_info[key]}" type="${
+                            data_info[key] === 0 ? 'number' : 
+                            data_info[key] === 1 ? 'text' : 
+                            'checkbox'
+                            }" 
+                            placeholder="${data_info[key] === 0 ? 'Nhập số' : 'Nhập chữ'}"
+                            ${
+                                data_info[key] === 4 ? `${subdata[key] ? 'checked' : ''}` : `${subdata[key] ? `value="${subdata[key]}"` : 'value=""'}`
+                            }
+                            name="${key}">    
+                            
+                    `
+                }
             })
             html += `</div>`
         })
@@ -122,12 +127,14 @@
             
             el.datas.forEach(data => {
                 html += ` <div name="${data.key}" data-type="${data.type}" class="group"><span class="title-group">${data.key}</span>`
-
+                if(data.type === 2){
+                    html += `<textarea>${data.data}</textarea>`
+                }
                 if(data.type === 3){
                     html += getData3(data.data_info , data.data,data.key)
                     html += `<button onclick="addSubInput('${el.id}','${data.key}','${data.key}')" type="button"> Thêm trường dữ liệu </button>`
                 }
-                if(data.type !== 3){
+                if(data.type !== 2 && data.type !== 3){
                     html += `
                     <input type="${
                     data.type === 0 ? 'number' : 
@@ -140,6 +147,7 @@
                         }
                     "
                     value="${data.data}"
+                    ${data.data ? 'checked' : ''}
                     name="${data.key}">
                     `
                 }
@@ -275,12 +283,18 @@
                 if(type === '0'){
                     objInput.data = Number(_group.querySelector('input').value)
                 }
-                if(type === '1' || type === '2'){
+                if(type === '1'){
                     objInput.data = _group.querySelector('input').value
+                }
+
+                if(type === '2'){
+                    objInput.data = _group.querySelector('textarea').value
                 }
 
                 if(type === '4') {
                     objInput.data = _group.querySelector('input').checked
+                    console.log(_group.querySelector('input').checked);
+
                 }
 
                 if(type === '3'){

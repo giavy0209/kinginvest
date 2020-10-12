@@ -1,0 +1,27 @@
+@import '../includes/mixin';
+@import '../includes/var';
+#block1{
+    .description{
+        margin-top: 25px;
+    }
+    .content{
+        margin-top: 50px;
+        vertical-align: top;
+        border: 1px solid $sub1;
+        border-radius: 5px;
+        padding: 35px;
+        .icon{
+            text-align: center;
+            img{
+                width: 67.5px;
+            }
+        }
+        h3{
+            text-align: center;
+            margin-top: 10px;
+        }
+        .des{
+            margin-top: 15px;
+        }
+    }
+}

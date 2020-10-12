@@ -1,0 +1,42 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+
+
+nav{
+    background-color: $sub6;
+    ul{
+        font-size: 0;
+        text-align: right;
+        li {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: rem(15px);
+            a {
+                padding: 22px 25px;
+                color : $sub7;
+                text-transform: uppercase;
+                transition: all .3s ease;
+                position: relative;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    height: 2px;
+                    width: 0;
+                    bottom: 22px;
+                    left: 50%;
+                    transform: translate(-50% , 0);
+                    background-color: $sub1;
+                    transition: all .3s ease;
+                }
+            }
+            &:hover , .active{
+                a{
+                    &::before{
+                        width: calc(100% - 50px);
+                    }
+                }   
+            }
+        }
+    }
+}

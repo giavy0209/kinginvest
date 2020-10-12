@@ -1,0 +1,15 @@
+<%
+
+%>
+
+<nav>
+    <div class="kdg-container">
+        <ul>
+            <%categories.forEach(cat => {%>
+                <li>
+                    <a href="<%=cat.slug%>"><%=cat.title%></a>
+                </li>
+            <%})%>
+        </ul>
+    </div>
+</nav>

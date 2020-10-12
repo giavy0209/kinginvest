@@ -1,0 +1,125 @@
+<%
+    var sub_title = getData('sub_title')
+    var show_sub_title = getData('show_sub_title')
+    var title = getData('title')
+    var show_title = getData('show_title')
+    var description = getData('description')
+    var show_description = getData('description')
+    
+    var block1_title = getData('block1_title')
+    var show_block1_title = getData('block1_title')
+
+    var block1_content = getData('block1_content')
+    var show_block1_content = getData('block1_content')
+
+    var block2_title = getData('block2_title')
+    var show_block2_title = getData('block2_title')
+
+    var block2_content = getData('block2_content')
+    var show_block2_content = getData('block2_content')
+
+    var block3_title = getData('block3_title')
+    var show_block3_title = getData('block3_title')
+
+    var block3_content = getData('block3_content')
+    var show_block3_content = getData('block3_content')
+%>
+<div id="block2" class="block">
+    <div class="kdg-container">
+        <div class="block-title2 text-c">
+            <%if(show_sub_title){%>
+                <p><%=sub_title%></p>    
+            <%}%>
+            <%if(show_title){%>
+                <h2><%=title%></h2>    
+            <%}%>
+        </div>
+        <div class="description">
+            <%if(show_description){%>
+                <div><%-description%></div>
+            <%}%>
+        </div>
+        <div class="maincontent">
+            <div class="kdg-row kdg-column-3">
+                <div class="item item-1">
+                    <div class="roadmap">
+                        <%if(show_block1_title){%>
+                            <div class="top">
+                                <div><%-block1_title%></div>
+                        </div>
+                        <%}%>
+                        <%if(show_block1_content){%>
+                            <div class="bottom">
+                                <div><%-block1_content%></div>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="roadmap">
+                        <%if(show_block2_title){%>
+                            <div class="top">
+                                <div><%-block2_title%></div>
+                            </div>
+                        <%}%>
+                        <%if(show_block2_content){%>
+                            <div class="bottom">
+                                <div><%-block2_content%></div>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="roadmap">
+                        <%if(show_block3_title){%>
+                            <div class="top">
+                                <div><%-block3_title%></div>
+                            </div>
+                        <%}%>
+                        <%if(show_block3_content){%>
+                            <div class="bottom">
+                                <div><%-block3_content%></div>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var content = document.querySelectorAll('#block2 .roadmap')
+    var heightest = 0
+    content.forEach(el => {
+        if(el.offsetHeight > heightest) heightest = el.offsetHeight
+    })
+
+    var topcontent = document.querySelectorAll('#block2 .roadmap .top')
+    var heightesttop = 0
+    topcontent.forEach(el => {
+        if(el.offsetHeight > heightesttop) heightesttop = el.offsetHeight
+    })
+
+    topcontent.forEach(el => {
+        el.style.height = heightesttop + 'px'
+    })
+    
+    var bottom = document.querySelectorAll('#block2 .roadmap .bottom')
+    var heightestbot = 0
+
+    bottom.forEach(el => {
+        el.style.height = heightest - heightesttop + 'px'
+    })
+
+    content.forEach(el => {
+        if(el.offsetHeight > heightest) heightest = el.offsetHeight
+    })
+
+    content.forEach(el => {
+        if(el.offsetHeight === heightest) {
+            el.querySelector('.bottom').style.height = 'unset'
+        }
+    })
+</script>

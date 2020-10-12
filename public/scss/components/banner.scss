@@ -1,0 +1,66 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#banner {
+    position: relative;
+    .info {
+        position: absolute;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translate(-50% , 0);
+        .block{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+        }
+        .title{
+            font-size: rem(50px);
+            font-weight: 600;
+            color: $sub4;
+            line-height: rem(60px);
+        }
+        .description{
+            font-size: rem(18px);
+            color: $sub3;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+        .button{
+            background-color: rgba(0, 107, 99, .6) ;
+            color: $sub4;
+            text-transform: uppercase;
+            font-size: rem(14px);
+            padding: 14px 50px;
+            border-radius: 5px;
+            margin-top: 42px;
+        }
+    }
+    .count{
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(0, 46, 91, .7);
+        padding: 48px 0;
+        width: 100%;
+        .info {
+            position: relative;
+            .top{
+                img{
+                    max-width: 27px;
+                }
+                .text { 
+                    font-size: rem(30px);
+                    font-weight: 600;
+                    color: $sub3;
+                    margin-left: 18px;
+                }
+            }
+            .bottom{
+                font-size: rem(20px);
+                color: $sub3;
+                margin-top: 22px;
+            }
+        }
+    }
+}
