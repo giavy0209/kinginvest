@@ -1,0 +1,116 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#news{
+    .title{
+        font-size: rem(24px);
+        font-weight: 600;
+    }
+    .date{
+        font-size: rem(13px);
+        color: $sub9;
+        margin-top: 10px;
+    }
+    .content{
+        margin-top: 30px;
+        font-size: rem(15px);
+    }
+    aside{
+        .blockaside{
+            margin-bottom: 15px;
+            +.blockaside {
+                padding-top: 15px;
+                border-top: 1px solid $sub9;
+            }
+            form{
+                position: relative;
+                input{
+                    padding: 18px 32px 18px 18px;
+                    width: 100%;
+                    color: $sub8;
+                    border: none;
+                    background-color: $sub6;
+                    border-radius: 5px;
+                }
+                button{
+                    border: none;
+                    position: absolute;
+                    top: 50%;
+                    right: 14px;
+                    transform: translate(0 , -50%);
+                    background-color: transparent;
+                    cursor: pointer;
+                    i{
+                        color: $sub8 ;
+                    }
+                }
+            }
+            .socials{
+                padding: 15px 9px;
+                border-radius: 5px;
+                background-color: $sub6;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, .7);
+                .title{
+                    padding: 6px 0;
+                    background-color: $sub1;
+                    color: $sub4;
+                    font-size: rem(16px);
+                    font-weight: 600;
+                    text-align: center;
+                    border-radius: 5px;
+                }
+                .list{
+                    margin-top: 18px;
+                }
+            }
+            .featured-sidebar{
+                >.title{
+                    font-size: rem(25px);
+                    font-weight: 400;
+                    padding-left: 20px;
+                    position: relative;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 4px;
+                        height: 100%;
+                        background-color: $sub1;
+                    }
+                }
+                .list-news{
+                    margin-top: 27px;
+                    .item{
+                        font-size: 0;
+                        margin: 0 -10px;
+                        padding-bottom: 15px;
+                        +.item{
+                            padding-top: 15px;
+                            border-top: 1px solid $sub8;
+                        }
+                        > * {
+                            display: inline-block;
+                            vertical-align: top;
+                            padding: 0 10px;
+                        }
+                        .left{
+                            width: 33.3333%;
+                        }
+                        .right{
+                            width: 66.66666%;
+                            .title{
+                                font-size: rem(14px);
+                                color: $sub7;
+                            }
+                            span{
+                                color: $sub9;
+                                font-size: rem(12px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

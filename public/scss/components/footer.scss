@@ -1,0 +1,67 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+footer{
+    padding: 68px 0;
+    *{
+        vertical-align: top;
+        color: $sub4;
+    }
+    .logo{
+        width: 209px;
+        img{
+            width: 100%;
+        }
+    }
+    .des{
+        margin-top: 17px;
+    }
+    form{
+        position: relative;
+        margin-top: 30px;
+        input{
+            border: 1px solid $sub4;
+            padding: 14px;
+            padding-right: 38px;
+            background-color: transparent;
+            width: 100%;
+            color: $sub4;
+        }
+        i{
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transform: translate(0, -50%);
+        }
+    }
+    .title{
+        font-size: rem(20px);
+    }
+    ul{
+        margin-top: 30px;
+        li{
+            font-size: 0;
+            a{
+                font-size: rem(15px);
+            }
+            +li{
+                margin-top: 20px;
+            }
+            span{
+                width: 18px;
+                +span{
+                    width: calc(100% - 18px);
+                    padding-left: 12px;
+                    font-size: rem(15px);
+                }
+            }
+        }
+    }
+}
+.copyright{
+    background-color: $sub1;
+    padding: 25px;
+    text-align: center;
+    font-size: rem(15px);
+    color: $sub4;
+}

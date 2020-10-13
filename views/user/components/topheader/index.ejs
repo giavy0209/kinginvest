@@ -25,9 +25,7 @@ var flag = {
                 <ul class="dropdown">
                     <%Object.keys(flag).forEach(key => {%>
                         
-                        <li>
-                            <a href=""><img src="<%=flag[key]%>" alt=""></a>
-                        </li>
+                        <li onclick="document.cookie = 'language=<%=key%>; expires=Thu, 18 Dec 2099 12:00:00 UTC'"><img src="<%=flag[key]%>" alt=""></li>
 
                     <%})%>
                 </ul>
@@ -35,3 +33,14 @@ var flag = {
         </div>
     </div>
 </header>
+
+<script>
+    var chooselang = document.querySelector('.choose-language')
+    chooselang.onclick = function () {
+        if(Array.from(chooselang.classList).indexOf('active') === -1){
+            chooselang.classList.add('active')
+        }else{
+            chooselang.classList.remove('active')
+        }
+    }
+</script>

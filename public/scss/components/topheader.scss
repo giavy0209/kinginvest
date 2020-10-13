@@ -30,6 +30,25 @@ header{
                 left: 0;
                 opacity: 0;
                 pointer-events: none;
+                width: 230px;
+                background-color: $sub8;
+                border-radius: 5px;
+                transition: all .3s ease;
+                .li{
+                    transition: all .3s ease;
+                    &:hover{
+                        background-color: $maincolor;
+                        color: $sub9;
+                    }
+                }
+            }
+            &:hover,&.active{
+                .dropdown{
+                    top: 100%;
+                    right: 0;
+                    opacity: 1;
+                    pointer-events: all;
+                }
             }
         }
     }

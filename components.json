@@ -572,5 +572,67 @@
                 }
             }
         ]
+    },
+    {
+        "key" : "footer",
+        "name" : "Phần chân trang",
+        "datas" : [
+            {
+                "key" : "background_url",
+                "type" : 1
+            },
+            {
+                "key" : "logo_img_url",
+                "type" : 1
+            },
+            {
+                "key" : "content_below_logo",
+                "type" : 2
+            },
+            {
+                "key" : "placeholder_input",
+                "type" : 1
+            },
+            {
+                "key" : "column_2_title",
+                "type" : 1
+            },
+            {
+                "key" : "column_2",
+                "type" : 3,
+                "data_info" : {
+                    "title" : 1,
+                    "target" : 1
+                }
+            },
+            {
+                "key" : "column_3_title",
+                "type" : 1
+            },
+            {
+                "key" : "column_3",
+                "type" : 3,
+                "data_info" : {
+                    "title" : 1,
+                    "target" : 1
+                }
+            },
+            {
+                "key" : "column_4_title",
+                "type" : 1
+            },
+            {
+                "key" : "column_4",
+                "type" : 3,
+                "data_info" : {
+                    "icon_url" : 1,
+                    "text" : 1
+                }
+            },
+            {
+                "key" : "copy_right",
+                "type" : 1
+            }
+        ]
     }
 ]

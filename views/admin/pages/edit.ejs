@@ -40,11 +40,11 @@
                                         <div class="row">
                                             <div class="group">
                                                 <span>Thứ tự</span>
-                                                <input value="<%=_com.ordering%>" type="number" name="ordering">
+                                                <input value="<%=_com.ordering%>" type="number" name="ordering[]">
                                             </div>
                                             <div class="group">
                                                 <span>thành phần</span>
-                                                <select name="components" id="">
+                                                <select name="components[]" id="">
                                                     <option value="">-----Chọn thành phần -------</option>
                                                     <%components.forEach(com => {%>
                                                         <option <%if(_com.value+'' === com._id +''){%>selected<%}%> value="<%=com._id%>"><%=com.humanName%></option>    
@@ -79,11 +79,11 @@
         <div class="row">
             <div class="group">
                 <span>Thứ tự</span>
-                <input value="1" type="number" name="ordering" id="">
+                <input value="1" type="number" name="ordering[]" id="">
             </div>
             <div class="group">
                 <span>thành phần</span>
-                <select name="components" id="">
+                <select name="components[]" id="">
                     <%components.forEach(com => {%>
                         <option value="<%=com._id%>"><%=com.humanName%></option>    
                     <%})%>

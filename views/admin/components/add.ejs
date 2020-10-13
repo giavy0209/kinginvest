@@ -194,7 +194,7 @@
                 
                 if(data.type === 2){
                     html += `
-                    <textarea data-type="${data.type}" id="${data.key}" name="${data.key}">${data.value}</textarea>
+                    <textarea data-type="${data.type}" id="${data.key}" name="${data.key}">${data.value ? data.value : ''}</textarea>
                     `
                 }
                 

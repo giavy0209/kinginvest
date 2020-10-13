@@ -75,9 +75,19 @@ const newSchema = new Schema({
     metadesen : {type : String, default : ''},
     meta_og_img_vi : {type : String, default : ''},
     meta_og_img_en : {type : String, default : ''},
+    contentvi : {type : String, default : ''},
+    contenten : {type : String, default : ''},
     create_date: {type : Date, default : new Date()},
     category : [{type : Types.ObjectId , ref : 'categories'}],
-    views: Number
+    components_before : [{
+        ordering : Number,
+        value : {type : Types.ObjectId, ref : 'components'}
+    }],
+    components_after : [{
+        ordering : Number,
+        value : {type : Types.ObjectId, ref : 'components'}
+    }],
+    views: {type : Number , default : 0}
 })
 
 const News = model('news', newSchema);

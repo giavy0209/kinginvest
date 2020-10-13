@@ -1,0 +1,49 @@
+<%
+var convertDate = date => {
+    var d = new Date(date)
+    var date = d.getDate() + ''
+    var month = d.getMonth() + 1 + ''
+    var year = d.getFullYear() + ''
+
+    if(date.length === 1) date = '0' + date
+    if(month.length === 1) month = '0' + month
+
+    return date + '/' + month + '/' + year
+}
+%>
+<div id="news" class="block">
+    <div class="kdg-container">
+        <div class="kdg-row">
+            <div class="kdg-col-9">
+                <h1 class="title"><%=pageData.title%></h1>
+                <span class="date"><%=convertDate(pageData.create_date)%></span>
+                <div class="content"><%-pageData.content%></div>
+            </div>
+            <div class="kdg-col-3">
+                <aside>
+                    <div class="blockaside">
+                        <div class="featured-sidebar">
+                            <h5 class="title"><%=sidebar_title%></h5>
+                            <div class="list-news">
+                                <%sidebarnews.forEach(el => {%>
+                                    <div class="item">
+                                        <div class="left">
+                                            <a href="<%=el.slug%>" class="img img-3-2">
+                                                <img src="<%=el.meta_og_img_%>" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="right">
+                                            <h6 class="title"><%=el.title%></h6>
+                                            <span><%=convertDate(el.create_date)%></span>
+                                        </div>
+                                    </div>
+                                <%})%>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        
+    </div>
+</div>

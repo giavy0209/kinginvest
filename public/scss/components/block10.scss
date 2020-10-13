@@ -1,0 +1,233 @@
+@import '../includes/mixin';
+@import '../includes/var';
+#block10{
+    .title{
+        font-size: rem(30px);
+        font-weight: 600;
+    }
+    .featured{
+        margin: 0 -15px;
+        margin-top: 50px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $sub9;
+        font-size: 0;
+        .left{
+            width: 66.6666%;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 15px;
+            .img + .img{
+                margin-top: 17px;
+            }
+            .info{
+                padding: 13px 20px;
+                background-color: rgba(255, 255, 255, .65);
+                position: absolute;
+                bottom: 6px;
+                left: 0;
+                width: 100%;
+                .featured-title{
+                    a{
+                        font-size: rem(18px);
+                        font-weight: 600;
+                        color: $sub1;
+                    }
+                }
+                .des{
+                    font-size: rem(15px);
+                    margin-top: 7px;
+                }
+            }
+        }
+        .right{
+            width: 33.33333%;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 15px;
+            .img + .img{
+                margin-top: 17px;
+            }
+            .info{
+                padding: 6px 9px;
+                background-color: rgba(255, 255, 255, .65);
+                position: absolute;
+                bottom: 3px;
+                left: 0;
+                width: 100%;
+                .featured-title{
+                    a{
+                        font-size: rem(14px);
+                        font-weight: 600;
+                        color: $sub1;
+                    }
+                }
+                .des{
+                    font-size: rem(12px);
+                    margin-top: 3px;
+                }
+            }
+        }
+    }
+    .list-news{
+        margin-top: 35px;
+        .news{
+            padding: 15px 0;
+            font-size: 0;
+            > *{
+                display: inline-block;
+                vertical-align: top;
+            }
+            .img{
+                width: 300px;
+            }
+            .info{
+                width: calc(100% - 300px);
+                padding-left: 25px;
+                .news-title{
+                    a{
+                        color: $sub1;
+                        font-size: rem(18px);
+                        font-weight: 600;
+                    }
+                }
+                .sub-info{
+                    margin: 0 -6px;
+                    margin-top: 5px;
+                    font-size: rem(13px);
+                    color: $sub9;
+                    > span{
+                        padding: 0 6px;
+                        &.views{
+                            border-left: 1px solid $sub9;
+                        }
+                    }
+                }
+                .des{
+                    margin-top: 20px;
+                    font-size: 15px;
+                    width: 280px;
+                    max-width: 100%;
+                }
+            }
+            +.news{
+                border-top: 1px solid $sub9;
+            }
+        }
+        .pagination{
+            text-align: center;
+            margin-top: 35px;
+            a{
+                font-size: rem(18px);
+                color : $sub7;
+                padding: 5px 11px;
+                &.active{
+                    font-weight: bold;
+                    color: $sub1;
+                    pointer-events: none;
+                }
+            }
+            .dot{
+                font-size: rem(18px);
+                color: $sub1;
+            }
+        }
+    }
+    aside{
+        .blockaside{
+            margin-bottom: 15px;
+            +.blockaside {
+                padding-top: 15px;
+                border-top: 1px solid $sub9;
+            }
+            form{
+                position: relative;
+                input{
+                    padding: 18px 32px 18px 18px;
+                    width: 100%;
+                    color: $sub8;
+                    border: none;
+                    background-color: $sub6;
+                    border-radius: 5px;
+                }
+                button{
+                    border: none;
+                    position: absolute;
+                    top: 50%;
+                    right: 14px;
+                    transform: translate(0 , -50%);
+                    background-color: transparent;
+                    cursor: pointer;
+                    i{
+                        color: $sub8 ;
+                    }
+                }
+            }
+            .socials{
+                padding: 15px 9px;
+                border-radius: 5px;
+                background-color: $sub6;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, .7);
+                .title{
+                    padding: 6px 0;
+                    background-color: $sub1;
+                    color: $sub4;
+                    font-size: rem(16px);
+                    font-weight: 600;
+                    text-align: center;
+                    border-radius: 5px;
+                }
+                .list{
+                    margin-top: 18px;
+                }
+            }
+            .featured-sidebar{
+                >.title{
+                    font-size: rem(25px);
+                    font-weight: 400;
+                    padding-left: 20px;
+                    position: relative;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 4px;
+                        height: 100%;
+                        background-color: $sub1;
+                    }
+                }
+                .list-news{
+                    margin-top: 27px;
+                    .item{
+                        font-size: 0;
+                        margin: 0 -10px;
+                        padding-bottom: 15px;
+                        +.item{
+                            padding-top: 15px;
+                            border-top: 1px solid $sub8;
+                        }
+                        > * {
+                            display: inline-block;
+                            vertical-align: top;
+                            padding: 0 10px;
+                        }
+                        .left{
+                            width: 33.3333%;
+                        }
+                        .right{
+                            width: 66.66666%;
+                            .title{
+                                font-size: rem(14px);
+                                color: $sub7;
+                            }
+                            span{
+                                color: $sub9;
+                                font-size: rem(12px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

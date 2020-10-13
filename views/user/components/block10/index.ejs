@@ -1,36 +1,191 @@
 <%
-    var sub_title = getData('sub_title')
-    var show_sub_title = getData('show_sub_title')
     var title = getData('title')
     var show_title = getData('show_title')
-    var block = getData('block')
+
+    var show_featured_article = getData('show_featured_article')
+
+    var show_sidebar = getData('show_sidebar')
+    var show_search = getData('show_search')
+    var show_socials = getData('show_socials')
+
+    var sidebar_title = getData('sidebar_title')
+    var title_socials = getData('title_socials')
+    var search_placeholder = getData('search_placeholder')
+    var socials = getData('socials')
 %>
-<div id="block9" class="block">
+
+<%
+var convertDate = date => {
+    var d = new Date(date)
+    var date = d.getDate() + ''
+    var month = d.getMonth() + 1 + ''
+    var year = d.getFullYear() + ''
+
+    if(date.length === 1) date = '0' + date
+    if(month.length === 1) month = '0' + month
+
+    return date + '/' + month + '/' + year
+}
+%>
+
+<div id="block10" class="block">
     <div class="kdg-container">
-        <div class="block-title text-c">
-            <%if(show_sub_title){%>
-                <p><%=sub_title%></p>    
-            <%}%>
-            <%if(show_title){%>
-                <h2><%=title%></h2>    
-            <%}%>
-        </div>
-        <div class="kdg-row kdg-column-3 maincontent">
-            <%block.forEach(el=> {%>
-                <div class="item">
-                    <div class="image">
-                        <img src="<%=el.img_url%>" alt="">
-                        <p class="des"><%=el.short_description%></p>
-                        <a class="button" href="<%=el.target_url%>"><%=el.button_text%></a>
+        <div class="kdg-row">
+            <div class="kdg-col-9 va-t">
+                <%if(show_title){%>
+                    <h2 class="title"><%=title%></h2>    
+                <%}%>
+
+                <%if(show_featured_article && listFeatured.length > 0){%>
+                    <div class="featured">
+                        <div class="left">
+                            <% var featured_index = 0 %>
+                            <%listFeatured.forEach(el => {%>
+
+                                <%if(featured_index === 0){%>
+                                    <div class="img img-3-2">
+                                        <img src="<%=el.meta_og_img_ %>" alt="">
+                                        <div class="info">
+                                            <h3 class="featured-title">
+                                                <a href="<%=el.slug%>"><%=el.title%></a>
+                                            </h3>
+                                            <p class="des"><%= el.metades %></p>
+                                        </div>
+                                    </div>
+                                <%}%>
+
+                                <%
+                                featured_index++
+                                if(featured_index === 3){
+                                    featured_index = 0
+                                }
+                                %>
+
+                            <%})%>
+                        </div>   
+                        <div class="right">
+                            <% var featured_index = 0 %>
+                            <%listFeatured.forEach(el => {%>
+                                <%if(featured_index !== 0){%>
+                                    <div class="img img-3-2">
+                                        <img src="<%=el.meta_og_img_ %>" alt="">
+                                        <div class="info">
+                                            <h3 class="featured-title">
+                                                <a href="123"><%= el.title %></a>
+                                            </h3>
+                                            <p class="des"><%= el.metades %></p>
+                                        </div>
+                                    </div>
+                                <%}%>
+                                <%
+                                featured_index++
+                                if(featured_index === 3){
+                                    featured_index = 0
+                                }
+                                %>
+                            <%})%>
+                        </div>
+                    </div> 
+                <%}%>
+
+
+                <div class="list-news">
+                    <%news.forEach(_news => {%>
+                        <div class="news">
+                            <a href="<%=_news.slug%>" class="img img-3-2">
+                                <img src="<%= _news.meta_og_img_ %>" alt="">
+                            </a>
+                            <div class="info">
+                                <h4 class="news-title">
+                                    <a href="<%=_news.slug%>"><%= _news.title %></a>
+                                </h4>
+                                <p class="sub-info">
+                                    <span class="date">
+                                        <%- convertDate(_news.create_date) -%>
+                                    </span>
+                                    <span class="views">
+                                        <i class="far fa-eye"></i>
+                                        <%= _news.views%>
+                                    </span>
+                                </p>
+                                <p class="des">
+                                    <%= _news.metades%>
+                                </p>
+                            </div>
+                        </div>
+                    <%})%>
+
+                    <div class="pagination">
+                        <%if(currentPage !== 1){%>
+                            <a href="<%=pageData.slug%>?page=1">1</a>
+                            <%if(currentPage > 2){%>
+                                <span class="dot">...</span>
+                            <%}%>
+                        <%}%>
+                        <%for(var page = currentPage; page <= currentPage + 5 && page <= totalpage; page++){%>
+                            <a <%if(currentPage === page){%>class="active"<%}%> href="<%=pageData.slug%>?page=<%=page%>"><%=page%></a>
+                        <%}%>
+                        <%if(currentPage !== totalpage && totalpage > currentPage + 5){%>
+                            <%if(currentPage < totalpage - 2){%>
+                                <span class="dot">...</span>
+                            <%}%>
+                            <a href="<%=pageData.slug%>?page=<%=totalpage%>"><%=totalpage%></a>
+                        <%}%>
                     </div>
                 </div>
-            <%})%>
+            </div>
+            <div class="kdg-col-3 va-t">
+                <aside>
+                    <%if(show_search){%>
+                        <div class="blockaside">
+                            <form action="<%=pageData.slug%>?search" method="get">
+                                <input placeholder="<%=search_placeholder%>" type="text" name="search">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                    <%}%>
+                    <%if(show_socials){%>
+                        <div class="blockaside">
+                            <div class="socials">
+                                <h5 class="title"><%=title_socials%></h5>
+                                <div class="kdg-row kdg-column-4 text-c list">
+                                    <%socials.forEach(el => {%>
+                                        <div class="item">
+                                            <a href="<%=el.target_url%>"><img src="<%=el.img_url%>" alt=""></a>
+                                        </div>
+                                    <%})%>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                    <div class="blockaside">
+                        <div class="featured-sidebar">
+                            <h5 class="title"><%=sidebar_title%></h5>
+                            <div class="list-news">
+                                <%sidebarnews.forEach(el => {%>
+                                    <div class="item">
+                                        <div class="left">
+                                            <a href="<%=el.slug%>" class="img img-3-2">
+                                                <img src="<%=el.meta_og_img_%>" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="right">
+                                            <h6 class="title"><%=el.title%></h6>
+                                            <span><%=convertDate(el.create_date)%></span>
+                                        </div>
+                                    </div>
+                                <%})%>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    function add3Dots(string, limit){
+function add3Dots(string, limit){
     var dots = "...";
     if(string.length > limit){
         string = string.substring(0,limit) + dots;
@@ -38,8 +193,7 @@
     return string;
 }
 
-Array.from(document.querySelectorAll('#block4 .des')).forEach(function(el){
-    console.log(el);
+Array.from(document.querySelectorAll('#block10 .des')).forEach(function(el){
     el.innerText = add3Dots(el.innerText , 100)
 })
 

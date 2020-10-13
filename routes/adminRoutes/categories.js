@@ -1,3 +1,5 @@
+const { language } = require('../../const')
+const {getCat} = require('../../helpers')
 const {Pages,Categories} = require('../../modal')
 
 
@@ -27,6 +29,19 @@ app.post('/admin/categories/add', async (req,res)=>{
 
     await category.save()
     // require('./categoriesRoutes')(app)
+    category
+    .populate({
+        path : 'pagevi',
+        populate : 'components.value'
+    })
+    .populate({
+        path : 'pageen',
+        populate : 'components.value'
+    })
+
+    language.forEach(lang => {
+        getCat(app,category , lang)
+    })
 
     res.redirect('/admin/categories/add')
 })
@@ -50,7 +65,22 @@ app.post('/admin/categories/edit', async (req,res)=>{
     req.body.open_new_tab_vi = req.body.open_new_tab_vi === 'on' ? true : false
     req.body.open_new_tab_en = req.body.open_new_tab_en === 'on' ? true : false
     const category = await Categories.findByIdAndUpdate(id,req.body)
-    // require('./categoriesRoutes')(app)
+    
+
+    const getCategory = await Categories.findById(id)
+    .populate({
+        path : 'pagevi',
+        populate : 'components.value'
+    })
+    .populate({
+        path : 'pageen',
+        populate : 'components.value'
+    })
+
+    language.forEach(lang => {
+        getCat(app,getCategory , lang)
+    })
+
     res.redirect('/admin/categories/edit/'+id )
 })
 

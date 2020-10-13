@@ -95,17 +95,33 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="group">
-                                        <button id="addcomponents" type="button">Thêm danh mục</button>
+                                    <div class="group textarea">
+                                        <span>Content vi</span>
+                                        <textarea id="contentvi" name="contentvi"><%=data.contentvi%></textarea>
+                                        <script>CKEDITOR.replace( 'contentvi' );</script>
                                     </div>
                                 </div>
 
-                                <div id="listcom">
+                                <div class="row">
+                                    <div class="group textarea">
+                                        <span>Content en</span>
+                                        <textarea id="contenten" name="contenten"><%=data.contentvi%></textarea>
+                                        <script>CKEDITOR.replace( 'contenten' );</script>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <button id="addcat" type="button">Thêm danh mục</button>
+                                    </div>
+                                </div>
+
+                                <div id="listcat">
                                     <%data.category.forEach(cat => {%>
                                         <div class="row">
                                             <div class="group">
                                                 <span>Danh mục</span>
-                                                <select name="category" id="">
+                                                <select name="category[]" id="">
                                                     <option value="">----Chọn danh mục-----</option>
                                                     <%categories.forEach(el => {%>
                                                         <option <%if(el._id + '' == cat + ''){%>selected<%}%> value="<%=el._id%>"><%=el.titlevi%></option>    
@@ -113,12 +129,69 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        
+                                    <%})%>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <button id="addcomponentsbefore" type="button">Thêm thành phần trước bài viết</button>
+                                    </div>
+                                </div>
+
+                                <div id="listcombefore">
+                                    <h1 style="text-align: center;">thành phần trước bài viết</h1>
+                                    <%data.components_before.forEach(_com => {%>
+                                        <div class="row">
+                                            <div class="group">
+                                                <span>Thứ tự</span>
+                                                <input value="<%=_com.ordering%>" type="number" name="ordering_before[]">
+                                            </div>
+                                            <div class="group">
+                                                <span>thành phần</span>
+                                                <select name="components_before[]" id="">
+                                                    <option value="">-----Chọn thành phần -------</option>
+                                                    <%components.forEach(com => {%>
+                                                        <option <%if(_com.value+'' === com._id +''){%>selected<%}%> value="<%=com._id%>"><%=com.humanName%></option>    
+                                                    <%})%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                    <%})%>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <button id="addcomponentsafter" type="button">Thêm thành phần trước bài viết</button>
+                                    </div>
+                                </div>
+
+                                <div id="listcomafter">
+                                    <h1 style="text-align: center;">thành phần sau bài viết</h1>
+                                    <%data.components_after.forEach(_com => {%>
+                                        <div class="row">
+                                            <div class="group">
+                                                <span>Thứ tự</span>
+                                                <input value="<%=_com.ordering%>" type="number" name="ordering_after[]">
+                                            </div>
+                                            <div class="group">
+                                                <span>thành phần</span>
+                                                <select name="components_after[]" id="">
+                                                    <option value="">-----Chọn thành phần -------</option>
+                                                    <%components.forEach(com => {%>
+                                                        <option <%if(_com.value+'' === com._id +''){%>selected<%}%> value="<%=com._id%>"><%=com.humanName%></option>    
+                                                    <%})%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
                                     <%})%>
                                 </div>
     
                                 <div class="row">
                                     <div class="group">
-                                        <button type="submit" id="submit">Thêm</button>
+                                        <button type="submit" id="submit">Sửa</button>
                                     </div>
                                 </div>
                             </div>
@@ -130,15 +203,13 @@
     </main>
 </body>
 <%include ('../includes/js.ejs')%>
-
 <script>
-    document.getElementById('addcomponents').onclick = e => {
+    document.getElementById('addcat').onclick = e => {
         var html = `
         <div class="row">
             <div class="group">
                 <span>Danh mục</span>
-                <select name="category" id="">
-                    <option value="">----Chọn danh mục-----</option>
+                <select name="category[]" id="">
                     <%categories.forEach(com => {%>
                         <option value="<%=com._id%>"><%=com.titlevi%></option>    
                     <%})%>
@@ -147,7 +218,51 @@
         </div>
         `
         console.log(html);
-        document.getElementById('listcom').insertAdjacentHTML('beforeend', html)
+        document.getElementById('listcat').insertAdjacentHTML('beforeend', html)
+    }
+</script>
+
+<script>
+    document.getElementById('addcomponentsbefore').onclick = e => {
+        var html = `
+        <div class="row">
+            <div class="group">
+                <span>Thứ tự</span>
+                <input value="1" type="number" name="ordering_before[]" id="">
+            </div>
+            <div class="group">
+                <span>thành phần</span>
+                <select name="components_before[]" id="">
+                    <%components.forEach(com => {%>
+                        <option value="<%=com._id%>"><%=com.humanName%></option>    
+                    <%})%>
+                </select>
+            </div>
+        </div>
+        `
+        document.getElementById('listcombefore').insertAdjacentHTML('beforeend', html)
+    }
+</script>
+
+<script>
+    document.getElementById('addcomponentsafter').onclick = e => {
+        var html = `
+        <div class="row">
+            <div class="group">
+                <span>Thứ tự</span>
+                <input value="1" type="number" name="ordering_after[]" id="">
+            </div>
+            <div class="group">
+                <span>thành phần</span>
+                <select name="components_after[]" id="">
+                    <%components.forEach(com => {%>
+                        <option value="<%=com._id%>"><%=com.humanName%></option>    
+                    <%})%>
+                </select>
+            </div>
+        </div>
+        `
+        document.getElementById('listcomafter').insertAdjacentHTML('beforeend', html)
     }
 </script>
 
