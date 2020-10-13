@@ -16,16 +16,26 @@
                         <table>
                             <tr>
                                 <th>ID</th>
-                                <th>Thứ tự</th>
-                                <th>tên</th>
+                                <th>Tiêu đề vi</th>
+                                <th>Tiêu đề en</th>
+                                <th>Danh mục</th>
+                                <th>Ngày tạo</th>
                                 <th>Sửa/xóa</th>
                             </tr>
                             <%data.forEach(_data=>{%>
                             
                                 <tr>
                                     <td><%=_data._id%></td>
-                                    <td><%=_data.ordering%></td>
-                                    <td><%=_data.humanName%></td>
+                                    <td><%=_data.titlevi%></td>
+                                    <td><%=_data.titleen%></td>
+                                    
+                                    <td>
+                                        <% _data.category.forEach(cat => {%>
+                                            <%=cat.titlevi%> ,
+                                        <%})%>
+                                    </td>
+
+                                    <td><%=_data.create_date%></td>
                                     <td>
                                         <a href="/admin/<%=adminPage%>/edit/<%=_data._id%>"><i class="fas fa-pencil-alt"></i></a>
                                         <form method="POST" action="/admin/<%=adminPage%>/delete">

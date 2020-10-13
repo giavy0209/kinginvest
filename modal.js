@@ -60,10 +60,33 @@ const componentSchema = new Schema({
 
 const Components = model('components', componentSchema);
 
+const newSchema = new Schema({
+    titlevi : {type : String, default : ''},
+    titleen : {type : String, default : ''},
+    browser_titlevi : {type : String, default : ''},
+    browser_titleen: {type : String, default : ''},
+    meta_titlevi : {type : String, default : ''},
+    meta_titleen: {type : String, default : ''},
+    iconvi : {type : String, default : ''},
+    iconen: {type : String, default : ''},
+    slugvi : {type : String, default : ''},
+    slugen : {type : String, default : ''},
+    metadesvi : {type : String, default : ''},
+    metadesen : {type : String, default : ''},
+    meta_og_img_vi : {type : String, default : ''},
+    meta_og_img_en : {type : String, default : ''},
+    create_date: {type : Date, default : new Date()},
+    category : [{type : Types.ObjectId , ref : 'categories'}],
+    views: Number
+})
+
+const News = model('news', newSchema);
+
 
 module.exports = {
     Uploads,
     Pages,
     Categories,
-    Components
+    Components,
+    News
 }

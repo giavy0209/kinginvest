@@ -39,11 +39,13 @@ module.exports = app => {
         var listComponents = []
 
         orderingList.forEach((_or,index) => {
-            if(!Number(_or)) or = 1
-            listComponents.push({
-                ordering : _or,
-                value : componentsList[index]
-            })
+            if(!Number(_or)) _or = 1
+            if(mongoose.Types.ObjectId.isValid(componentsList[index])){
+                listComponents.push({
+                    ordering : _or,
+                    value : componentsList[index]
+                })
+            }
         })
 
         listComponents.sort((a,b) => {
@@ -81,7 +83,6 @@ module.exports = app => {
     })
 
     app.post('/admin/pages/edit/', async (req,res)=>{
-        console.log(req.body);
         const {id} = req.body
         if(!mongoose.Types.ObjectId.isValid(id)){
             return res.redirect('/admin/pages')
@@ -99,11 +100,13 @@ module.exports = app => {
         var listComponents = []
 
         orderingList.forEach((_or,index) => {
-            if(!Number(_or)) or = 1
-            listComponents.push({
-                ordering : _or,
-                value : componentsList[index]
-            })
+            if(!Number(_or)) _or = 1
+            if(mongoose.Types.ObjectId.isValid(componentsList[index])){
+                listComponents.push({
+                    ordering : _or,
+                    value : componentsList[index]
+                })
+            }
         })
         listComponents.sort((a,b) => {
             return a.ordering - b.ordering

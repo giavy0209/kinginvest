@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include ('../includes/head.ejs')%>
+<body>
+    <main>
+        <div class="nps-container-fluid">
+            <div class="nps-row m-0">
+                <div class="nps-col-3">
+                    <aside>
+                        <%-include ('../includes/sidebar.ejs')%>
+                    </aside>
+                </div>
+                <div class="nps-col-9">
+                    <section class="content">
+                        <%-include ('../includes/title-admin.ejs')%>
+
+                        <form id="form" method="POST" action="/admin/<%=adminPage%>/edit/">
+                            <input type="text" name="id" value="<%=id%>" style="display: none;">
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Tiêu đề VI</span>
+                                        <input value="<%=data.titlevi%>" type="text" name="titlevi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tiêu đề EN</span>
+                                        <input value="<%=data.titleen%>" type="text" name="titleen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Tiêu đề VI (trên thanh trình duyệt)</span>
+                                        <input value="<%=data.browser_titlevi%>" type="text" name="browser_titlevi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tiêu đề EN (trên thanh trình duyệt)</span>
+                                        <input value="<%=data.browser_titleen%>" type="text" name="browser_titleen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Tiêu đề VI (trên các trang mxh)</span>
+                                        <input value="<%=data.meta_titlevi%>" type="text" name="meta_titlevi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Tiêu đề EN (trên các trang mxh)</span>
+                                        <input value="<%=data.meta_titleen%>" type="text" name="meta_titleen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Icon VI (trên trình duyệt kế bên tiêu đề)</span>
+                                        <input value="<%=data.iconvi%>" type="text" name="iconvi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Icon EN (trên trình duyệt kế bên tiêu đề)</span>
+                                        <input value="<%=data.iconen%>" type="text" name="iconen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>URL VI</span>
+                                        <input value="<%=data.slugvi%>" type="text" name="slugvi">
+                                    </div>
+                                    <div class="group">
+                                        <span>URL EN</span>
+                                        <input value="<%=data.slugen%>" type="text" name="slugen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>Mô tả ngắn (đặc biệt tốt cho SEO) VI</span>
+                                        <input value="<%=data.metadesvi%>" type="text" name="metadesvi">
+                                    </div>
+                                    <div class="group">
+                                        <span>Mô tả ngắn (đặc biệt tốt cho SEO) EN</span>
+                                        <input value="<%=data.metadesen%>" type="text" name="metadesen">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <span>URL hình ảnh khi đăng lên các MXH VI</span>
+                                        <input value="<%=data.meta_og_img_vi%>" type="text" name="meta_og_img_vi">
+                                    </div>
+                                    <div class="group">
+                                        <span>URL hình ảnh khi đăng lên các MXH EN</span>
+                                        <input value="<%=data.meta_og_img_en%>" type="text" name="meta_og_img_en">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="group">
+                                        <button id="addcomponents" type="button">Thêm danh mục</button>
+                                    </div>
+                                </div>
+
+                                <div id="listcom">
+                                    <%data.category.forEach(cat => {%>
+                                        <div class="row">
+                                            <div class="group">
+                                                <span>Danh mục</span>
+                                                <select name="category" id="">
+                                                    <option value="">----Chọn danh mục-----</option>
+                                                    <%categories.forEach(el => {%>
+                                                        <option <%if(el._id + '' == cat + ''){%>selected<%}%> value="<%=el._id%>"><%=el.titlevi%></option>    
+                                                    <%})%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <%})%>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="group">
+                                        <button type="submit" id="submit">Thêm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%include ('../includes/js.ejs')%>
+
+<script>
+    document.getElementById('addcomponents').onclick = e => {
+        var html = `
+        <div class="row">
+            <div class="group">
+                <span>Danh mục</span>
+                <select name="category" id="">
+                    <option value="">----Chọn danh mục-----</option>
+                    <%categories.forEach(com => {%>
+                        <option value="<%=com._id%>"><%=com.titlevi%></option>    
+                    <%})%>
+                </select>
+            </div>
+        </div>
+        `
+        console.log(html);
+        document.getElementById('listcom').insertAdjacentHTML('beforeend', html)
+    }
+</script>
+
+</html>

@@ -1,6 +1,6 @@
 const fs = require('fs')
 const mongoose = require('mongoose')
-const {Pages,Uploads,Categories} = require('../modal')
+const {Pages,Uploads,Categories, News} = require('../modal')
 var multer = require('multer')
 var upload = multer({ dest: './public/' })
 
@@ -33,7 +33,6 @@ module.exports = async app => {
 
     categories.forEach(cat => {
         app.get(cat.slugvi, async (req,res) => {
-            console.log(cat.pagevi.components[8].value.datas);
             var categories = await Categories.find({show_vi : true, pagevi : {$ne : null}})
             .populate({
                 path : 'pagevi',
@@ -42,11 +41,28 @@ module.exports = async app => {
 
             var currCategories = mapcat(categories, 'vi')
 
+            
             var pageData = currCategories.find(o => o.slug === cat.slugvi)
+            
+            var isHaveListNew = pageData.page.components.find(o => o.value.key === 'block10')
+            
+            var news;
+
+            if(isHaveListNew){
+                var page = Number(req.query.page)
+                if(!page) page = 1
+                var itemperpage = isHaveListNew.value.datas.find(o => o.key === 'news_per_page').data
+
+                var skip = (page - 1) * itemperpage
+
+                
+                news = await News.find({category : {$in : cat._id}}).skip(skip).limit(itemperpage)
+            }
             res.render('user/index',{
                 pageData,
-                components : cat.pagevi.components,
-                categories : currCategories
+                components : pageData.page.components,
+                categories : currCategories,
+                news : news
             })
 
         })

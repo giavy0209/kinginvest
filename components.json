@@ -499,8 +499,76 @@
                 "type" : 3,
                 "data_info" : {
                     "img_url" : 1,
+                    "short_description" : 1,
                     "button_text" : 1,
                     "target_url" : 1
+                }
+            }
+        ]
+    },
+    {
+        "key" : "block10",
+        "name" : "Danh sách bài viết",
+        "datas" : [
+            {
+                "key" : "news_per_page",
+                "type" : 0
+            },
+            {
+                "key" : "title",
+                "type" : 1 
+            },
+            {
+                "key" : "show_title",
+                "type" : 4
+            },
+            {
+                "key" : "show_featured_article",
+                "type" : 4
+            },
+            {
+                "key" : "featured_articles" ,
+                "type" : 3,
+                "data_info" : {
+                    "article_id" : 1
+                }
+            },
+            {
+                "key" : "show_sidebar",
+                "type" : 4
+            },
+            {
+                "key" : "show_search",
+                "type" : 4
+            },
+            {
+                "key" : "search_placeholder",
+                "type" : 1
+            },
+            {
+                "key" : "sidebar_title",
+                "type" : 1
+            },
+            {
+                "key" : "sidebar_items",
+                "type" : 0
+            },
+            {
+                "key" : "show_socials",
+                "type" : 4
+            },
+            {
+                "key" : "title_socials",
+                "type" : 1
+            },
+            {
+                "key" : "socials",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "target_url" : 1,
+                    "open_new_tab" : 4,
+                    "show" : 4
                 }
             }
         ]
