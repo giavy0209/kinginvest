@@ -6,7 +6,7 @@ var flag = {
     en : data.datas.find(o => o.key === 'en_flag').data
 }
 %>
-<header>
+<header id="topheader">
     <div class="topheader">
         <div class="kdg-container">
             <ul class="list-socials">
@@ -25,7 +25,7 @@ var flag = {
                 <ul class="dropdown">
                     <%Object.keys(flag).forEach(key => {%>
                         
-                        <li onclick="document.cookie = 'language=<%=key%>; expires=Thu, 18 Dec 2099 12:00:00 UTC'"><img src="<%=flag[key]%>" alt=""></li>
+                        <li onclick="document.cookie = 'language=<%=key%>; expires=Thu, 18 Dec 2099 12:00:00 UTC'; window.location.reload()"><img src="<%=flag[key]%>" alt=""></li>
 
                     <%})%>
                 </ul>

@@ -4,6 +4,40 @@
 #block7{
     background-color: $sub6;
     .maincontent{
+        @media only screen and (max-width : 992px) { 
+            .kdg-col-6{
+                width: 100%;
+                .description{
+                    margin: 0 -35px;
+                }
+                &.block{
+                    padding: 0;
+                    margin-top: 45px;
+                    text-align: center;
+                    .block-title{
+                        text-align: center;
+                    }
+                    .list{
+                        margin-top: 20px;
+                        .item{
+                            padding-top: 10px;
+                            text-align: left;
+                            margin-bottom: 8px;
+                            .data{
+                                border-top: 1px solid $sub8;
+                            }
+                            @media only screen and (max-width : 600px){
+                                text-align: center;
+                                width: 100%;
+                                .left,.right{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .list{
             margin-top: 50px;
             .item{

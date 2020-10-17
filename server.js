@@ -1,7 +1,6 @@
 const express = require('express')
 
 const app = express()
-
 const http = require('http')
 
 const server = http.Server(app)
@@ -19,6 +18,3 @@ app.use(express.static('./public'))
 require('./routes/categoriesRoutes')(app)
 require('./routes/newsRoutes')(app)
 require('./routes/adminRoutes/index')(app)
-
-app.get('/123123', (req,res) => {
-})

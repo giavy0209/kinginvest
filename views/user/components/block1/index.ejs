@@ -6,7 +6,7 @@
     var description = getData('description')
     var show_description = getData('description')
     var block = getData('block')
-    var show_block = getData('block')
+    var show_block_content = getData('show_block_content')
 %>
 <div id="block1" class="block">
     <div class="kdg-container">
@@ -23,35 +23,38 @@
                 <div><%-description%></div>
             <%}%>
         </div>
-        <%if(show_block){ var count = 0%>
-            <div class="kdg-row">
-            <%block.forEach((el,index)=>{
-            var col;
-            if(count === 0) col = 6
-            else col = 3
-            %>
-                    <div class="kdg-col-<%=col%> va-t">
-                        <div class="content">
-                            <%if(el.show_img){%>
-                                <div class="icon">
-                                    <img src="<%=el.img_url%>" alt="">
-                                </div>
-                            <%}%>
-                            <%if(el.show_title){%>
-                                <h3><%=el.title%></h3>
-                            <%}%>
-                            <%if(el.show_content){%>
-                                <div class="des"><%-el.content%></div>
-                            <%}%>
-                        </div>
-                    </div>
-                <%
-                count++
-                if(count > 2) count = 0
+
+        <div style="--block1-item : <%=block.length%>" class="main-content">
+            <%if(show_block_content){ var count = 0%>
+                <div class="kdg-row">
+                <%block.forEach((el,index)=>{
+                var col;
+                if(count === 0) col = 6
+                else col = 3
                 %>
-            <%})%>
+                        <div class="kdg-col-<%=col%> va-t">
+                            <div class="content">
+                                <%if(el.show_img){%>
+                                    <div class="icon">
+                                        <img src="<%=el.img_url%>" alt="">
+                                    </div>
+                                <%}%>
+                                <%if(el.show_title){%>
+                                    <h3><%=el.title%></h3>
+                                <%}%>
+                                <%if(el.show_content){%>
+                                    <div class="des"><%-el.content%></div>
+                                <%}%>
+                            </div>
+                        </div>
+                    <%
+                    count++
+                    if(count > 2) count = 0
+                    %>
+                <%})%>
+            </div>
+            <%}%>
         </div>
-        <%}%>
     </div>
 </div>
 

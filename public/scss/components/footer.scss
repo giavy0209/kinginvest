@@ -1,8 +1,33 @@
 @import '../includes/mixin';
 @import '../includes/var';
 
-footer{
+#footer{
     padding: 68px 0;
+    @media only screen and (max-width: 768px){
+        padding: 43px 0;
+    }
+    .kdg-col-3{
+        @media only screen and (max-width: 992px){
+            &:nth-child(1),&:nth-child(4){
+                width: 50%;
+            }
+        }
+        @media only screen and (max-width: 768px){
+            &:nth-child(1),&:nth-child(4){
+                width: 100%;
+            }
+            &:not(:nth-child(-n + 1)){
+                margin-top: 26px;
+            }
+            &:nth-child(2),&:nth-child(3){
+                width: 50%;
+            }
+            &:nth-child(4){
+                border-top: 1px solid rgba(255, 255, 255, .6);
+                padding-top: 26px;
+            }
+        }
+    }
     *{
         vertical-align: top;
         color: $sub4;
@@ -26,6 +51,18 @@ footer{
             background-color: transparent;
             width: 100%;
             color: $sub4;
+            &::placeholder { 
+                color:  $sub4;;
+                opacity: 1;
+            }
+            
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: $sub4;
+            }
+            
+            &::-ms-input-placeholder { /* Microsoft Edge */
+                color: $sub4;
+            }
         }
         i{
             position: absolute;

@@ -1,8 +1,45 @@
 @import '../includes/mixin';
 @import '../includes/var';
 
-header{
+#bottomheader{
     overflow: hidden;
+    @media only screen and (max-width : 992px){
+        .bottomheader{
+            .kdg-container{
+                position: relative;
+                background-color: $sub1;
+                .kdg-col-5{
+                    width: 100%;
+                    &.left{
+                        padding: 16px 0;
+                        text-align: center;
+                        .open-menu{
+                            display: block;
+                            position: absolute;
+                            top: 50%;
+                            transform: translate(0  , -50%);
+                            padding: 35px;
+                        }
+                        .logo{
+                            img{
+                                width: 37px;
+                            }
+                            .text{
+                                font-size: rem(18px);
+                                line-height: rem(20px);
+                            }
+                        }
+                    }
+                }
+                .before,.after{
+                    display: none;
+                }
+                .kdg-col-7{
+                    display: none;
+                }
+            }
+        }
+    }
     .bottomheader{
         position: relative;
         * {
@@ -12,6 +49,9 @@ header{
 
         .left {
             padding: 50px 0;
+            .open-menu{
+                display: none;
+            }
             .logo{
                 > * {
                     vertical-align: middle;

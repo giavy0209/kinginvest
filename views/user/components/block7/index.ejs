@@ -28,15 +28,23 @@
                         <h2><%=title%></h2>    
                     <%}%>
                 </div>
-                <div class="kdg-row kdg-column-2 list">
+                <div style="--block7-item : <%=block.length%>" class="kdg-row kdg-column-2 list">
                     <%block.forEach(el => {%>
                         <div class="item">
-                            <div class="left">
-                                <img src="<%=el.img_url%>" alt="">
-                            </div>
-                            <div class="right">
-                                <h3 class="title"><%=el.title%></h3>
-                                <div class="des"><%-el.content%></div>
+                            <div class="data">
+                                <div class="left">
+                                    <%if(el.show_img){%>
+                                        <img src="<%=el.img_url%>" alt="">
+                                    <%}%>
+                                </div>
+                                <div class="right">
+                                    <%if(el.show_title){%>
+                                        <h3 class="title"><%=el.title%></h3>
+                                    <%}%>
+                                    <%if(el.show_content){%>
+                                        <div class="des"><%-el.content%></div>
+                                    <%}%>
+                                </div>
                             </div>
                         </div>    
                     <%})%>
@@ -46,3 +54,17 @@
         
     </div>
 </div>
+
+<script>
+    window.addEventListener('load', function() {
+        Array.from(document.querySelectorAll('#block7 .description img')).forEach(function(el) { 
+            el.parentElement.classList.add('img')
+            if(window.offsetWidth > 992){
+                el.parentElement.classList.add('img-1-1')
+            }else{
+                el.parentElement.classList.add('img-3-1')
+            }
+        })
+
+    })
+</script>

@@ -77,6 +77,8 @@ app.post('/admin/categories/edit', async (req,res)=>{
         populate : 'components.value'
     })
 
+    removeRoute(app._router.stack,[req.body.slugvi, req.body.slugen])
+
     language.forEach(lang => {
         getCat(app,getCategory , lang)
     })

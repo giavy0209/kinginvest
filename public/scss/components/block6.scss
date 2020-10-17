@@ -22,6 +22,9 @@
             .right{
                 width: calc(100% - 59px);
                 padding-left: 10px;
+                .index{
+                    display: none;
+                }
                 .sub-title{
                     font-size: rem(18px);
                 }
@@ -47,6 +50,68 @@
                         color: $sub4 ;
                         background-color: $sub1;
                         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+                    }
+                }
+            }
+        }
+
+
+        @media only screen and (max-width : 992px) {
+            margin-top: 20px;
+            overflow-x: scroll;
+            overflow-y: visible;
+            .kdg-row{
+                width: calc(var(--block6-item) * 100% / 2);
+                @media only screen and (max-width : 450px){
+                    width: calc(var(--block6-item) * 100% );
+                }
+                margin: 0;
+                .item{
+                    width: calc(100% / var(--block6-item));
+                    .content{
+                        background-color: $sub6;
+                        border-radius: 5px;
+                        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+                        padding: 15px 5px;
+                        .left{
+                            display: none;
+                        }
+                        .right{
+                            width: 100%;
+                            padding-left: 0;
+                            text-align: center;
+                            .index{
+                                display: inline-block;
+                                vertical-align: middle;
+                                font-size: rem(40px);
+                                line-height: rem(48px);
+                                color: $sub3 ;
+                                width: unset;
+                                padding: 0 5px;
+                            }
+                            .group-title{
+                                display: inline-block;
+                                vertical-align: middle;
+                                text-align: left;
+                                .sub-title{
+                                    font-size: rem(14px);
+                                }
+                                .title{
+                                    margin-top: 5px;
+                                    font-size: rem(21px);
+                                }
+                            }
+                            .des{
+                                margin-top: 15px;
+                                font-size: rem(14px);
+                            }
+                            .button{
+                                margin-top: 10px;
+                                font-size: rem(12px);
+                                border: 1px solid $sub2;
+                                padding: 4px 8px;
+                            }
+                        }
                     }
                 }
             }

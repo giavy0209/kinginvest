@@ -71,7 +71,7 @@ var convertDate = date => {
                                         <img src="<%=el.meta_og_img_ %>" alt="">
                                         <div class="info">
                                             <h3 class="featured-title">
-                                                <a href="123"><%= el.title %></a>
+                                                <a href="<%=el.slug%>"><%= el.title %></a>
                                             </h3>
                                             <p class="des"><%= el.metades %></p>
                                         </div>
@@ -166,7 +166,7 @@ var convertDate = date => {
                                     <div class="item">
                                         <div class="left">
                                             <a href="<%=el.slug%>" class="img img-3-2">
-                                                <img src="<%=el.meta_og_img_%>" alt="">
+                                                <img src="<%= el.meta_og_img_ %>" alt="">
                                             </a>
                                         </div>
                                         <div class="right">

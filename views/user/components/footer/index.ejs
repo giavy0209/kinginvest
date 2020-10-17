@@ -24,7 +24,7 @@
     }
 </style>
 
-<footer style="background-image: url(<%=background_url%>);">
+<footer id="footer" style="background-image: url(<%=background_url%>);">
     <div class="kdg-container">
         <div class="kdg-row">
             <div class="kdg-col-3">
@@ -58,7 +58,7 @@
                     <%column_4.forEach(el => {%>
                         <li>
                             <span><img src="<%=el.icon_url%>" alt=""></span>
-                            <span><%=el.text%></span>
+                            <span><%-el.text%></span>
                         </li>    
                     <%})%>
                 </ul>

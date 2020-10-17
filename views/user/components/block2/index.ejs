@@ -6,27 +6,12 @@
     var description = getData('description')
     var show_description = getData('description')
     
-    var block1_title = getData('block1_title')
-    var show_block1_title = getData('block1_title')
-
-    var block1_content = getData('block1_content')
-    var show_block1_content = getData('block1_content')
-
-    var block2_title = getData('block2_title')
-    var show_block2_title = getData('block2_title')
-
-    var block2_content = getData('block2_content')
-    var show_block2_content = getData('block2_content')
-
-    var block3_title = getData('block3_title')
-    var show_block3_title = getData('block3_title')
-
-    var block3_content = getData('block3_content')
-    var show_block3_content = getData('block3_content')
+    var block = getData('block')
+    
 %>
-<div id="block2" class="block">
+<div id="block2" class="block block2">
     <div class="kdg-container">
-        <div class="block-title2 text-c">
+        <div class="block-title text-c">
             <%if(show_sub_title){%>
                 <p><%=sub_title%></p>    
             <%}%>
@@ -39,49 +24,25 @@
                 <div><%-description%></div>
             <%}%>
         </div>
-        <div class="maincontent">
+        <div style="--block2-item : <%=block.length%>" class="maincontent">
             <div class="kdg-row kdg-column-3">
-                <div class="item item-1">
-                    <div class="roadmap">
-                        <%if(show_block1_title){%>
-                            <div class="top">
-                                <div><%-block1_title%></div>
+                <div class="track">
+                    <%block.forEach(el => {%>
+                        <div class="item">
+                            <div style="background-color: <%=el.background_color%>;" class="roadmap">
+                                <%if(el.show_title){%>
+                                    <div style="background-color: <%=el.background_color_title%>;" class="top">
+                                        <%-el.title%>
+                                    </div>
+                                <%}%>
+                                <%if(el.show_content){%>
+                                    <div style="background-color: <%=el.background_color_content%>;" class="bottom">
+                                        <%-el.content%>
+                                    </div>
+                                <%}%>
+                            </div>
                         </div>
-                        <%}%>
-                        <%if(show_block1_content){%>
-                            <div class="bottom">
-                                <div><%-block1_content%></div>
-                            </div>
-                        <%}%>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="roadmap">
-                        <%if(show_block2_title){%>
-                            <div class="top">
-                                <div><%-block2_title%></div>
-                            </div>
-                        <%}%>
-                        <%if(show_block2_content){%>
-                            <div class="bottom">
-                                <div><%-block2_content%></div>
-                            </div>
-                        <%}%>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="roadmap">
-                        <%if(show_block3_title){%>
-                            <div class="top">
-                                <div><%-block3_title%></div>
-                            </div>
-                        <%}%>
-                        <%if(show_block3_content){%>
-                            <div class="bottom">
-                                <div><%-block3_content%></div>
-                            </div>
-                        <%}%>
-                    </div>
+                    <%})%>
                 </div>
             </div>
         </div>
@@ -90,37 +51,44 @@
 
 <script>
     window.addEventListener('load', function() {
-        var content = Array.from(document.querySelectorAll('#block2 .roadmap'))
-        var heightest = 0
-        content.forEach(function(el) {
-            if(el.offsetHeight > heightest) heightest = el.offsetHeight
-        })
-
-        var topcontent = Array.from(document.querySelectorAll('#block2 .roadmap .top'))
-        var heightesttop = 0
-        topcontent.forEach(function(el) {
-            if(el.offsetHeight > heightesttop) heightesttop = el.offsetHeight
-        })
-
-        topcontent.forEach(function(el) {
-            el.style.height = heightesttop + 'px'
-        })
-        
-        var bottom = Array.from(document.querySelectorAll('#block2 .roadmap .bottom'))
-        var heightestbot = 0
-
-        bottom.forEach(function(el) {
-            el.style.height = heightest - heightesttop + 'px'
-        })
-
-        content.forEach(function(el) {
-            if(el.offsetHeight > heightest) heightest = el.offsetHeight
-        })
-
-        content.forEach(function(el) {
-            if(el.offsetHeight === heightest) {
-                el.querySelector('.bottom').style.height = 'unset'
-            }
+        var listblock2 = Array.from(document.querySelectorAll('.block2'))
+        listblock2.forEach(function(block2){
+            var content = Array.from(block2.querySelectorAll('.roadmap'))
+            var heightest = 0
+            content.forEach(function(el) {
+                if(el.offsetHeight > heightest) heightest = el.offsetHeight
+            })
+    
+            var topcontent = Array.from(block2.querySelectorAll('.roadmap .top'))
+            var heightesttop = 0
+            topcontent.forEach(function(el) {
+                if(el.offsetHeight > heightesttop) heightesttop = el.offsetHeight
+            })
+    
+            topcontent.forEach(function(el) {
+                el.style.height = heightesttop + 'px'
+            })
+            
+            var bottom = Array.from(block2.querySelectorAll('.roadmap .bottom'))
+            var heightestbot = 0
+    
+            bottom.forEach(function(el) {
+                el.style.height = heightest - heightesttop + 'px'
+            })
+    
+            content.forEach(function(el) {
+                if(el.offsetHeight > heightest) heightest = el.offsetHeight
+            })
+    
+            content.forEach(function(el) {
+                if(!el.querySelector('.top')){
+                    el.querySelector('.bottom').style.height = heightest + 'px'
+                }
+                if(!el.querySelector('.bottom')){
+                    el.querySelector('.top').style.height = heightest + 'px'
+                }
+                el.style.height = heightest + 'px'
+            })
         })
     })
 </script>

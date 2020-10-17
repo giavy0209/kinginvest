@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="group">
                                         <span>Tên</span>
-                                        <input id="name" value="<%=data.name%>" type="text" name="name">
+                                        <input id="name" value="<%=data.humanName%>" type="text" name="name">
                                     </div>
                                 </div>
                                 
@@ -371,6 +371,7 @@
             components : arrKeyChoosedComponents.sort((a , b) => a.ordering - b.ordering)
         }
 
+        submitData._id = '<%=data._id%>'
         submitData.components = submitData.components[0]
         submitData.id = submitData.components.id
         submitData.key = submitData.components.key

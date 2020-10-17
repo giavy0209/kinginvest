@@ -3,6 +3,21 @@
 #block1{
     .description{
         margin-top: 25px;
+        @media only screen and (max-width : 768px){
+            margin-top: 20px;
+        }
+    }
+    @media only screen and (max-width : 768px){
+        .main-content{
+            overflow-x: scroll;
+            .kdg-row{
+                margin: 0;
+                width: calc(var(--block1-item) * 100%);
+                .kdg-col-6, .kdg-col-3{
+                    width: calc(100% / var(--block1-item));
+                }
+            }
+        }
     }
     .content{
         margin-top: 50px;
@@ -10,6 +25,10 @@
         border: 1px solid $sub1;
         border-radius: 5px;
         padding: 35px;
+        @media only screen and (max-width : 768px){
+            padding: 20px;
+        }
+        
         .icon{
             text-align: center;
             img{

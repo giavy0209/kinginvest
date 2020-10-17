@@ -27,17 +27,27 @@
                 </div>
             </div>
             <div class="kdg-col-6 va-m">
-                <%block.forEach(el => {%>
-                    <div class="item">
-                        <div class="left">
-                            <img src="<%=el.img_url%>" alt="">
-                        </div>
-                        <div class="right">
-                            <h3 class="title"><%=el.title%></h3>
-                            <div class="des"><%-el.content%></div>
-                        </div>
-                    </div>    
-                <%})%>
+                <div class="track">
+                    <div style="--block3-item : <%=block.length%>" class="list-item">
+                        <%block.forEach(el => {%>
+                            <div class="item">
+                                <%if(el.show_img){%>
+                                    <div class="left">
+                                        <img src="<%=el.img_url%>" alt="">
+                                    </div>
+                                <%}%>
+                                <div class="right">
+                                    <%if(el.show_title){%>
+                                        <h3 class="title"><%=el.title%></h3>
+                                    <%}%>
+                                    <%if(el.show_content){%>
+                                        <div class="des"><%-el.content%></div>
+                                    <%}%>
+                                </div>
+                            </div>    
+                        <%})%>
+                    </div>
+                </div>
             </div>
         </div>
         

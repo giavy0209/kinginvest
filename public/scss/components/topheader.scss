@@ -1,7 +1,10 @@
 @import '../includes/mixin';
 @import '../includes/var';
 
-header{
+#topheader{
+    @media only screen and (max-width : 992px){
+        display: none;
+    }
     .topheader{
         background-color: $sub2;
         text-align: right;
@@ -27,24 +30,31 @@ header{
             .dropdown{
                 position: absolute;
                 top: 110%;
-                left: 0;
                 opacity: 0;
+                right: 0;
                 pointer-events: none;
-                width: 230px;
+                width: 150px;
                 background-color: $sub8;
                 border-radius: 5px;
                 transition: all .3s ease;
-                .li{
+                z-index: 99;
+                li{
                     transition: all .3s ease;
+                    border-radius: 5px;
+                    text-align: center;
+                    padding: 10px 0;
+                    img{
+                        width: 30px;
+                    }
                     &:hover{
                         background-color: $maincolor;
                         color: $sub9;
                     }
                 }
             }
-            &:hover,&.active{
+            &.active{
                 .dropdown{
-                    top: 100%;
+                    top: calc(100% + 5px);
                     right: 0;
                     opacity: 1;
                     pointer-events: all;

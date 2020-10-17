@@ -14,12 +14,12 @@ var convertDate = date => {
 <div id="news" class="block">
     <div class="kdg-container">
         <div class="kdg-row">
-            <div class="kdg-col-9">
+            <div class="kdg-col-9 va-t">
                 <h1 class="title"><%=pageData.title%></h1>
                 <span class="date"><%=convertDate(pageData.create_date)%></span>
                 <div class="content"><%-pageData.content%></div>
             </div>
-            <div class="kdg-col-3">
+            <div class="kdg-col-3 va-t">
                 <aside>
                     <div class="blockaside">
                         <div class="featured-sidebar">
@@ -29,7 +29,7 @@ var convertDate = date => {
                                     <div class="item">
                                         <div class="left">
                                             <a href="<%=el.slug%>" class="img img-3-2">
-                                                <img src="<%=el.meta_og_img_%>" alt="">
+                                                <img src="<%= el.meta_og_img_ %>" alt="">
                                             </a>
                                         </div>
                                         <div class="right">

@@ -16,15 +16,18 @@
                 <h2><%=title%></h2>    
             <%}%>
         </div>
-        <div class="maincontent">
+        <div style="--block6-item : <%=block.length%>" class="maincontent">
             <div class="kdg-row kdg-column-3">
                 <%block.forEach(el => {%>
                     <div class="item">
                         <div class="content">
                             <div class="left"><%=el.index%></div>
                             <div class="right">
-                                <p class="sub-title"><%=el.sub_title%></p>
-                                <h4 class="title"><%=el.title%></h4>
+                                <div class="index"><%=el.index%>.</div>
+                                <div class="group-title">
+                                    <p class="sub-title"><%=el.sub_title%></p>
+                                    <h4 class="title"><%=el.title%></h4>
+                                </div>
                                 <div class="des"><%-el.description%></div>
                                 <%if(el.show_button_text){%>
                                     <a href="<%=el.target_url%>" class="button"><%=el.button_text%></a> 

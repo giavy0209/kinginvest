@@ -1,10 +1,10 @@
 const {Categories,News,Components} = require('../../modal')
 const mongoose = require('mongoose')
-
+const { language } = require('../../const')
+const {getNews,removeRoute} = require('../../helpers')
 module.exports = app => {
     app.get('/admin/news', async (req,res) => {
         var news = await News.find({}).sort({_id : -1}).populate('category')
-        console.log(news);
         res.render('admin/news/list', {
             adminPage : 'news',
             data : news
@@ -73,6 +73,21 @@ module.exports = app => {
 
         await news.save()
 
+        news.
+        populate({
+            path : 'category',
+        })
+        .populate({
+            path : 'components_before.value',
+        })
+        .populate({
+            path : 'components_after.value',
+        })
+
+        language.forEach(lang => {
+            getNews(app,news , lang)
+        })
+
         res.redirect('/admin/news/add')
     })
 
@@ -100,7 +115,6 @@ module.exports = app => {
         })
 
         var components_before= req.body.components_before
-        console.log(components_before);
         var ordering_before = req.body.ordering_before
 
         var listComponentsBefore = []
@@ -141,7 +155,25 @@ module.exports = app => {
         req.body.components_before = listComponentsBefore
         req.body.components_after = listComponentsAfter
 
-        const news = await News.findByIdAndUpdate(id,req.body)
+        await News.findByIdAndUpdate(id,req.body)
+
+        removeRoute(app._router.stack,[req.body.slugvi, req.body.slugen])
+
+        var news = await News.findOne({_id : id})
+        .populate({
+            path : 'category',
+        })
+        .populate({
+            path : 'components_before.value',
+        })
+        .populate({
+            path : 'components_after.value',
+        })
+
+
+        language.forEach(lang => {
+            getNews(app,news , lang)
+        })
         res.redirect('/admin/news/edit/'+id )
     })
 

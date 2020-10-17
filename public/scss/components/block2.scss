@@ -1,38 +1,79 @@
 @import '../includes/mixin';
 @import '../includes/var';
 #block2 {
-    background-color: $sub1;
     .description{
-        color : $sub3;
         margin-top: 30px;
+        font-size: rem(15px);
+        @media only screen and (max-width : 768px){
+            margin-top: 20px;
+            font-size: rem(14px);
+        }
     }
     .maincontent{
         margin-top: 50px;
+        @media only screen and (max-width : 768px){
+            margin-top: 15px;
+        }
         .kdg-column-3{
-            .item{
-                vertical-align: top;
-                &.item-1{
-                    .roadmap{
-                        padding: 53px 92px;
-                    }
+            overflow-x: scroll;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+            .track{
+                width: calc(25% * var(--block2-item));
+                min-width: 100%;
+                text-align: center;
+                @media only screen and (max-width : 992px) {
+                    width: calc(33.33333% * var(--block2-item));
                 }
-                .roadmap{
-                    border: 1px solid $sub3;
-                    border-radius: 5px;
-                    .top{
-                        padding: 10px 5px;
-                        color : $sub3;
-                        background-color: rgba(255, 255, 255, .3);
+                @media only screen and (max-width : 768px) {
+                    width: calc(50% * var(--block2-item));
+                }
+                @media only screen and (max-width : 450px) {
+                    width: calc(100% * var(--block2-item));
+                }
+                .item{
+                    vertical-align: top;
+                    margin-top: 0;
+                    width: calc(100% / var(--block2-item));
+                    min-width: 25%;
+                    @media only screen and (max-width : 768px) {
+                        min-width: 25%;
                     }
-                    .bottom{
-                        padding: 9px;
-                        color: $sub3;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        li{
-                            list-style-type: disc;
-                            list-style-position: inside;
+                    @media only screen and (max-width : 450px) {
+                        min-width: 25%;
+                    }
+                    +.item{
+                        .roadmap{
+                            &::before{
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                right: 100%;
+                                width: 30px;
+                                height: 2px;
+                                background-color: $sub1;
+                                transform: translate(0, -50%);
+                            }
+                        }
+                    }
+                    .roadmap{
+                        border: 1px solid $sub1;
+                        border-radius: 5px;
+                        position: relative;
+                        
+                        .top{
+                            padding: 10px 5px;
+                            color : #303030;
+                            background-color: rgba(255, 255, 255, .3);
+                        }
+                        .bottom{
+                            padding: 9px;
+                            color: #303030;
+                            li{
+                                list-style-type: disc;
+                                list-style-position: inside;
+                            }
                         }
                     }
                 }

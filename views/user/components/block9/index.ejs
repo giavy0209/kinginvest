@@ -15,16 +15,18 @@
                 <h2><%=title%></h2>    
             <%}%>
         </div>
-        <div class="kdg-row kdg-column-3 maincontent">
-            <%block.forEach(el=> {%>
-                <div class="item">
-                    <div class="image">
-                        <img src="<%=el.img_url%>" alt="">
-                        <p class="des"><%=el.short_description%></p>
-                        <a class="button" href="<%=el.target_url%>"><%=el.button_text%></a>
+        <div style="--block9-item : <%=block.length%>" class="kdg-row kdg-column-3 maincontent">
+            <div class="track">
+                <%block.forEach(el=> {%>
+                    <div class="item">
+                        <div class="image">
+                            <img src="<%=el.img_url%>" alt="">
+                            <p class="des"><%=el.short_description%></p>
+                            <a class="button" href="<%=el.target_url%>"><%=el.button_text%></a>
+                        </div>
                     </div>
-                </div>
-            <%})%>
+                <%})%>
+            </div>
         </div>
     </div>
 </div>
@@ -38,8 +40,7 @@
     return string;
 }
 
-Array.from(document.querySelectorAll('#block4 .des')).forEach(function(el){
-    console.log(el);
+Array.from(document.querySelectorAll('#block9 .des')).forEach(function(el){
     el.innerText = add3Dots(el.innerText , 100)
 })
 

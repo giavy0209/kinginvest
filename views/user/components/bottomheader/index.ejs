@@ -3,12 +3,15 @@
     var logo_text = getData('logo_text')
     var header_text = getData('header_text')
 %>
-<header>
+<header id="bottomheader">
     <div class="bottomheader">
         <div class="before"></div>
         <div class="kdg-container">
             <div class="kdg-row">
                 <div class="kdg-col-5 left">
+                    <div class="open-menu">
+                        <img src="/images/menu.png" alt="">
+                    </div>
                     <a class="logo" href="/">
                         <img src="<%=logo%>" alt="">
                         <span class="text"><%=logo_text%></span>
@@ -22,3 +25,10 @@
         <div class="after"></div>
     </div>
 </header>
+
+<script>
+    var openmenu = document.querySelector('#bottomheader .open-menu')
+    openmenu.onclick = function (e) {
+        document.getElementById('menu').classList.add('active')
+    }
+</script>

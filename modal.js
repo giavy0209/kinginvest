@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.connect(`mongodb://kdg:kingdomgame%40%4040@206.189.147.72:27017/kinginvest?authSource=admin`,{useNewUrlParser: true ,useUnifiedTopology: true})
+mongoose.connect(`mongodb://myUserAdmin:King%40invest01CDC@178.128.28.54:27017/kinginvest?authSource=admin`,{useNewUrlParser: true ,useUnifiedTopology: true})
 
 const {Types, Schema, model} = mongoose
 

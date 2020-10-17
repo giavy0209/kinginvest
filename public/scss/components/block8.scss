@@ -3,6 +3,29 @@
 
 #block8{
     .maincontent{
+        @media only screen and (max-width : 600px ){
+            .kdg-col-6{
+                width: 100%;
+                padding-bottom: 30px;
+                +.kdg-col-6 {
+                    padding-top: 30px;
+                    border-top: 1px solid $sub8;
+                    padding-bottom: 0;
+                }
+                form{
+                    margin: 0;
+                    .input{
+                        padding: 0;
+                    }
+                    .button{
+                        padding: 0;
+                    }
+                    .textarea{
+                        padding: 0;
+                    }
+                }
+            }
+        }
         .title{
             font-size: rem(30px);
             font-weight: 600;
@@ -116,6 +139,31 @@
                 }
                 +.faq{
                     margin-top: 21px;
+                }
+            }
+        }
+        @media only screen and (max-width : 768px) {
+            .title{
+                font-size: rem(24px);
+            }
+            .description{
+                font-size: rem(14px);
+                margin-top: 21.6px;
+            }
+            form{
+                .input{
+                    width: 100%;
+                    input{
+                        margin-top: 15px;
+                    }
+                }
+                .button{
+                    button{
+                        width: 154px;
+                        padding: 13px 0;
+                        font-size: rem(14px);
+                        margin-top: 15px;
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 const mapCat = require('./mapCat')
 const mapNews = require('./mapNews')
-const {Categories, News} = require('../modal')
+const {Categories, News,Components} = require('../modal')
 module.exports = function (app,cat, language) {
     app.get(cat['slug' + language], async (req,res) => {
         var reqLanguage = req.cookies.language;
@@ -83,6 +83,24 @@ module.exports = function (app,cat, language) {
                 sidebarnews = mapNews(sidebarnews, language)
             }
             news = mapNews(news, language)
+        }
+
+        var isHaveTabs = pageData.page.components.find(o => o.value.key === 'block11')
+
+        if(isHaveTabs){
+            var listTabsDatas = isHaveTabs.value.datas.find(o => o.key === 'block').data
+            
+            var arrPromise = []
+            
+            listTabsDatas.forEach(el => {
+                arrPromise.push(Components.findById(el.components_id).exec())
+            })
+
+            var listComponentsInTabs = await Promise.all(arrPromise)
+            listTabsDatas.forEach((el,index) => {
+                el.components = listComponentsInTabs[index]
+            })
+            console.log(isHaveTabs.value.datas[0].data);
         }
 
         if(forceWriteCookie){

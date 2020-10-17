@@ -3,6 +3,51 @@
 
 #block3{
     background-color: $sub6;
+    @media only screen and (max-width : 992px) { 
+        .maincontent{
+            .kdg-col-6{
+                width: 100%;
+            }
+        }
+    }
+
+    @media only screen and (max-width : 450px) { 
+        .maincontent{
+            .kdg-col-6{
+                .track{
+                    overflow-x: scroll;
+                    .list-item{
+                        width: calc(var(--block3-item) * 100%);
+                        font-size: 0;
+                        .item{
+                            display: inline-block;
+                            width: calc(100% / var(--block3-item));
+                            .left,.right{
+                                width: 100%;
+                                text-align: center;
+                            }
+                            .left{
+                                img{
+                                    width: 46px;
+                                }
+                            }
+                            .right{
+                                margin-top: 5px;
+                                .title{
+                                    color: $sub1;
+                                    font-size: rem(18px);
+                                }
+                                .des{
+                                    font-size: rem(14px);
+                                    margin-top: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     .maincontent{
         margin-top: 40px;
         .item{

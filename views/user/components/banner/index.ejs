@@ -12,7 +12,7 @@
 %>
 <div id="banner" class="img img-banner">
     <img src="<%=img_url%>" alt="">
-    <div class="info kdg-container">
+    <div class="info">
         <div class="block">
             <%if(show_title){%>
                 <p class="title"><%-title%></p>
@@ -53,3 +53,9 @@
         </div>
     <%}%>
 </div>
+
+<script>
+    window.onload = function(e) {
+        document.querySelector('#banner .info').style.width = document.querySelector('.kdg-container').offsetWidth + 'px'
+    }
+</script>

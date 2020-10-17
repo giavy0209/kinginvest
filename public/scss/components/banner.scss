@@ -3,29 +3,47 @@
 
 #banner {
     position: relative;
-    .info {
+    @media only screen and (max-width : 992px){
+        &.img-banner{
+            &::before{
+                padding-top: 100%;
+            }
+        }
+    }
+    @media only screen and (max-width : 768px){
+        &.img-banner{
+            &::before{
+                padding-top: 160%;
+            }
+        }
+    }
+    >.info {
         position: absolute;
-        height: 100%;
         left: 50%;
-        top: 0;
-        transform: translate(-50% , 0);
-        .block{
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translate(0, -50%);
+        top: 50%;
+        width: 100%;
+        transform: translate(-50% , -50%);
+        padding: 0 15px;
+        @media only screen and (max-width : 768px){
+            padding: 0 35px;
         }
         .title{
             font-size: rem(50px);
             font-weight: 600;
-            color: $sub4;
+            color: $sub1;
             line-height: rem(60px);
+            @media only screen and (max-width : 768px){
+                font-size: rem(20px);
+                line-height: rem(20px);
+            }
         }
         .description{
             font-size: rem(18px);
-            color: $sub3;
             margin-top: 15px;
             font-weight: 300;
+            @media only screen and (max-width : 768px){
+                font-size: rem(15px);
+            }
         }
         .button{
             background-color: rgba(0, 107, 99, .6) ;
@@ -35,6 +53,10 @@
             padding: 14px 50px;
             border-radius: 5px;
             margin-top: 42px;
+            @media only screen and (max-width : 768px){
+                font-size: rem(13px);
+                padding : 7px 28px;
+            }
         }
     }
     .count{
@@ -43,23 +65,48 @@
         background-color: rgba(0, 46, 91, .7);
         padding: 48px 0;
         width: 100%;
+        @media only screen and (max-width : 768px){
+            padding: 20px 0;
+            .kdg-column-5{
+                .item{
+                    padding: 5px 0;
+                    width: 33.333333%;
+                    vertical-align: bottom;
+                    &:not(:nth-child(n + 4)){
+                        border-bottom: 1px solid rgba(255, 255, 255, .6);
+                    }
+                }
+            }
+        }
         .info {
             position: relative;
             .top{
                 img{
                     max-width: 27px;
+                    @media only screen and (max-width : 768px){
+                        max-width: 21.72px;
+                    }
+                    vertical-align: middle;
                 }
                 .text { 
                     font-size: rem(30px);
                     font-weight: 600;
                     color: $sub3;
                     margin-left: 18px;
+                    @media only screen and (max-width : 768px){
+                        font-size: rem(14px);
+                    }
+                    vertical-align: middle;
                 }
             }
             .bottom{
                 font-size: rem(20px);
                 color: $sub3;
                 margin-top: 22px;
+                @media only screen and (max-width : 768px){
+                    font-size: rem(12px);
+                    margin-top: 5px;
+                }
             }
         }
     }

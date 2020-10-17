@@ -57,6 +57,7 @@ module.exports = app => {
         const pages = new Pages({
             ...req.body,
         })
+        
 
         await pages.save()
 

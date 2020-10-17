@@ -1,0 +1,60 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#block11{
+    .list-button{
+        margin: 0 -10px;
+        overflow-x: scroll;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        .track{
+            font-size: 0;
+            width: calc(25% * var(--block11-item));
+            background-color: $sub6;
+            min-width: 100%;
+            text-align: center;
+            @media only screen and (max-width : 768px){
+                width: calc(50% * var(--block11-item));
+            }
+            .button{
+                font-size: rem(28px);
+                padding: 32px 10px;
+                background-color: $sub6;
+                text-align: center;
+                width: 25%;
+                @media only screen and (max-width : 768px){
+                    font-size: rem(20px);
+                }
+                cursor: pointer;
+                &.active{
+                    color : $sub1;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    .list-tab{
+        overflow-x: scroll;
+        pointer-events: none;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        .track{
+            width:  calc(100% * var(--block11-item));
+            font-size: 0;
+            .tab{
+                vertical-align: top;
+                display: inline-block;
+                width: calc(100% / var(--block11-item));
+                &.get-done{
+                    height: 0;
+                }
+                &.active{
+                    height: var(--tab-height);
+                }
+            }
+        }   
+    }
+}
+

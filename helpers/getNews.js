@@ -13,7 +13,6 @@ module.exports = async function (app,currentNews, language) {
     app.get(currentNews['slug' + language], async (req,res) => {
         var reqLanguage = req.cookies.language;
         var forceWriteCookie = false
-        console.log(currentNews);
         if(currentNews.slugvi === currentNews.slugen){
             if(reqLanguage === 'vi' || reqLanguage === 'en'){
                 language = reqLanguage

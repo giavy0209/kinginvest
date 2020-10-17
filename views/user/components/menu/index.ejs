@@ -1,15 +1,45 @@
-<%
-
-%>
-
-<nav>
+<nav id="menu">
+    <div class="closemenu"></div>
     <div class="kdg-container">
         <ul>
             <%categories.forEach(cat => {%>
-                <li>
+                <li <%if(cat.slug === pageData.slug){%>class="active"<%}%> >
                     <a href="<%=cat.slug%>"><%=cat.title%></a>
                 </li>
             <%})%>
         </ul>
     </div>
 </nav>
+
+<script>
+    window.addEventListener('load', function(e) {
+        if(window.innerWidth <= 992){
+            var menu = document.querySelector('#menu')
+            var topheader = document.getElementById('topheader')
+            menu.appendChild(topheader)
+
+            var logo = document.querySelector('#bottomheader .logo')
+            var clonelogo = {...logo}
+
+            var a = document.createElement('a')
+            a.setAttribute('href', logo.getAttribute('href'))
+            a.classList.add('logo')
+            
+            var img = document.createElement('img')
+            img.setAttribute('src', logo.querySelector('img').getAttribute('src'))
+
+            var span = document.createElement('span')
+            span.innerText = logo.querySelector('.text').innerText
+            span.classList.add('text')
+
+            a.appendChild(img)
+            a.appendChild(span)
+
+            menu.insertAdjacentElement('afterbegin', a)
+
+            document.querySelector('#menu .closemenu').onclick = function(e){
+                menu.classList.remove('active')
+            }
+        }
+    })
+</script>

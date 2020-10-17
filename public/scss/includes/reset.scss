@@ -5,6 +5,9 @@
 html{
     scroll-behavior: smooth;
     font-size: 10px;
+    @media only screen and (max-width : 992px){
+        font-size: 8px;
+    }
 }
 * {
     margin: 0;
@@ -46,21 +49,20 @@ body {
 }
 
 .kdg-container {
-    width: 1115px;
-    max-width: 1115px;
+    max-width: 1366px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 35px;
 }
 /*=========== 00. General ================ */	
 .kdg-row{
     font-size: 0;
-    margin-left: -9px;
-    margin-right: -9px;
+    margin-left: -15px;
+    margin-right: -15px;
 }
 .kdg-row [class*="kdg-col-"],
 .kdg-row[class*="kdg-column-"] .item{
-    padding-left: 9px;
-    padding-right: 9px;
+    padding-left: 15px;
+    padding-right: 15px;
     display: inline-block;
     font-size: 14px;
 }
@@ -179,6 +181,12 @@ body {
     background-color: transparent;
     
 }
+.img-3-1::before {
+    content: '';
+    display: block;
+    padding-top: 38.6666666%;
+    background-color: transparent;
+}
 .img-1-1::before {
     content: '';
     display: block;
@@ -195,6 +203,15 @@ body {
 
 .block{
     padding: 70px 0;
+    @media only screen and (max-width : 992px){
+        padding: 60px 0;
+    }
+    @media only screen and (max-width : 768px){
+        padding: 50px 0;
+    }
+    @media only screen and (max-width : 450px){
+        padding: 40px 0;
+    }
 }
 .margin-block{
     margin: -70px 0;
