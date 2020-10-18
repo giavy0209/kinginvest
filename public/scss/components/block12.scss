@@ -1,0 +1,67 @@
+@import '../includes/mixin';
+@import '../includes/var';
+
+#block12{
+    .maincontent{
+        .kdg-row{
+            .track{
+                width: 100%;
+                @media only screen and (max-width : 768px){
+                    width: calc(100% * var(--block12-item));
+                }
+                .item{
+                    @media only screen and (max-width : 768px){
+                        width: calc(100% / var(--block12-item));
+                    }
+                }
+            }
+        }
+        .content{
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+            padding: 30px 47px;
+            @media only screen and (max-width : 768px){
+                padding: 15px 20px;
+            }
+            &::before{
+                content : "";
+                width: 100%;
+                height: 10px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: $sub1;
+                border-radius: 5px;
+            }
+            img{
+                width: 60px;
+            }
+            .title{
+                margin-top: 30px;
+                font-size: rem(24px);
+                text-align: left;
+                @media only screen and (max-width : 768px){
+                    font-size: rem(18px);
+                    margin-top: 15px;
+                }
+            }
+            .sub-title{
+                margin-top: 7px;
+                font-size: rem(16px);
+                font-weight: 300;
+                text-align: left;
+                @media only screen and (max-width : 768px){
+                    font-size: rem(14px);
+                }
+            }
+            .content{
+                margin-top: 48px;
+                text-align: left;
+                @media only screen and (max-width : 768px){
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+<%
+    var title_form = getData('title_form')
+    var show_title_form = getData('show_title_form')
+
+    var description_form = getData('description_form')
+    var show_description_form = getData('show_description_form')
+
+    var placeholder_firstname = getData('placeholder_firstname')
+    var placeholder_lastname = getData('placeholder_lastname')
+    var placeholder_subject1 = getData('placeholder_subject1')
+    var placeholder_subject2 = getData('placeholder_subject2')
+    var placeholder_message = getData('placeholder_message')
+    var button_text = getData('button_text')
+
+    var title_contact = getData('title_contact')
+    var show_title_contact = getData('show_title_contact')
+
+    var description_contact = getData('description_contact')
+    var show_description_contact = getData('show_description_contact')
+    
+    var block = getData('block')
+%>
+<div id="block8" class="block" >
+    <div class="kdg-container">
+        
+        <div class="kdg-row maincontent">
+            <div class="kdg-col-3 vat">
+                <%if(show_title_form){%>
+                    <h4 class="title"><%-title_form%></h4>
+                <%}%>
+                <%if(show_description_form){%>
+                    <div class="description"><%-description_form%></div>
+                <%}%>
+                <ul class="contacts">
+                    <%block.forEach(el => {%>
+                        <li>
+                            <img src="<%=el.img_url%>" alt="">
+                            <span><%=el.content%></span>
+                        </li>    
+                    <%})%>
+                </ul>
+            </div>
+            <div class="kdg-col-9 va-t">
+                <%if(show_title_form){%>
+                    <h4 class="title"><%-title_form%></h4>
+                <%}%>
+                <%if(show_description_form){%>
+                    <div class="description"><%-description_form%></div>
+                <%}%>
+                <form action="/callback?url=/" method="post">
+                    <div class="input">
+                        <input name="firstname" type="text" placeholder="<%=placeholder_firstname%>">
+                    </div>
+                    <div class="input">
+                        <input name="lastname" type="text" placeholder="<%=placeholder_lastname%>">
+                    </div>
+                    <div class="input">
+                        <input name="subject1" type="text" placeholder="<%=placeholder_subject1%>">
+                    </div>
+                    <div class="input">
+                        <input name="subject2" type="text" placeholder="<%=placeholder_subject2%>">
+                    </div>
+                    <div class="textarea">
+                        <textarea name="message" cols="30" placeholder="<%=placeholder_message%>"></textarea>
+                    </div>
+                    <div class="button"><button><%=button_text%></button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -604,6 +604,76 @@
         ]
     },
     {
+        "key" : "block13",
+        "name" : "form  có cái bản đồ",
+        "datas" : [
+            {
+                "key" : "title_form",
+                "type" : 1
+            },
+            {
+                "key" : "show_title_form",
+                "type" : 4
+            },
+            {
+                "key": "description_form",
+                "type" : 2
+            },
+            {
+                "key": "show_description_form",
+                "type" : 4
+            },
+            {
+                "key" : "placeholder_firstname",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_lastname",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_subject1",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_subject2",
+                "type" : 1
+            },
+            {
+                "key" : "placeholder_message",
+                "type" : 1
+            },
+            {
+                "key" : "button_text",
+                "type" : 1
+            },
+            {
+                "key" : "title_contact",
+                "type" : 1
+            },
+            {
+                "key" : "show_title_contact",
+                "type" : 4
+            },
+            {
+                "key" : "description_contact",
+                "type" : 2
+            },
+            {
+                "key" : "show_description_contact",
+                "type" : 4
+            },
+            {
+                "key" : "block",
+                "type" : 3,
+                "data_info" : {
+                    "img_url" : 1,
+                    "content" : 1
+                }
+            }
+        ]
+    },
+    {
         "key" : "footer",
         "name" : "Phần chân trang",
         "datas" : [
