@@ -1,0 +1,129 @@
+<%
+var title = getData('title')
+var show_title = getData('show_title')
+
+var sub_title = getData('sub_title')
+var show_sub_title = getData('show_sub_title')
+
+var description = getData('description')
+var show_description = getData('show_description')
+var arrow_right = getData('arrow_right')
+var arrow_left = getData('arrow_left')
+
+
+var block = getData('block')
+
+%>
+
+<div style="--block14-item : <%=block.length%>" id="block14" class="block block14">
+    <div class="block-title text-c">
+        <%if(show_sub_title){%>
+            <p><%=sub_title%></p>    
+        <%}%>
+        <%if(show_title){%>
+            <div><%=title%></div>    
+        <%}%>
+        <%if(show_description){%>
+            <div class="description"><%-description%></div>    
+        <%}%>
+    </div>
+
+    <div class="maincontent">
+        <div class="kdg-container">
+            <div class="kdg-row kdg-column-5 list-icon text-c">
+                <div class="track">
+                    <%block.forEach((el,index) => {%>
+                    
+                        <div  <%if(index == 0){%> class="item active" <%}%> class="item <%=index%>" >
+                            <div class="icon">
+                                <div class="icon-img" <%if(index === 0){%>style="--icon-url : <%=el.img_url_active%>"<%}else{%>style="--icon-url : <%=el.img_url%>"<%}%> data-img="<%=el.img_url%>" data-img-active="<%=el.img_url_active%>"></div>
+                                <h4 class="block-title"><%-el.title%></h4>
+                            </div>
+                        </div>
+                        
+                    <%})%>
+                </div>
+            </div>
+            <div class="scroll-bar">
+                <div class="btn-left">
+                    <img src="<%=arrow_left%>" alt="">
+                </div>
+                <div style=" --scrollthum-pos : 0" class="track"></div>
+                <div class="btn-right">
+                    <img src="<%=arrow_right%>" alt="">
+                </div>
+            </div>
+            
+            <div class="list-data">
+                <div class="track">
+                    <%block.forEach(el => {%>
+                        <div class="kdg-row">
+                            <div class="kdg-col-6 va-t">
+                                <div class="content-left"><%-el.content_left%></div>
+                            </div>
+                            <div class="kdg-col-6 va-t">
+                                <div class="content-right"><%-el.content_right%></div>
+                            </div>
+                        </div>    
+                    <%})%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    
+    var currentIndex = 0
+    window.addEventListener('load', function () {
+        var listIcon = Array.from(document.querySelectorAll('#block14 .list-icon .item'))
+        var iconWidth = listIcon[0].offsetWidth
+
+        var listData = Array.from(document.querySelectorAll('#block14 .list-data .kdg-row'))
+        var dataWidth = listData[0].offsetWidth
+
+        var scrollBarTrack = document.querySelector('#block14 .scroll-bar .track')
+        var scrollBarTrackWidth = scrollBarTrack.offsetWidth
+
+        var scrollTo = function(index) {
+            currentIndex = index
+            var iconTrack =  document.querySelector('#block14 .list-icon')
+            var dataTrack =  document.querySelector('#block14 .list-data')
+
+            listIcon.forEach(function(el){
+                el.classList.remove('active')
+                el.style.setProperty('--icon-url', el.getAttribute('data-img'))
+            })
+            listIcon[currentIndex].classList.add('active')
+            listIcon[currentIndex].style.setProperty('--icon-url' , listIcon[currentIndex].getAttribute('data-img-active'))
+
+            scrollBarTrack.style.setProperty('--scrollthum-pos', (scrollBarTrackWidth / listIcon.length) * currentIndex + 'px')
+            console.log(iconTrack.scrollLeft);
+            smoothScroll(iconTrack,iconTrack.scrollLeft,(iconWidth * currentIndex) - iconWidth / 2 ,0,0,300)
+            smoothScroll(dataTrack,dataTrack.scrollLeft,dataWidth * currentIndex ,0,0,300)
+        }
+
+        listIcon.forEach(function(el,index){
+            el.addEventListener('click', function() {
+                scrollTo(index)
+            })
+        })
+
+        document.querySelector('#block14 .btn-left').onclick = function () {
+            if(currentIndex > 0) {
+                scrollTo(currentIndex - 1)
+            }else{
+                scrollTo(listIcon.length - 1)
+            }
+        }
+
+        document.querySelector('#block14 .btn-right').onclick = function () {
+            if(currentIndex < listIcon.length - 1) {
+                scrollTo(currentIndex + 1)
+            }else{
+                scrollTo(0)
+            }
+        }
+    })
+</script>

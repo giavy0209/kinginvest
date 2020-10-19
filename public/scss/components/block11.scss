@@ -36,7 +36,7 @@
     }
     .list-tab{
         overflow-x: scroll;
-        pointer-events: none;
+        overflow-y: hidden;
         &::-webkit-scrollbar{
             display: none;
         }

@@ -3,7 +3,8 @@
 
 #block12{
     .maincontent{
-        .kdg-row{
+        &.kdg-row{
+            overflow-x: scroll;
             .track{
                 width: 100%;
                 @media only screen and (max-width : 768px){
@@ -55,7 +56,7 @@
                     font-size: rem(14px);
                 }
             }
-            .content{
+            .in-content{
                 margin-top: 48px;
                 text-align: left;
                 @media only screen and (max-width : 768px){

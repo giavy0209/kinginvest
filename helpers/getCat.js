@@ -100,7 +100,8 @@ module.exports = function (app,cat, language) {
             listTabsDatas.forEach((el,index) => {
                 el.components = listComponentsInTabs[index]
             })
-            console.log(isHaveTabs.value.datas[0].data);
+
+            console.log(listComponentsInTabs[2]);
         }
 
         if(forceWriteCookie){
