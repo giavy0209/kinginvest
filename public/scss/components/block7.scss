@@ -29,6 +29,9 @@
                             @media only screen and (max-width : 600px){
                                 text-align: center;
                                 width: 100%;
+                                &:not(:nth-child(-n + 1)){
+                                    margin-top: 15px;
+                                }
                                 .left,.right{
                                     width: 100%;
                                 }
@@ -41,17 +44,20 @@
         .list{
             margin-top: 50px;
             .item{
+                &:not(:nth-child(-n + 2)){
+                    margin-top: 30px;
+                }
                 font-size: 0;
                 .left,.right{
                     display: inline-block;
                     vertical-align: top;
                 }
                 .left{
-                    width: 35px;
+                    width: 55px;
                 }
                 .right{
-                    padding-left: 15px;
-                    width: calc(100% - 35px);
+                    padding-left: 10px;
+                    width: calc(100% - 55px);
                     .title{
                         color: $sub1;
                         font-size: rem(20px);

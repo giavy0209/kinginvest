@@ -6,22 +6,23 @@
         @media only screen and (max-width : 768px){
            margin-top: 15px;
         }
-        &.kdg-column-3{
+        &.kdg-column-4{
             overflow-x: scroll;
+            @media only screen and (max-width : 450px){
+                margin: 0 -5px;
+            }
             &::-webkit-scrollbar{
                 display: none;
             }
             .track{
                 width: 100%;
-                @media only screen and (max-width : 768px){
-                    width: calc(100% * var(--block9-item));
-                }
                 .item{
                     &:not(:nth-child(-n + 3)){
-                        margin-top: 60px;
+                        margin-top: 30px;
                     }
-                    @media only screen and (max-width : 768px){
-                        width: calc(100% / var(--block9-item));
+                    @media only screen and (max-width : 450px){
+                        width:  50%;
+                        padding: 0 5px;
                         &:not(:nth-child(-n + 2)){
                             margin-top: 15px;
                         }
@@ -42,15 +43,15 @@
             &::before {
                 content : "";
                 display: block;
-                padding-top: 53.8%;
+                padding-top: 40%;
             }
             img{
                 position: absolute;
-                top: 8.6%;
+                top: 50%;
                 left: 50%;
-                transform: translate(-50% ,0);
-                max-width: 76.3%;
-                max-height: 31%;
+                transform: translate(-50% ,-50%);
+                max-width: 70%;
+                max-height: 70%;
             }
             .des{
                 text-align: center;

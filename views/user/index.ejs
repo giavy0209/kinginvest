@@ -15,14 +15,20 @@
     <meta property="twitter:title" content="<%=pageData.title%>">
     <meta property="twitter:description" content="<%=pageData.metades%>">
     <meta property="twitter:image" content="<%=pageData.meta_og_img_%>">
-
     <link rel="shortcut icon" href="<%=pageData.icon%>" type="image/x-icon">
     <%-include ('includes/head')%>
-    <script src="/js/main.js"></script>
 </head>
+<style>
+    <%-css%>
+</style>
 <body>
     
     <%-include ('./checkComponents')%>
     
 </body>
+<script src="/js/main.js"></script>
+
+<script src="/js/checkdom.js"></script>
+<link as="style" rel="preload stylesheet"  href="/css/preload.css">
+<link as="style" rel="preload stylesheet" href="/css/all.min.css">
 </html>

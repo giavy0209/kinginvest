@@ -8,7 +8,7 @@
     
     var block = getData('block')
 %>
-<div id="block7" >
+<div data-id="<%=data.id%>" id="block7" >
     <div class="kdg-container">
         
         <div class="kdg-row maincontent">
@@ -56,15 +56,5 @@
 </div>
 
 <script>
-    window.addEventListener('load', function() {
-        Array.from(document.querySelectorAll('#block7 .description img')).forEach(function(el) { 
-            el.parentElement.classList.add('img')
-            if(window.offsetWidth > 992){
-                el.parentElement.classList.add('img-1-1')
-            }else{
-                el.parentElement.classList.add('img-3-1')
-            }
-        })
-
-    })
+    
 </script>

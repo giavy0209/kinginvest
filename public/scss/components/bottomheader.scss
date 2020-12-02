@@ -48,7 +48,7 @@
         }
 
         .left {
-            padding: 50px 0;
+            padding: 35px 0;
             .open-menu{
                 display: none;
             }
@@ -61,22 +61,31 @@
                 }
                 .text{
                     font-size: rem(30px);
-                    color : $sub5;
+                    color : $sub1;
                     text-transform: uppercase;
                     font-family: BebasNeue;
                     font-weight: 600;
                     line-height: rem(36px);
                     margin-left: 10px;
+                    @media only screen and (max-width : 992px){ 
+                        color: $sub4;
+                    }
                 }
             }
         }
 
         .right {
+            position: relative;
             .header-text{
                 color: $sub4;
                 font-size: rem(20px);
                 line-height: rem(30px);
-                padding-left: 50px;
+                position: absolute;
+                top: 50%;
+                left: 150%; 
+                transition: left .5s ease;
+                transform: translate(0, -50%);
+                width: max-content;
             }
         }
 

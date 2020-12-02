@@ -8,7 +8,7 @@
     var block = getData('block')
     var show_block_content = getData('show_block_content')
 %>
-<div id="block1" class="block">
+<div data-id="<%=data.id%>" id="block1" class="block">
     <div class="kdg-container">
         <div class="block-title text-c">
             <%if(show_sub_title){%>
@@ -29,8 +29,8 @@
                 <div class="kdg-row">
                 <%block.forEach((el,index)=>{
                 var col;
-                if(count === 0) col = 6
-                else col = 3
+                if(count === 0) col = 4
+                else col = 4
                 %>
                         <div class="kdg-col-<%=col%> va-t">
                             <div class="content">

@@ -1,8 +1,11 @@
 const mapCat = require('./mapCat')
 const mapNews = require('./mapNews')
 const {Categories, News,Components} = require('../modal')
+const fs = require('fs')
 module.exports = function (app,cat, language) {
+    var css = fs.readFileSync('./public/css/style.css','utf8')
     app.get(cat['slug' + language], async (req,res) => {
+
         var reqLanguage = req.cookies.language;
         var forceWriteCookie = false
         if(cat.slugvi === cat.slugen){
@@ -79,7 +82,7 @@ module.exports = function (app,cat, language) {
             if(isShowSideBar){
                 var sidebarItem = isHaveListNew.value.datas.find(o => o.key === 'sidebar_items').data
                 if(!Number(sidebarItem)) sidebarItem = 5
-                sidebarnews = await News.find({}).limit(sidebarItem).sort({create_date : -1}).sort({views : -1})
+                sidebarnews = await News.find({category : {$in : cat._id}}).limit(sidebarItem).sort({create_date : -1}).sort({views : -1})
                 sidebarnews = mapNews(sidebarnews, language)
             }
             news = mapNews(news, language)
@@ -100,8 +103,6 @@ module.exports = function (app,cat, language) {
             listTabsDatas.forEach((el,index) => {
                 el.components = listComponentsInTabs[index]
             })
-
-            console.log(listComponentsInTabs[2]);
         }
 
         if(forceWriteCookie){
@@ -119,6 +120,7 @@ module.exports = function (app,cat, language) {
             listFeatured,
             sidebarnews,
             currentPage : page,
+            css
         })
     })
 }

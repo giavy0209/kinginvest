@@ -3,12 +3,16 @@
    
 %>
 
-<div style="--block11-item : <%=block.length%>" id="block11">
-    <div class="list-button">
-        <div class="track">
-            <%block.forEach(el => {%>
-                <span class="button"><%=el.title%></span>    
-            <%})%>
+<div data-id="<%=data.id%>" style="--block11-item : <%=block.length%>" id="block11">
+    <div class="fluid-listbutton">
+        <div class="kdg-container">
+            <div class="list-button">
+                <div class="track">
+                    <%block.forEach(el => {%>
+                        <span class="button"><%=el.title%></span>    
+                    <%})%>
+                </div>
+            </div>
         </div>
     </div>
     <div class="kdg-container">
@@ -21,7 +25,6 @@
                 }
             
                 %>
-                <link rel="stylesheet" href="/css/<%=com.components.key%>.css">
                     <div class="tab">
                         <%-include ('../' + com.components.key + '/index', {data : com.components, getData : getData})%>    
                     </div>
@@ -31,46 +34,68 @@
     </div>
 </div>
 <script>
-    var currentActive = 0
-    var listButton = Array.from(document.querySelectorAll('#block11 .list-button .button'))
-    var listTab = Array.from(document.querySelectorAll('#block11 .list-tab .tab'))
-    var tabTrack = document.querySelector('#block11 .list-tab')
-    var tabwidth = listTab[currentActive].offsetWidth
-    var buttonwidth = listButton[currentActive].offsetWidth
-
-    listButton[currentActive].classList.add('active')
-    listTab[currentActive].classList.add('active')
-
-    listTab.forEach(function(el){
-        el.style.setProperty('--tab-height' , el.offsetHeight)
-        el.classList.add('get-done')
-    })
-    listButton.forEach(function(el,index){
-        el.addEventListener('click', function(){
-            currentActive = index
-            handleScroll()
-        })
-    })
-
-    function handleScroll(){
-        console.log(currentActive);
-        var buttonTrack = document.querySelector('#block11 .list-button')
+    window.addEventListener('load', function() {
+        var currentActive = 0
+        
+        var listButton = Array.from(document.querySelectorAll('#block11 .list-button .button'))
+        var listTab = Array.from(document.querySelectorAll('#block11 .list-tab .tab'))
         var tabTrack = document.querySelector('#block11 .list-tab')
-
-        listButton.forEach(function(el1){
-            el1.classList.remove('active')
-        })
+        var tabwidth = listTab[currentActive].offsetWidth
+        var buttonwidth = listButton[currentActive].offsetWidth
 
         listButton[currentActive].classList.add('active')
-
-        listTab.forEach(function(el1){
-            el1.classList.remove('active')
-        })
-
         listTab[currentActive].classList.add('active')
 
-        smoothScroll(buttonTrack,buttonTrack.scrollLeft,buttonwidth * currentActive - (buttonwidth / 2),0,0,300)
+        listTab.forEach(function(el){
+            el.style.setProperty('--tab-height' , el.offsetHeight)
+            el.classList.add('get-done')
+        })
+        listButton.forEach(function(el,index){
+            el.addEventListener('click', function(){
+                currentActive = index
+                handleScroll()
+            })
+        })
 
-        smoothScroll(tabTrack,tabTrack.scrollLeft,tabwidth * currentActive ,0,0,300)
-    }
+        var locationhash = location.hash.trim().replace('#','')
+
+        if(locationhash.includes('/')){
+            locationhash = locationhash.slice(locationhash.indexOf('/') + 1, locationhash.length)
+            var checkindex = Number(locationhash)
+
+            if(checkindex){
+                currentActive = checkindex
+
+                if(currentActive !== 0 ){
+                    
+                    handleScroll()
+                }
+            }
+        }
+
+        function handleScroll(){
+            console.log(listButton);
+            if(currentActive >= listTab.length){
+                return
+            }
+            var buttonTrack = document.querySelector('#block11 .list-button')
+            var tabTrack = document.querySelector('#block11 .list-tab')
+
+            listButton.forEach(function(el1){
+                el1.classList.remove('active')
+            })
+
+            listButton[currentActive].classList.add('active')
+
+            listTab.forEach(function(el1){
+                el1.classList.remove('active')
+            })
+
+            listTab[currentActive].classList.add('active')
+
+            smoothScroll(buttonTrack,buttonTrack.scrollLeft,buttonwidth * currentActive - (buttonwidth / 2),0,0,300)
+
+            smoothScroll(tabTrack,tabTrack.scrollLeft,tabwidth * currentActive ,0,0,300)
+        }
+    })
 </script>

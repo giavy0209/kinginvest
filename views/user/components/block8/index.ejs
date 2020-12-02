@@ -9,6 +9,11 @@
     var placeholder_lastname = getData('placeholder_lastname')
     var placeholder_subject1 = getData('placeholder_subject1')
     var placeholder_subject2 = getData('placeholder_subject2')
+    var subject2_options = getData('subject2_options')
+
+    if(!subject2_options) subject2_options = []
+
+
     var placeholder_message = getData('placeholder_message')
     var button_text = getData('button_text')
 
@@ -20,7 +25,7 @@
     
     var block = getData('block')
 %>
-<div id="block8" class="block" >
+<div data-id="<%=data.id%>" id="block8" class="block" >
     <div class="kdg-container">
         
         <div class="kdg-row maincontent">
@@ -42,7 +47,12 @@
                         <input name="subject1" type="text" placeholder="<%=placeholder_subject1%>">
                     </div>
                     <div class="input">
-                        <input name="subject2" type="text" placeholder="<%=placeholder_subject2%>">
+                        <select name="subject2" id="">
+                            <option value=""><%=placeholder_subject2%></option>
+                            <%subject2_options.forEach(el => {%>
+                                <option value="<%=el.name%>"><%=el.name%></option>    
+                            <%})%>
+                        </select>
                     </div>
                     <div class="textarea">
                         <textarea name="message" cols="30" placeholder="<%=placeholder_message%>"></textarea>

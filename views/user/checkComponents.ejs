@@ -1,10 +1,12 @@
 <%components.forEach(com =>{%>
     <%
     var getData = (key) => {
-        return com.value.datas.find(o => o.key === key).data
+        var comData = com.value.datas.find(o => o.key === key)
+        if(comData){
+            return comData.data
+        }
+        return null
     }
-
     %>
-    <link rel="stylesheet" href="/css/<%=com.value.key%>.css">
     <%-include ('./components/' + com.value.key + '/index', {data : com.value, getData : getData})%>    
 <%})%>

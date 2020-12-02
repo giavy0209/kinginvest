@@ -11,6 +11,9 @@ nav{
         right: 20px;
         width: 16px;
         height: 16px;
+        @media only screen and (min-width : 992px){
+            display: none;
+        }
         &::before{
             content: "";
             width: 20px;
@@ -136,8 +139,16 @@ nav{
             display: inline-block;
             vertical-align: middle;
             font-size: rem(15px);
+            &.signup{
+                background-color: $sub1;
+                border-radius: 5px;
+                a{
+                    padding: 10px;
+                    color: $sub4;
+                }
+            }
             a {
-                padding: 22px 25px;
+                padding: 22px 15px;
                 color : $sub7;
                 text-transform: uppercase;
                 transition: all .3s ease;
@@ -155,10 +166,22 @@ nav{
                 }
             }
             &:hover , &.active{
+                &.signup{
+                    background-color: $sub1;
+                    border-radius: 5px;
+                    a{
+                        padding: 10px;
+                        color: $sub4;
+                        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .7);
+                        &::before{
+                            display: none;
+                        }
+                    }
+                }
                 a{
                     color: $sub1;
                     &::before{
-                        width: calc(100% - 50px);
+                        width: calc(100% - 30px);
                     }
                 }   
             }

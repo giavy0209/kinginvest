@@ -1,6 +1,14 @@
 @import '../includes/mixin';
 @import '../includes/var';
 #block10{
+    @media only screen and (max-width: 992px){
+        .kdg-col-9{
+            width: 100%;
+        }
+        .kdg-col-3{
+            width: 100%;
+        }
+    }
     .title{
         font-size: rem(30px);
         font-weight: 600;
@@ -11,6 +19,7 @@
         padding-bottom: 30px;
         border-bottom: 1px solid $sub9;
         font-size: 0;
+        
         .left{
             width: 66.6666%;
             display: inline-block;
@@ -67,6 +76,14 @@
                 }
             }
         }
+        @media only screen and (max-width : 768px){
+            .left, .right{
+                width: 100%;
+            }
+            .right{
+                margin-top: 17px;
+            }
+        }
     }
     .list-news{
         margin-top: 35px;
@@ -107,6 +124,14 @@
                     font-size: 15px;
                     width: 280px;
                     max-width: 100%;
+                }
+            }
+            @media only screen and(max-width : 768px){
+                .img,.info {
+                    width: 100%;
+                }
+                .info{
+                    margin-top: 10px;
                 }
             }
             +.news{

@@ -8,7 +8,7 @@ var socials = getData('socials')
 
 %>
 
-<div id="block12" class="block block12">
+<div data-id="<%=data.id%>" id="block12" class="block block12">
     <div class="kdg-container">
         <div class="block-title text-c">
             <%if(show_sub_title){%>
@@ -25,7 +25,7 @@ var socials = getData('socials')
                         <div class="content">
                             <img src="<%=el.img_url%>" alt="">
                             <h3 class="title"><%=el.title%></h3>
-                            <p class="sub-title"><%-el.sub_title%></p>
+                            <div class="sub-title"><%-el.sub_title%></div>
                             <div class="in-content"><%-el.content%></div>
                         </div>
                     </div>

@@ -9,6 +9,9 @@
     var placeholder_lastname = getData('placeholder_lastname')
     var placeholder_subject1 = getData('placeholder_subject1')
     var placeholder_subject2 = getData('placeholder_subject2')
+    var subject2_options = getData('subject2_options')
+
+    if(!subject2_options) subject2_options = []
     var placeholder_message = getData('placeholder_message')
     var button_text = getData('button_text')
 
@@ -20,16 +23,16 @@
     
     var block = getData('block')
 %>
-<div id="block13" class="block" >
+<div data-id="<%=data.id%>" id="block13" class="block" >
     <div class="kdg-container">
-        
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.677162533456!2d106.67114929310162!3d10.833593814873854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752900af8fa35d%3A0x34ee49ab412c8748!2zxJAuIHPhu5EgMiwgUGjGsOG7nW5nIDEwLCBHw7IgVuG6pXAsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1603163001311!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         <div class="kdg-row maincontent">
             <div class="kdg-col-3 vat">
-                <%if(show_title_form){%>
-                    <h4 class="title"><%-title_form%></h4>
+                <%if(show_title_contact){%>
+                    <h4 class="title"><%-title_contact%></h4>
                 <%}%>
-                <%if(show_description_form){%>
-                    <div class="description"><%-description_form%></div>
+                <%if(show_description_contact){%>
+                    <div class="description"><%-description_contact%></div>
                 <%}%>
                 <ul class="contacts">
                     <%block.forEach(el => {%>
@@ -58,7 +61,12 @@
                         <input name="subject1" type="text" placeholder="<%=placeholder_subject1%>">
                     </div>
                     <div class="input">
-                        <input name="subject2" type="text" placeholder="<%=placeholder_subject2%>">
+                        <select name="subject2" id="">
+                            <option value=""><%=placeholder_subject2%></option>
+                            <%subject2_options.forEach(el => {%>
+                                <option value="<%=el.name%>"><%=el.name%></option>    
+                            <%})%>
+                        </select>
                     </div>
                     <div class="textarea">
                         <textarea name="message" cols="30" placeholder="<%=placeholder_message%>"></textarea>

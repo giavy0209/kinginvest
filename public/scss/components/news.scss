@@ -113,4 +113,12 @@
             }
         }
     }
+    @media only screen and (max-width : 768px){
+        .kdg-col-3, .kdg-col-9{
+            width: 100%;
+        }
+        .kdg-col-3 { 
+            margin-top: 30px;
+        }
+    }
 }

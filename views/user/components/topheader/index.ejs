@@ -6,7 +6,7 @@ var flag = {
     en : data.datas.find(o => o.key === 'en_flag').data
 }
 %>
-<header id="topheader">
+<header data-id="<%=data.id%>" id="topheader">
     <div class="topheader">
         <div class="kdg-container">
             <ul class="list-socials">
@@ -20,7 +20,7 @@ var flag = {
             </ul>
             <div class="choose-language">
                 <div class="current">
-                    <img src="<%=flag.vi%>" alt="">
+                    <img src="<%=flag.vi%>" alt=""><i class="fas fa-caret-down"></i>
                 </div>
                 <ul class="dropdown">
                     <%Object.keys(flag).forEach(key => {%>

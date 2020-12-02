@@ -1,5 +1,5 @@
 const { language } = require('../../const')
-const {getCat} = require('../../helpers')
+const {getCat,removeRoute} = require('../../helpers')
 const {Pages,Categories} = require('../../modal')
 
 

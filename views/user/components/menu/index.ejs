@@ -1,4 +1,8 @@
-<nav id="menu">
+<%
+    var signup_now_text = getData('signup_now_text')
+    var signup_now_url = getData('signup_now_url')
+%>
+<nav data-id="<%=data.id%>" id="menu">
     <div class="closemenu"></div>
     <div class="kdg-container">
         <ul>
@@ -7,6 +11,9 @@
                     <a href="<%=cat.slug%>"><%=cat.title%></a>
                 </li>
             <%})%>
+            <li class="signup">
+                <a target="_blank" href="<%=signup_now_url%>"><%=signup_now_text%></a>
+            </li>
         </ul>
     </div>
 </nav>

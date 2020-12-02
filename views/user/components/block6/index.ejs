@@ -6,7 +6,7 @@
     var block = getData('block')
     
 %>
-<div id="block6" class="block">
+<div data-id="<%=data.id%>" id="block6" class="block block6">
     <div class="kdg-container">
         <div class="block-title text-c">
             <%if(show_sub_title){%>
@@ -17,7 +17,7 @@
             <%}%>
         </div>
         <div style="--block6-item : <%=block.length%>" class="maincontent">
-            <div class="kdg-row kdg-column-3">
+            <div class="kdg-row kdg-column-2">
                 <%block.forEach(el => {%>
                     <div class="item">
                         <div class="content">

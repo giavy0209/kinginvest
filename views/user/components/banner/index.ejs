@@ -1,32 +1,40 @@
 <%
     var img_url = getData('img_url')
-    var title = getData('title')
-    var show_title = getData('show_title')
-    var description = getData('description')
-    var show_description = getData('show_description')
-    var button_url = getData('button_url')
-    var button_text = getData('button_text')
-    var show_button = getData('show_button')
+    var percent_height = getData('percent_height')
+
+    if(!percent_height){
+        percent_height = 51.6
+    }
+
+    var block_banner = getData('block_banner')
+
+    if(!block_banner) block_banner = []
+    
     var banner_count = getData('banner_count')
     var show_banner_count = getData('show_banner_count')
 %>
-<div id="banner" class="img img-banner">
-    <img src="<%=img_url%>" alt="">
-    <div class="info">
-        <div class="block">
-            <%if(show_title){%>
-                <p class="title"><%-title%></p>
-            <%} %>
-
-            <%if(show_description){%>
-                <p class="description"><%-description%></p>
-            <%}%>
-
-            <%if(show_button){%>
-                <a href="<%=button_url%>" class="button"><%=button_text%></a>
-            <%}%>
+<div data-id="<%=data.id%>" style="--current-index : 0;--banner-count : <%=banner_count.length%>; --percent-height : <%=percent_height%>" id="banner" class="banner img img-banner">
+    <%block_banner.forEach((el,index) => {%>
+        <div style="--item-index : <%=index%>" class="block-banner">
+            <img src="<%=el.img_url%>" alt="">
+            <div class="info">
+                <div class="block">
+                    <%if(el.show_title){%>
+                        <p class="title"><%-el.title%></p>
+                    <%} %>
+    
+                    <%if(el.show_description){%>
+                        <p class="description"><%-el.description%></p>
+                    <%}%>
+    
+                    <%if(el.show_button){%>
+                        <a href="<%=el.button_url%>" class="button"><%=el.button_text%></a>
+                    <%}%>
+                </div>
+            </div>
         </div>
-    </div>
+    <%})%>
+    
     <%if(show_banner_count){%>
         <div class="count">
             <div class="kdg-container">
@@ -53,9 +61,3 @@
         </div>
     <%}%>
 </div>
-
-<script>
-    window.onload = function(e) {
-        document.querySelector('#banner .info').style.width = document.querySelector('.kdg-container').offsetWidth + 'px'
-    }
-</script>

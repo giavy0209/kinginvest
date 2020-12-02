@@ -2,7 +2,7 @@
 @import '../includes/var';
 
 #block3{
-    background-color: $sub6;
+    background-color: var(--background-color);
     @media only screen and (max-width : 992px) { 
         .maincontent{
             .kdg-col-6{
@@ -25,6 +25,7 @@
                             .left,.right{
                                 width: 100%;
                                 text-align: center;
+                                padding: 0;
                             }
                             .left{
                                 img{

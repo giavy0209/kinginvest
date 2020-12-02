@@ -1,7 +1,9 @@
 const mapCat = require("./mapCat");
 const {Categories, News} = require('../modal');
 const mapNews = require("./mapNews");
+const fs = require('fs')
 module.exports = async function (app,currentNews, language) {
+    var css = fs.readFileSync('./public/css/style.css','utf8')
     var queryCategories = {}
     queryCategories['show_' + language] = true
     queryCategories['page' + language] = {$ne : null}
@@ -11,6 +13,8 @@ module.exports = async function (app,currentNews, language) {
         populate : 'components.value'
     })
     app.get(currentNews['slug' + language], async (req,res) => {
+        console.log(css);
+
         var reqLanguage = req.cookies.language;
         var forceWriteCookie = false
         if(currentNews.slugvi === currentNews.slugen){
@@ -84,7 +88,7 @@ module.exports = async function (app,currentNews, language) {
 
         }
 
-        var sidebarnews = await News.find({}).limit(5).sort({create_date : -1}).sort({views : -1})
+        var sidebarnews = await News.find({category : {$in : currentNews.category}}).limit(5).sort({create_date : -1}).sort({views : -1})
         sidebarnews = mapNews(sidebarnews, language)
 
         if(forceWriteCookie){
@@ -103,7 +107,8 @@ module.exports = async function (app,currentNews, language) {
             listFeatured,
             sidebarnews,
             currentPage : page,
-            sidebar_title : language === 'vi' ? 'Bài viết nổi bật' : 'Featured News'
+            sidebar_title : language === 'vi' ? 'Bài viết nổi bật' : 'Featured News',
+            css
         })
     })
 }

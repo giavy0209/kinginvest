@@ -3,15 +3,26 @@
 
 #block12{
     .maincontent{
+        margin-top: 50px;
         &.kdg-row{
             overflow-x: scroll;
+            padding-bottom: 2px;
+            &::-webkit-scrollbar {
+                display: none;
+            }
             .track{
                 width: 100%;
                 @media only screen and (max-width : 768px){
                     width: calc(100% * var(--block12-item));
                 }
                 .item{
+                    &:not(:nth-child(-n + 2)){
+                        margin-top: 30px;
+                    }
                     @media only screen and (max-width : 768px){
+                        &:not(:nth-child(-n + 2)){
+                            margin-top: 0;
+                        }
                         width: calc(100% / var(--block12-item));
                     }
                 }
@@ -43,7 +54,7 @@
                 font-size: rem(24px);
                 text-align: left;
                 @media only screen and (max-width : 768px){
-                    font-size: rem(18px);
+                    font-size: rem(19px);
                     margin-top: 15px;
                 }
             }
@@ -59,6 +70,9 @@
             .in-content{
                 margin-top: 48px;
                 text-align: left;
+                a,span{
+                    display: inline;
+                }
                 @media only screen and (max-width : 768px){
                     margin-top: 20px;
                 }

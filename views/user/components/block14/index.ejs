@@ -15,7 +15,7 @@ var block = getData('block')
 
 %>
 
-<div style="--block14-item : <%=block.length%>" id="block14" class="block block14">
+<div data-id="<%=data.id%>" style="--block14-item : <%=block.length%>" id="block14" class="block block14 <%if(!show_sub_title && !show_title){%>pt-0<%}%>">
     <div class="block-title text-c">
         <%if(show_sub_title){%>
             <p><%=sub_title%></p>    
@@ -23,20 +23,20 @@ var block = getData('block')
         <%if(show_title){%>
             <div><%=title%></div>    
         <%}%>
-        <%if(show_description){%>
-            <div class="description"><%-description%></div>    
-        <%}%>
     </div>
-
+    
     <div class="maincontent">
         <div class="kdg-container">
+            <%if(show_description){%>
+                <div class="description"><%-description%></div>    
+            <%}%>
             <div class="kdg-row kdg-column-5 list-icon text-c">
                 <div class="track">
                     <%block.forEach((el,index) => {%>
                     
                         <div  <%if(index == 0){%> class="item active" <%}%> class="item <%=index%>" >
                             <div class="icon">
-                                <div class="icon-img" <%if(index === 0){%>style="--icon-url : <%=el.img_url_active%>"<%}else{%>style="--icon-url : <%=el.img_url%>"<%}%> data-img="<%=el.img_url%>" data-img-active="<%=el.img_url_active%>"></div>
+                                <div class="icon-img" style="--icon-img-active : url(<%=el.img_url_active%>) ; --icon-img : url(<%=el.img_url%>)"></div>
                                 <h4 class="block-title"><%-el.title%></h4>
                             </div>
                         </div>
@@ -73,9 +73,8 @@ var block = getData('block')
 </div>
 
 <script>
-
     
-    var currentIndex = 0
+    
     window.addEventListener('load', function () {
         var listIcon = Array.from(document.querySelectorAll('#block14 .list-icon .item'))
         var iconWidth = listIcon[0].offsetWidth
@@ -86,22 +85,41 @@ var block = getData('block')
         var scrollBarTrack = document.querySelector('#block14 .scroll-bar .track')
         var scrollBarTrackWidth = scrollBarTrack.offsetWidth
 
+        var currentIndex = 0
+        
+
         var scrollTo = function(index) {
+            if(index >= listIcon.length) {
+                return
+            }
             currentIndex = index
             var iconTrack =  document.querySelector('#block14 .list-icon')
             var dataTrack =  document.querySelector('#block14 .list-data')
 
             listIcon.forEach(function(el){
                 el.classList.remove('active')
-                el.style.setProperty('--icon-url', el.getAttribute('data-img'))
             })
             listIcon[currentIndex].classList.add('active')
-            listIcon[currentIndex].style.setProperty('--icon-url' , listIcon[currentIndex].getAttribute('data-img-active'))
+
 
             scrollBarTrack.style.setProperty('--scrollthum-pos', (scrollBarTrackWidth / listIcon.length) * currentIndex + 'px')
-            console.log(iconTrack.scrollLeft);
             smoothScroll(iconTrack,iconTrack.scrollLeft,(iconWidth * currentIndex) - iconWidth / 2 ,0,0,300)
             smoothScroll(dataTrack,dataTrack.scrollLeft,dataWidth * currentIndex ,0,0,300)
+        }
+
+        var locationhash = location.hash.trim().replace('#','')
+
+        if(locationhash.includes('/')){
+            locationhash = locationhash.slice(locationhash.indexOf('/') + 1, locationhash.length)
+            var checkindex = Number(locationhash)
+
+            if(checkindex){
+                currentIndex = checkindex
+
+                if(currentIndex !== 0 ){
+                    scrollTo(currentIndex)
+                }
+            }
         }
 
         listIcon.forEach(function(el,index){

@@ -5,9 +5,6 @@
 html{
     scroll-behavior: smooth;
     font-size: 10px;
-    @media only screen and (max-width : 992px){
-        font-size: 8px;
-    }
 }
 * {
     margin: 0;
@@ -39,7 +36,10 @@ img {
 
 body {
     font-size: rem(15px);
-    font-family: 'SanFranciscoText';
+    @media only screen and (max-width : 768px){
+        font-size: rem(13px);
+    }
+    font-family: sans-serif , 'SanFranciscoText';
     line-height: 1.285;
 
     color: $maincolor;
@@ -138,6 +138,9 @@ body {
     content: " ";
     display:block;
     clear: both;
+}
+.pt-0 {
+    padding-top: 0 !important;
 }
 .pl-0{
     padding-left: 0 !important; 

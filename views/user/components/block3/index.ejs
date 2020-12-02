@@ -1,4 +1,8 @@
 <%
+    var background_color = getData('background_color')
+
+    if(!background_color) background_color = '#F1F3F4'
+
     var sub_title = getData('sub_title')
     var show_sub_title = getData('show_sub_title')
     var title = getData('title')
@@ -8,7 +12,7 @@
     
     var block = getData('block')
 %>
-<div id="block3" class="block">
+<div data-id="<%=data.id%>" style="--background-color : <%=background_color%>" id="block3" class="block block3">
     <div class="kdg-container">
         <div class="block-title text-l">
             <%if(show_sub_title){%>

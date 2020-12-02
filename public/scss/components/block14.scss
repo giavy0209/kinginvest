@@ -2,6 +2,10 @@
 @import '../includes/var';
 
 #block14{
+    .description{
+        margin-top: 30px;
+        font-size: rem(15px);
+    }
     .maincontent {
         margin-top: 50px;
         .list-icon{
@@ -31,12 +35,18 @@
                     .icon{
                         cursor: pointer;
                         .icon-img{
-                            max-width: 108px;
-                            max-height: 108px;
-                            background-image: url(--icon-url);
+                            width: 108px;
+                            height: 108px;
                             background-position: center;
                             background-size: cover;
                             background-repeat: no-repeat;
+                            margin: 0 auto;
+                            background-image: var(--icon-img);
+                            @media only screen and (max-width : 768px){
+                                width: 80px;
+                                height: 80px;
+                                margin-top: 30px;
+                            }
                         }
                         .block-title{
                             font-size: rem(20px);
@@ -49,8 +59,12 @@
                             }
                         }
                     }
-                    &.active{
+                    &:hover,&.active{
                         .icon{
+                            .icon-img {
+                                background-image: var(--icon-img-active);
+
+                            }
                             .block-title {
                                 color: $sub1;
                             }
@@ -94,7 +108,9 @@
         .list-data{
             margin-top: 47px;
             overflow-x: scroll;
-
+            @media only screen and (max-width : 768px){
+                margin-top: 15px;
+            }
             &::-webkit-scrollbar{
                 display: none;
             }

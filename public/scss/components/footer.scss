@@ -52,16 +52,18 @@
             width: 100%;
             color: $sub4;
             &::placeholder { 
-                color:  $sub4;;
-                opacity: 1;
+                color:  $sub4;
+                opacity: .6;
             }
             
             &:-ms-input-placeholder { /* Internet Explorer 10-11 */
                 color: $sub4;
+                opacity: .6;
             }
             
             &::-ms-input-placeholder { /* Microsoft Edge */
                 color: $sub4;
+                opacity: .6;
             }
         }
         i{

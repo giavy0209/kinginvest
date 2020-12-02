@@ -3,11 +3,13 @@
 
 #block13{
     .maincontent{
+        margin-top: 50px;
         @media only screen and (max-width : 600px ){
-            .kdg-col-6{
+            .kdg-col-3{
                 width: 100%;
                 padding-bottom: 30px;
-                +.kdg-col-6 {
+                +.kdg-col-9 {
+                    width: 100%;
                     padding-top: 30px;
                     border-top: 1px solid $sub8;
                     padding-bottom: 0;
@@ -37,7 +39,7 @@
         form{
             margin: 0 -21px;
             font-size: 0;
-            input,textarea{
+            input,textarea,select{
                 margin-top: 25px;
                 padding: 12px;
                 border: 1px solid $sub8 ;

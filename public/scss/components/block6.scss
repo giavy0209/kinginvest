@@ -6,6 +6,11 @@
     background-size: cover;
     .maincontent{
         margin-top: 30px;
+        .item {
+            &:not(:nth-child(-n + 2)){
+                margin-top: 30px;
+            }
+        }
         .content{
             font-size: 0;
             .left,.right {
@@ -68,6 +73,7 @@
                 margin: 0;
                 .item{
                     width: calc(100% / var(--block6-item));
+                    margin-top: 0;
                     .content{
                         background-color: $sub6;
                         border-radius: 5px;
@@ -107,7 +113,7 @@
                             }
                             .button{
                                 margin-top: 10px;
-                                font-size: rem(12px);
+                                font-size: rem(13px);
                                 border: 1px solid $sub2;
                                 padding: 4px 8px;
                             }

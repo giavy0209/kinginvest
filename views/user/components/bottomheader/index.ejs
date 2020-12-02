@@ -3,7 +3,7 @@
     var logo_text = getData('logo_text')
     var header_text = getData('header_text')
 %>
-<header id="bottomheader">
+<header data-id="<%=data.id%>" id="bottomheader">
     <div class="bottomheader">
         <div class="before"></div>
         <div class="kdg-container">
@@ -27,8 +27,11 @@
 </header>
 
 <script>
-    var openmenu = document.querySelector('#bottomheader .open-menu')
-    openmenu.onclick = function (e) {
-        document.getElementById('menu').classList.add('active')
-    }
+    window.addEventListener('load', function() {
+        var openmenu = document.querySelector('#bottomheader .open-menu')
+        document.querySelector('.right .header-text').style.left = '80px'
+        openmenu.onclick = function (e) {
+            document.getElementById('menu').classList.add('active')
+        }
+    })
 </script>

@@ -3,7 +3,7 @@ const {Uploads} = require('../../modal')
 var multer = require('multer')
 var upload = multer({ dest: './public/' })
 
-const itemperpage = 50
+const itemperpage = 9999
 const path = require('path')
 module.exports = app => {
     app.get('/admin/uploads' , async (req,res) => {

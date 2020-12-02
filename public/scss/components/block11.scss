@@ -2,34 +2,37 @@
 @import '../includes/var';
 
 #block11{
-    .list-button{
-        margin: 0 -10px;
-        overflow-x: scroll;
-        &::-webkit-scrollbar{
-            display: none;
-        }
-        .track{
-            font-size: 0;
-            width: calc(25% * var(--block11-item));
-            background-color: $sub6;
-            min-width: 100%;
-            text-align: center;
-            @media only screen and (max-width : 768px){
-                width: calc(50% * var(--block11-item));
+    .fluid-listbutton{
+        background-color: $sub6;
+        .list-button{
+            margin: 0 -10px;
+            overflow-x: scroll;
+            &::-webkit-scrollbar{
+                display: none;
             }
-            .button{
-                font-size: rem(28px);
-                padding: 32px 10px;
+            .track{
+                font-size: 0;
+                width: calc(25% * var(--block11-item));
                 background-color: $sub6;
+                min-width: 100%;
                 text-align: center;
-                width: 25%;
                 @media only screen and (max-width : 768px){
-                    font-size: rem(20px);
+                    width: calc(50% * var(--block11-item));
                 }
-                cursor: pointer;
-                &.active{
-                    color : $sub1;
-                    font-weight: 600;
+                .button{
+                    font-size: rem(24px);
+                    padding: 32px 10px;
+                    background-color: $sub6;
+                    text-align: center;
+                    width: 25%;
+                    @media only screen and (max-width : 768px){
+                        font-size: rem(20px);
+                    }
+                    cursor: pointer;
+                    &:hover,&.active{
+                        color : $sub1;
+                        font-weight: 600;
+                    }
                 }
             }
         }
